@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class Mouse:: public MovingObjects
+class Mouse:: public MovingObjects
 {
 public:
 	using MovingObjects::MovingObjects;

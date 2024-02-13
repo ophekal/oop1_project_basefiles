@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-Class Button
+class Button
 {
 public:
 	Button();

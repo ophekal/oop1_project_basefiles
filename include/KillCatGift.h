@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class KillCatGift:: public Gift
+class KillCatGift:: public Gift
 {
 public:
 	using Gift::Gift;

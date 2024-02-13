@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Menu.h"
 
-Class Window
+class Window
 {
 public:
 	Window();

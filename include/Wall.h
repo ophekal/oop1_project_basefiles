@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class Wall:: public StaticObjects
+class Wall:: public StaticObjects
 {
 public:
 	using StaticObjects::StaticObjects;

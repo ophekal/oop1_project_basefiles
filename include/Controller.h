@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-Class Controller
+class Controller
 {
 public:
 	Controller();

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class StupidCat:: public Cat
+class StupidCat:: public Cat
 {
 public:
 	using Cat::Cat;

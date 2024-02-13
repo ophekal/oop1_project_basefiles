@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class StaticObjects:: public GameObjects
+class StaticObjects:: public GameObjects
 {
 public:
 	using GameObjects::GameObjects;

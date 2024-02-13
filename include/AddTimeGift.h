@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class AddTimeGift:: public Gift
+class AddTimeGift:: public Gift
 {
 public:
 	using Gift::Gift;

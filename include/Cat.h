@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class Cat:: public MovingObjects
+class Cat:: public MovingObjects
 {
 public:
 	using MovingObjects::MovingObjects;

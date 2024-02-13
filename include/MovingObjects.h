@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class MovingObjects:: public GameObjects
+class MovingObjects:: public GameObjects
 {
 public:
 	using GameObjects::GameObjects;

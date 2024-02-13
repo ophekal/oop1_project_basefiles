@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class AddLifeGift:: public Gift
+class AddLifeGift:: public Gift
 {
 public:
 	using Gift::Gift;

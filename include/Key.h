@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class Key:: public StaticObjects
+Class Key::public StaticObjects
 {
 public:
 	using StaticObjects::StaticObjects;

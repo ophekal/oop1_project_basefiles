@@ -3,7 +3,7 @@
 #include <memory>
 #include <fstream>
 
-Class Board
+class Board
 {
 public:
 	Board();

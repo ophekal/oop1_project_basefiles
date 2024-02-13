@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-Class GameObject
+class GameObject
 {
 public:
 	GameObject(sf::Vector2f position, sf::Vector2f size);

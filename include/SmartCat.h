@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class SmartCat:: public Cat
+class SmartCat:: public Cat
 {
 public:
 	using Cat::Cat;

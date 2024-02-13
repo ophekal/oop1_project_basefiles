@@ -4,7 +4,7 @@
 #include <fstream>
 #include "Button.h"
 
-Class Menu
+class Menu
 {
 public:
 	Menu();
@@ -16,8 +16,6 @@ private:
 	Button buttons[3];
 
 	sf::RectangleShape m_helpButtonPressed;	//will show the rules of the game, how do i close it?
-
-
 
 };
 

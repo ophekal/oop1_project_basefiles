@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-Class Cheese:: public StaticObjects
+class Cheese:: public StaticObjects
 {
 public:
 	using StaticObjects::StaticObjects;

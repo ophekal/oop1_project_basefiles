@@ -8,11 +8,11 @@ class Menu
 {
 public:
 	Menu();
-	void print();
+	void print() const;
 
 private:
 	
-	sf::RectangleShape m_menu	//hold the menu that pops up when the game starts
+	sf::RectangleShape m_menu;	//hold the menu that pops up when the game starts
 	Button buttons[3];
 
 	sf::RectangleShape m_helpButtonPressed;	//will show the rules of the game, how do i close it?

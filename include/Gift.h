@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class Gift:: public StaticObjects
+class Gift: public StaticObjects
 {
 public:
 	using StaticObjects::StaticObjects;

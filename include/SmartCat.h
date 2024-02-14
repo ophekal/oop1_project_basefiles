@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Cat.h"
 
 
-class SmartCat:: public Cat
+class SmartCat: public Cat
 {
 public:
 	using Cat::Cat;

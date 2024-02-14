@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Gift.h"
 
 
-class FreezeCatGift:: public Gift
+class FreezeCatGift : public Gift
 {
 public:
 	using Gift::Gift;

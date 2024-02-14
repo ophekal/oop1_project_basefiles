@@ -31,7 +31,6 @@ public:
 	virtual void collisionHandling(Wall&) = 0;
 
 
-
 protected:
 	sf::RectangleShape m_object;
 };

@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "MovingObjects.h"
 
 
-class Cat:: public MovingObjects
+class Cat: public MovingObjects
 {
 public:
 	using MovingObjects::MovingObjects;

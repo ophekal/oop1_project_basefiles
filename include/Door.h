@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "StaticObjects.h"
 
-class Door :: public StaticObjects
+class Door : public StaticObjects
 {
 public:
 	using StaticObjects::StaticObjects;

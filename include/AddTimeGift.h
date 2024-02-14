@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Gift.h"
 
 
-class AddTimeGift:: public Gift
+class AddTimeGift: public Gift
 {
 public:
 	using Gift::Gift;

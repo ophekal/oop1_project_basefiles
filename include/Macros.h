@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 
-const int PIXELS = 50;
+const int PIXELS = 48;
 const int BUTTON_TEXT_SIZE = 50;
 const int INFOBAR_TEXT_SIZE = 30;
 
@@ -19,6 +19,16 @@ enum TileType : char
 	T_KEY = 'F'
 };
 
+enum IconType
+{
+	I_CAT,
+	I_MOUSE,
+	I_KEY,
+	I_GIFT,
+	I_CHEESE,
+	I_DOOR,
+	I_WALL
+};
 
 const sf::Vector2f Directions[] = { {-1,0},{1,0},{0,-1},{0,1} };
 

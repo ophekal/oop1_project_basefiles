@@ -10,6 +10,8 @@ public:
 	HandleResources();   //update all the resources of the play
 
 private:
+	void updateObjectVector();
+	void updateBackgroundVector();
 
 	std::vector<sf::Texture> m_objectsTextures;
 	std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window

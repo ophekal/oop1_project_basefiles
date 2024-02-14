@@ -30,6 +30,13 @@ enum IconType
 	I_WALL
 };
 
+enum MenuButton
+{
+	M_EXIT,
+	M_HELP,
+	M_START
+};
+
 const sf::Vector2f Directions[] = { {-1,0},{1,0},{0,-1},{0,1} };
 
 enum Direction {
@@ -43,7 +50,12 @@ enum Direction {
 //------------menu------------
 const int WINDOW_HEIGHT = 1000;
 const int WINDOW_WIDTH = 1500;
-
+const float EXIT_X = 50;
+const float EXIT_Y = 350;
+const float HELP_X = 550;
+const float HELP_Y = 350;
+const float START_X = 1050;
+const float START_Y = 350;
 
 //------------board------------
 const int SIZE = 500;

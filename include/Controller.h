@@ -11,7 +11,6 @@ public:
 	Controller();
 	void run();
 
-
 private:
 	
 	Board m_Board;

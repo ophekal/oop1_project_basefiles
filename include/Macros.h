@@ -58,6 +58,14 @@ const float START_X = 1050;
 const float START_Y = 150;
 
 //------------board------------
-const int SIZE = 500;
+const int SIZE = 1000;
 
 
+//----------infoBar-------------
+
+const float INFO_X = 50;
+const float INFO_Y = 50;
+const float CLOCK_Y = 190;
+const float LEVEL_Y = 330;
+const float LIVES_Y = 470;
+const float KEYS_Y = 610;

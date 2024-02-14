@@ -8,14 +8,14 @@ class InfoBar
 {
 public:
 	InfoBar(sf::Font& font);
-	void printInfoBar(sf::RenderWindow& window) const;
+	void printInfoBar(sf::RenderWindow& window);
 
 private:
 	sf::Text m_numOfKeys;
 	sf::Text m_numOfLives;
 	sf::Text m_numOfLevel;
-	sf::Text m_showTimer;
+	sf::Text m_info;
 	Clock m_clock;
 
-	std::vector<Button*> m_buttons; //button for silencing music of restarting game
+	//std::vector<Button*> m_buttons; //button for silencing music of restarting game
 };

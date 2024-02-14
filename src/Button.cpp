@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 
 Button::Button()
-    :m_rectangle(sf::Vector2f(200.f, 100.f))
+    :m_rectangle(sf::Vector2f(400.f, 150.f))
 {
 }
 
@@ -18,12 +18,14 @@ void Button::updateButton(const sf::Font& font, std::string type, float x, float
     m_rectangle.setFillColor(sf::Color::White);
     m_text.setFont(font);
     m_text.setString(type);
-    m_text.setCharacterSize(24);
+    m_text.setCharacterSize(48);
     m_text.setFillColor(sf::Color::Black);
 
-    // Set the position of the text (relative to the rectangle)
-    m_text.setPosition(130.f, 120.f);
-
+    // Set the position of the text to be centered within the rectangle
+    sf::FloatRect textBounds = m_text.getLocalBounds();
+    float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
+    float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
+    m_text.setPosition(textX, textY);
 }
 
 //---------------------------------------------------------------------------------------
@@ -31,6 +33,7 @@ void Button::updateButton(const sf::Font& font, std::string type, float x, float
 void Button::printButton(sf::RenderWindow& window) const
 {
     window.draw(m_rectangle);
+    window.draw(m_text);
 }
 
 //-------------------------------------------------------------

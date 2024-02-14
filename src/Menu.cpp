@@ -121,15 +121,15 @@ void Menu:: pressedHelp()
 
 	while (helpWindow.isOpen())
 	{
-		helpWindow.clear(sf::Color::Yellow);
+		helpWindow.clear(sf::Color::White);
 		helpWindow.display();
 
-		if (auto event = sf::Event{}; m_window.waitEvent(event))
+		if (auto event = sf::Event{}; helpWindow.waitEvent(event))
 		{
 			switch (event.type)
 			{
 			case sf::Event::Closed:
-				m_window.close();
+				helpWindow.close();
 				break;
 			}
 		}

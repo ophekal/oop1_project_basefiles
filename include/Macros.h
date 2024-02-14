@@ -51,11 +51,11 @@ enum Direction {
 const int WINDOW_HEIGHT = 850;
 const int WINDOW_WIDTH = 1500;
 const float EXIT_X = 50;
-const float EXIT_Y = 350;
+const float EXIT_Y = 150;
 const float HELP_X = 550;
-const float HELP_Y = 350;
+const float HELP_Y = 150;
 const float START_X = 1050;
-const float START_Y = 350;
+const float START_Y = 150;
 
 //------------board------------
 const int SIZE = 500;

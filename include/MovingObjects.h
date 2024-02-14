@@ -18,7 +18,7 @@ class MovingObjects : public GameObjects
 {
 public:
 	using GameObjects::GameObjects;
-	virtual ~MovingObject() = default;
+	//virtual ~MovingObject() = default;
 	virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void movement() = 0;
 

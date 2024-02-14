@@ -4,7 +4,8 @@
 
 //------------------------------------------------------------------------
 
-Controller::Controller()
+Controller::Controller(sf::Font& font)
+	:m_infoBar(font)
 {
 
 }

@@ -16,7 +16,7 @@ private:
 	Board m_Board;
 	InfoBar m_infoBar;
 
-	int m_levelNum;	//saves the level number
+	int m_levelNum = 1;	//saves the level number
 
 	std::vector<std::unique_ptr<MovingObjects>> m_movingObjects;
 	std::vector<std::string> m_playlist;

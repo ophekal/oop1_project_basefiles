@@ -7,7 +7,7 @@
 class InfoBar
 {
 public:
-	InfoBar();
+	InfoBar(sf::Font& font);
 	void printInfoBar(sf::RenderWindow& window) const;
 
 private:

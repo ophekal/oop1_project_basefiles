@@ -9,7 +9,8 @@
 class Board
 {
 public:
-	Board();
+	Board() = default;
+	//void setBoard();
 	void print(sf::RenderWindow &);
 
 private:

@@ -8,8 +8,8 @@
 class Controller
 {
 public:
-	Controller();
-	void run();
+	Controller(sf::Font& font);
+	void run(sf::RenderWindow& window);
 
 private:
 	

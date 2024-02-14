@@ -6,6 +6,7 @@
 #include "Macros.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Controller.h"
 
 //------------------------------------------------------------------------
 Menu::Menu()
@@ -98,7 +99,6 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 {
 	auto location = m_window.mapPixelToCoords({ event.x,event.y });
 
-
 	if (m_buttons[M_EXIT].getRectangleButton().getGlobalBounds().contains(location))
 	{
 		m_window.close();
@@ -110,7 +110,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	}
 	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
 	{
-		//startGame();	//calls on controller and starts the game
+		startGame();	//calls on controller and starts the game
 	}
 }
 
@@ -134,4 +134,11 @@ void Menu:: pressedHelp()
 			}
 		}
 	}
+}
+
+//----------------------------------------------------------------------
+void Menu::startGame()
+{
+	Controller controller(m_font);
+	controller.run(m_window);
 }

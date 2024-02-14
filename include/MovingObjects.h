@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include "GameObjects.h"
 
 class MovingObjects:: public GameObjects
 {
@@ -9,9 +9,9 @@ public:
 	virtual ~MovingObject() = default;
 	virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void movement() = 0;
-	virtual void collisionHandling() = 0;
+	virtual void collisionHandling(GameObjects& ) = 0;
 
-private:
+protected:
 	sf::Vector2f m_oldPosition;
 	sf::Vector2f m_nextPosition;
 	float objectSpeed;				//each object will update according to the speed we will set it to

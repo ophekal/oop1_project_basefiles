@@ -8,14 +8,14 @@ class Menu
 {
 public:
 	Menu();
-	void print() const;
+	void run();   //holds the waitevents of the different options in menu
 
 private:
-	
-	sf::RectangleShape m_menu;	//hold the menu that pops up when the game starts
+	sf::RenderWindow m_window;
 	Button buttons[3];
+	sf::RenderWindow m_helpButtonPressed;	//will show the rules of the game
 
-	sf::RectangleShape m_helpButtonPressed;	//will show the rules of the game, how do i close it?
+	sf::Music m_gameMusic;	//maybe needs to be in controller?
 
 };
 

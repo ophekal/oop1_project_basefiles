@@ -13,7 +13,7 @@ class Key;
 class Cheese;
 class Door;
 
-class StaticObjects:: public GameObjects
+class StaticObjects:public GameObjects
 {
 public:
 	using GameObjects::GameObjects;

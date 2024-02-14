@@ -10,7 +10,7 @@ public:
 
 
 private:
-	Window m_window;
+	
 	Board m_Board;
 	InfoBar m_infoBar;
 

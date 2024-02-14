@@ -15,7 +15,7 @@ private:
 	Button buttons[3];
 	sf::RenderWindow m_helpButtonPressed;	//will show the rules of the game
 
-	sf::Music m_gameMusic;	//maybe needs to be in controller?
+	//sf::Music m_gameMusic;	//maybe needs to be in controller?
 
 };
 

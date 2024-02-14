@@ -32,7 +32,7 @@ enum Direction {
 
 //------------menu------------
 const int WINDOW_HEIGHT = 1000;
-const int WINDOW_WIDTH = 1000;
+const int WINDOW_WIDTH = 1500;
 
 
 //------------board------------

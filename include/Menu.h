@@ -18,6 +18,7 @@ private:
 	void printButtons();
 	void handleClick(sf::Event::MouseButtonEvent& event);
 	void pressedHelp();
+	void startGame();
 
 	//a member that saves the text of help windpw
 

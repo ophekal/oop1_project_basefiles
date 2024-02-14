@@ -99,7 +99,6 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 {
 	auto location = m_window.mapPixelToCoords({ event.x,event.y });
 
-
 	if (m_buttons[M_EXIT].getRectangleButton().getGlobalBounds().contains(location))
 	{
 		m_window.close();
@@ -141,5 +140,5 @@ void Menu:: pressedHelp()
 void Menu::startGame()
 {
 	Controller controller(m_font);
-	controller.run();
+	controller.run(m_window);
 }

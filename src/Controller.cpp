@@ -11,7 +11,7 @@ Controller::Controller(sf::Font& font)
 }
 //-------------------------------------------------------------------------
 
-void Controller::run()
+void Controller::run(sf::RenderWindow& window)
 {
 
 }

@@ -7,15 +7,14 @@ Button::Button()
 {
 }
 
-void Button::printButton(sf::RenderWindow& window) const
+void Button::printButton(sf::RenderWindow& window, sf::Font &font, std::string type ) const
 {
-	m_text= sf::Text
-}
+    m_text.setFont(font)
+    m_text.setString(type);
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::Black);
 
-//
-//
-//private:
-//	sf::Text m_text;
-//	sf::Font* m_font;
-//	sf::RectangleShape m_button;
-//	sf::Sound m_buttonSound;	//the sound when a button is pressed
+    // Set the position of the text (relative to the window)
+    text.setPosition(100, 100);
+
+}

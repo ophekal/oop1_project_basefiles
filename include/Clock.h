@@ -5,7 +5,8 @@
 class Clock
 {
 public:
-	Clock();//pass the time of the game
+	Clock() = default;
+//	Clock();//pass the time of the game
 	void printClock(sf::RenderWindow& window);
 	// setTimer();
 

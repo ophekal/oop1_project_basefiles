@@ -64,17 +64,17 @@ void Menu::updateObjectVector()
 //-------------------------------------------------------------------------
 void Menu::updateBackgroundVector()
 {
-	m_backgroundsTextures.resize(2);
-	m_backgroundsTextures[0].loadFromFile("menuLandscape.png");
+	m_backgroundsTextures.resize(3);
+	m_backgroundsTextures[0].loadFromFile("menuLandscape.jpg");
 	m_backgroundsTextures[1].loadFromFile("landscape.png");
+	m_backgroundsTextures[2].loadFromFile("button.png");
 }
 //-------------------------------------------------------------------------
 void Menu::updateButton()
 {
-	m_buttons[M_EXIT].updateButton(m_font, "EXIT", EXIT_X, EXIT_Y);
-	m_buttons[M_HELP].updateButton(m_font, "HELP", HELP_X, HELP_Y);
-	m_buttons[M_START].updateButton(m_font, "START", START_X, START_Y);
-
+	m_buttons[M_EXIT].updateButton(m_font, m_backgroundsTextures[2], "EXIT", EXIT_X, EXIT_Y);
+	m_buttons[M_HELP].updateButton(m_font, m_backgroundsTextures[2], "HELP", HELP_X, HELP_Y);
+	m_buttons[M_START].updateButton(m_font, m_backgroundsTextures[2], "START", START_X, START_Y);
 }
 
 //------------------------------------------------------------------
@@ -110,7 +110,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	}
 	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
 	{
-		startGame();	//calls on controller and starts the game
+		//startGame();	//calls on controller and starts the game
 	}
 }
 

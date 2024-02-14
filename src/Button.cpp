@@ -11,7 +11,8 @@ Button::Button()
 
 //---------------------------------------------------------------------------------------
 
-void Button::updateButton(const sf::Font& font, std::string type, float x, float y)
+void Button::updateButton(const sf::Font& font, const sf::Texture& background,
+                          std::string type, float x, float y)
 {
     //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
@@ -26,6 +27,11 @@ void Button::updateButton(const sf::Font& font, std::string type, float x, float
     float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
     float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
     m_text.setPosition(textX, textY);
+
+    //set the position of the sprite
+    m_sprite.setPosition(x, y);
+    m_sprite.setTexture(background);
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -33,6 +39,7 @@ void Button::updateButton(const sf::Font& font, std::string type, float x, float
 void Button::printButton(sf::RenderWindow& window) const
 {
     window.draw(m_rectangle);
+   // window.draw(m_sprite);
     window.draw(m_text);
 }
 

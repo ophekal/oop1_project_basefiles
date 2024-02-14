@@ -10,11 +10,16 @@ public:
 	Menu();
 	void run();   //holds the waitevents of the different options in menu
 
-
 private:
 	void updateObjectVector();
 	void updateBackgroundVector();
 	void updateButton();
+	void print(sf::Sprite& background);
+	void printButtons();
+	void handleClick(sf::Event::MouseButtonEvent& event);
+	void pressedHelp();
+
+	//a member that saves the text of help windpw
 
 	sf::RenderWindow m_window;
 	Button m_buttons[3];

@@ -2,11 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 
+//---------------------------------------------------------------------------------------
 
 Button::Button()
     :m_rectangle(sf::Vector2f(200.f, 100.f))
 {
 }
+
+//---------------------------------------------------------------------------------------
 
 void Button::updateButton(const sf::Font& font, std::string type, float x, float y)
 {
@@ -23,7 +26,15 @@ void Button::updateButton(const sf::Font& font, std::string type, float x, float
 
 }
 
+//---------------------------------------------------------------------------------------
+
 void Button::printButton(sf::RenderWindow& window) const
 {
-    window.draw(m_text);
+    window.draw(m_rectangle);
+}
+
+//-------------------------------------------------------------
+sf::RectangleShape Button::getRectangleButton()const
+{
+    return m_rectangle;
 }

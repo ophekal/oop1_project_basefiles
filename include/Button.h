@@ -8,6 +8,7 @@ public:
 	Button();
 	void updateButton(const sf::Font& font, std::string type, float x, float y);
 	void printButton(sf::RenderWindow& window) const;
+	sf::RectangleShape getRectangleButton()const;
 
 private:
 	sf::Text m_text;

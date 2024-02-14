@@ -19,8 +19,32 @@ Menu::Menu()
 //------------------------------------------------------------------------
 void Menu::run()
 {
+	sf::Sprite background;
+	background.setTexture(m_backgroundsTextures[0]);
+	sf::Vector2u textureSize = m_backgroundsTextures[0].getSize();
+
+	// Scale the background sprite to fit the window
+	background.setScale(static_cast<float>(m_window.getSize().x) / textureSize.x,
+		static_cast<float>(m_window.getSize().y) / textureSize.y);
 
 
+	while (m_window.isOpen())
+	{
+		print(background);
+
+		if (auto event = sf::Event{}; m_window.waitEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				m_window.close();
+				break;
+			case sf::Event::MouseButtonReleased:
+				handleClick(event.mouseButton);
+				break;
+			}
+		}
+	}
 }
 
 //------------------------------------------------------------------------
@@ -50,4 +74,64 @@ void Menu::updateButton()
 	m_buttons[M_HELP].updateButton(m_font, "HELP", HELP_X, HELP_Y);
 	m_buttons[M_START].updateButton(m_font, "START", START_X, START_Y);
 
+}
+
+//------------------------------------------------------------------
+void Menu::print(sf::Sprite& background)
+{
+	m_window.clear();
+	m_window.draw(background);
+	printButtons();
+	m_window.display();
+}
+
+//------------------------------------------------------------------
+void Menu::printButtons()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		m_buttons[i].printButton(m_window);
+	}
+}
+//------------------------------------------------------------
+void Menu::handleClick(sf::Event::MouseButtonEvent& event)
+{
+	auto location = m_window.mapPixelToCoords({ event.x,event.y });
+
+
+	if (m_buttons[M_EXIT].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		m_window.close();
+		return;
+	}
+	else if (m_buttons[M_HELP].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		pressedHelp();	//creates a window that explains the game
+	}
+	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		//startGame();	//calls on controller and starts the game
+	}
+}
+
+//---------------------------------------------------------------------------------------
+void Menu:: pressedHelp()
+{
+	sf::RenderWindow helpWindow(sf::VideoMode(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), "Game Information");
+
+	while (helpWindow.isOpen())
+	{
+		helpWindow.clear(sf::Color::Yellow);
+		helpWindow.display();
+
+		if (auto event = sf::Event{}; m_window.waitEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				m_window.close();
+				break;
+			}
+		}
+	}
 }

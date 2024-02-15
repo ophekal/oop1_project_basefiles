@@ -39,7 +39,7 @@ void Button::updateButton(const sf::Font& font, const sf::Texture& background,
 void Button::printButton(sf::RenderWindow& window) const
 {
     window.draw(m_rectangle);
-   // window.draw(m_sprite);
+    //window.draw(m_sprite);
     window.draw(m_text);
 }
 

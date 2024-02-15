@@ -17,6 +17,8 @@ public:
 	std::vector<std::string> getBoard() const;
 	void updateBoard(std::vector<std::unique_ptr<MovingObjects>>& movingObjects);
 	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects);
+	void updateMembers(const char character, int row, int col);
+
 	//void print(sf::RenderWindow &);
 
 private:
@@ -26,8 +28,11 @@ private:
 
 	//int m_tilesInRow;
 	//int m_tilesInCol;
-	float m_tileHeight=0;
-	float m_tileWidth=0;
+
+	sf::Vector2f m_tileSize;
+
+	/*float m_tileHeight=0;
+	float m_tileWidth=0;*/
 
 	sf::RectangleShape m_board; //hold the level itself
 	std::vector <std::string> m_currLevel;

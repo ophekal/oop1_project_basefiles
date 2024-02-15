@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string.h>
 #include "Macros.h"
+#include <SFML/Graphics.hpp>
 
 //-----------------------------------------------------------------------------
 Board::Board()
@@ -35,51 +36,52 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 
 	//int numOfTiles = m_boardHeight * m_boardWidth; //500
 
-	m_tileHeight = BOARD_HIG / m_boardHeight,
-	m_tileWidth = BOARD_WID / m_boardWidth;
+	float tileHeight = BOARD_HIG / m_boardHeight,
+		  tileWidth = BOARD_WID / m_boardWidth;
 
-	updateStaticObjects(std::vector<std::unique_ptr<MovingObjects>>&movingObjects);
+	m_tileSize = { tileHeight,tileWidth };
+
+
+	updateObjects(std::vector<std::unique_ptr<MovingObjects>>&movingObjects);
 }
 
 //--------------------------------------------------------------------------
-//Function that goes through the board and updates the locations of the
-//static objects
+//Function that goes through the board and is responsible of calling other
+//functions in order to update the game objects' location
 
-void Board::updateStaticObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects)
+void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects)
 {
-	auto rows = m_board.getBoard().size();
+	auto rows = m_currLevel.size();
 
-		// go through the rows in the board
-		for (int row = 0; row < rows; row++)
+	// go through the rows in the board
+	for (int row = 0; row < rows; row++)
+	{
+		std::string currLine = m_currLevel[row];
+		auto cols = currLine.size();
+
+		// go through the cols in the board
+		for (int col = 0; col < cols; col++)
 		{
-			std::string currLine = (m_board.getBoard())[row];
-			auto cols = currLine.size();
-
-			// go through the cols in the board
-			for (int col = 0; col < cols; col++)
-			{
-				char character = currLine[col];
-				Location place;
-				place.col = col;
-				place.row = row;
-
-				updateMembers(character, place);
-			}
+			char character = currLine[col];
+			updateMembers(character, row, col);
 		}
+	}
 }
 
-	//-----------------------------------------------------------------------------
-	//This function checks what is the character in the given location and updates
-	//the relevant members.
+//-----------------------------------------------------------------------------
+//This function checks what is the character in the given location and updates
+//the relevant members.
 
-	void GameController::updateMembers(const char character,
-		const Location & place)
+void Board::updateMembers(const char character, int row, int col)
+{
+	sf::Vector2f 
+	sf::Vector2f position= {col,row}
+
+	switch (character)
 	{
-		switch (character)
-		{
 		case '^':
 		{
-			Cat kitten;				//calling the default constructor 
+			Cat kitten(;				//calling the default constructor 
 			kitten.setLocation(place);
 			kitten.setInitLocation(place);
 			m_cats.push_back(kitten);
@@ -97,6 +99,29 @@ void Board::updateStaticObjects(std::vector<std::unique_ptr<MovingObjects>>& mov
 			m_board.setCheeses(numOfCheeses);
 			return;
 		}
+		case '$':
+		{
+			int numOfCheeses = m_board.getCheeses() + 1;
+			m_board.setCheeses(numOfCheeses);
+			return;
+		}
+		case 'F':
+		{
+			int numOfCheeses = m_board.getCheeses() + 1;
+			m_board.setCheeses(numOfCheeses);
+			return;
+		}
+		case 'D':
+		{
+			int numOfCheeses = m_board.getCheeses() + 1;
+			m_board.setCheeses(numOfCheeses);
+			return;
+		}
+		case '#':
+		{
+			int numOfCheeses = m_board.getCheeses() + 1;
+			m_board.setCheeses(numOfCheeses);
+			return;
 		}
 	}
 }

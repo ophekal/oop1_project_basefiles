@@ -38,6 +38,8 @@ void Button::updateButton(const sf::Font& font, const sf::Texture& background,
 
 void Button::printButton(sf::RenderWindow& window) const
 {
+   // m_rectangle.setOutlineThickness(3.f);
+    //m_rectangle.setOutlineColor(sf::Color::Red);
     window.draw(m_rectangle);
     //window.draw(m_sprite);
     window.draw(m_text);

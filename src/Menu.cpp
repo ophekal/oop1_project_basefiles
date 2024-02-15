@@ -25,9 +25,8 @@ void Menu::run()
 	sf::Vector2u textureSize = m_backgroundsTextures[0].getSize();
 
 	// Scale the background sprite to fit the window
-	background.setScale(static_cast<float>(m_window.getSize().x) / textureSize.x,
-		static_cast<float>(m_window.getSize().y) / textureSize.y);
-
+	background.setScale((float)(m_window.getSize().x) / textureSize.x,
+		                (float)(m_window.getSize().y) / textureSize.y);
 
 	while (m_window.isOpen())
 	{

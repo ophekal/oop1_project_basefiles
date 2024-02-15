@@ -5,24 +5,31 @@
 #include <vector>
 #include <string.h>
 #include "StaticObjects.h"
+#include "Macros.h"
+
+class MovingObjects;
 
 class Board
 {
 public:
-	Board() = default;
-	//void setBoard();
-	void print(sf::RenderWindow &);
+	Board();
+	void readTheLevel(std::ifstream& levelFile);
+	std::vector<std::string> getBoard() const;
+	void updateBoard(std::vector<std::unique_ptr<MovingObjects>>& movingObjects);
+	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects);
+	//void print(sf::RenderWindow &);
 
 private:
-	int m_startBoardX;	//in order to know where to draw the board
-	int m_startBoardY;
-	int m_boardHeight;
-	int m_boardLength;
+	
+	int m_boardHeight=0;	//to initialize the values
+	int m_boardWidth=0;
 
-	float m_tileSize;		//holds the size of "tiles" in the level
-	std::ifstream m_fileStream;
+	//int m_tilesInRow;
+	//int m_tilesInCol;
+	float m_tileHeight=0;
+	float m_tileWidth=0;
 
-	sf::RectangleShape m_board;//hold the level itself
+	sf::RectangleShape m_board; //hold the level itself
 	std::vector <std::string> m_currLevel;
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 

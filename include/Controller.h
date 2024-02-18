@@ -9,7 +9,8 @@ class Controller
 {
 public:
 	Controller(sf::Font& font);
-	void run(sf::RenderWindow& window);
+	void run(sf::RenderWindow& window, std::vector<sf::Texture>& objectsTextures,
+		     std::vector<sf::Texture>& backgroundsTextures);
 
 private:
 	

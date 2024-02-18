@@ -11,7 +11,8 @@ Controller::Controller(sf::Font& font)
 }
 //-------------------------------------------------------------------------
 
-void Controller::run(sf::RenderWindow& window)
+void Controller::run(sf::RenderWindow& window, std::vector<sf::Texture>& objectsTextures,
+	                std::vector<sf::Texture>& backgroundsTextures)
 {
 	// open streams for reading from file playlist
 	auto line = std::string();
@@ -33,7 +34,7 @@ void Controller::run(sf::RenderWindow& window)
 		}
 
 		m_board.readTheLevel(levelFile);    //the board game is ready
-		m_board.updateBoard(m_movingObjects); //function that also updates the moving objects
+		m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures); //function that also updates the moving objects
 		/*checkMembers(); */                    
 		m_levelNum++;
 		startGame();

@@ -46,7 +46,6 @@ enum Direction {
 	D_RIGHT
 };
 
-
 //------------menu------------
 const int WINDOW_HEIGHT = 850;
 const int WINDOW_WIDTH = 1500;

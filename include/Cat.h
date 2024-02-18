@@ -6,7 +6,7 @@
 class Cat: public MovingObjects
 {
 public:
-	using MovingObjects::MovingObjects;
+	Cat(const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Cat() = default;
 	virtual void draw(sf::RenderWindow& window) const;
 	virtual void movement()=0;

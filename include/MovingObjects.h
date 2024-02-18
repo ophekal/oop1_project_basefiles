@@ -38,5 +38,5 @@ protected:
 	sf::Vector2f m_oldPosition;
 	sf::Vector2f m_nextPosition;
 	float objectSpeed;				//each object will update according to the speed we will set it to
-	sf::Clock m_MovementTime;		//hold the previous time the object moved
+	//sf::Clock m_MovementTime;		//hold the previous time the object moved
 };

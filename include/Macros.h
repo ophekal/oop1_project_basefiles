@@ -60,7 +60,8 @@ const float START_Y = 150;
 //------------board------------
 const float BOARD_HIG = 1000;
 const float BOARD_WID = 750;
-
+const float BOARD_START_X = 450;
+const float BOARD_START_Y = 50;
 
 //----------infoBar-------------
 

@@ -9,7 +9,7 @@
 Board::Board()
 	: m_board(sf::Vector2f(BOARD_HIG, BOARD_WID))
 {
-
+	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
 }
 
 //-----------------------------------------------------------------------------
@@ -42,7 +42,7 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 	m_tileSize = { tileHeight,tileWidth };
 
 
-	updateObjects(std::vector<std::unique_ptr<MovingObjects>>&movingObjects);
+	updateObjects(movingObjects);
 }
 
 //--------------------------------------------------------------------------
@@ -74,8 +74,8 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 
 void Board::updateMembers(const char character, int row, int col)
 {
-	sf::Vector2f 
-	sf::Vector2f position= {col,row}
+	// set the position of the current object
+	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
 
 	switch (character)
 	{

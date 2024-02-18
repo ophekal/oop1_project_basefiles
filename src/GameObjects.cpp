@@ -6,7 +6,8 @@
 
 
 //------------------------------------------------------------------------
-GameObjects::GameObjects(sf::Texture& picture,const sf::Vector2f& position,const sf::Vector2f& size)
+GameObjects::GameObjects(const sf::Vector2f& position, const sf::Vector2f& size)
+    : m_object(size)
 {
     m_object.setTexture(picture);
 

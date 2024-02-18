@@ -139,5 +139,5 @@ void Menu:: pressedHelp()
 void Menu::startGame()
 {
 	Controller controller(m_font);
-	controller.run(m_window);
+	controller.run(m_window, m_objectsTextures,m_backgroundsTextures); //also sound!
 }

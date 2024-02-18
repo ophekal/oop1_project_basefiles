@@ -5,6 +5,9 @@
 #include "Macros.h"
 
 
-
-StaticObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    : m_object(size)
+//------------------------------------------------------------------------
+StaticObjects::StaticObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
+    :GameObjects(picture, position, size)
+{
+    m_currOnBoard = true;
+}

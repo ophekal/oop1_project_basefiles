@@ -5,8 +5,7 @@
 class Door : public StaticObjects
 {
 public:
-	using StaticObjects::StaticObjects;
-	virtual ~Door() = default;
+	Door(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual void draw(sf::RenderWindow& window);
 	virtual void collisionHandling();
 

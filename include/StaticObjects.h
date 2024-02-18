@@ -35,5 +35,5 @@ public:
 	virtual void collisionHandling(AddLifeGift&) = 0;
 
 protected:
-	bool currOnBoard = false;
+	bool m_currOnBoard = false;
 };

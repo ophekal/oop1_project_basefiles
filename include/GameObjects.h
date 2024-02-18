@@ -16,7 +16,7 @@ class Door;
 class GameObjects
 {
 public:
-	GameObjects(sf::Texture& picture, const sf::Vector2f& position,const sf::Vector2f& size);
+	GameObjects(const sf::Texture& picture, const sf::Vector2f& position,const sf::Vector2f& size);
 	virtual ~GameObjects() = default;
 	virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void collisionHandling(GameObjects&) = 0;

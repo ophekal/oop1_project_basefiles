@@ -17,7 +17,7 @@ class Door;
 class MovingObjects : public GameObjects
 {
 public:
-	using GameObjects::GameObjects;
+	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	//virtual ~MovingObject() = default;
 	virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void movement() = 0;

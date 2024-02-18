@@ -1,12 +1,13 @@
 
-#include "GameObjects.h"
+//#include "GameObjects.h"
+#include "movingInclude/MovingObjects.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
 
 //------------------------------------------------------------------------
-GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    : m_object(size)
+MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
+    :GameObjects(picture,position,size), m_oldPosition (position)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);

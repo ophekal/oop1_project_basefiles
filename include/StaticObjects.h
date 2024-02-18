@@ -23,14 +23,14 @@ public:
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
 	virtual void collisionHandling(Cat&) = 0;
-	virtual void collisionHandling(Wall&) = 0;
-	virtual void collisionHandling(Door&) = 0;
-	virtual void collisionHandling(Cheese&) = 0;
-	virtual void collisionHandling(Key&) = 0;
-	virtual void collisionHandling(KillCatGift&) = 0;
-	virtual void collisionHandling(AddTimeGift&) = 0;
-	virtual void collisionHandling(FreezeCatGift&) = 0;
-	virtual void collisionHandling(AddLifeGift&) = 0;
+	virtual void collisionHandling(Wall&) {};
+	virtual void collisionHandling(Door&) {};
+	virtual void collisionHandling(Cheese&) {};
+	virtual void collisionHandling(Key&) {};
+	virtual void collisionHandling(KillCatGift&) {};
+	virtual void collisionHandling(AddTimeGift&) {};
+	virtual void collisionHandling(FreezeCatGift&) {};
+	virtual void collisionHandling(AddLifeGift&) {};
 
 protected:
 	bool m_currOnBoard = false;

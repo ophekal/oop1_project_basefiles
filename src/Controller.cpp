@@ -107,7 +107,7 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 {
 	window.clear();
 	window.draw(background);
-	m_board.printStaticObjects(window);
+	m_board.printBoard(window);
 	printMovingObjects(window);
 	m_infoBar.printInfoBar(window);
 	window.display();

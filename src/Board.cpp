@@ -143,8 +143,10 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 }
 //------------------------------------------------------------------------
 
-void Board::printStaticObjects(sf::RenderWindow& window) const
+void Board::printBoard(sf::RenderWindow& window) const
 {
+	window.draw(m_board);
+
 	for (size_t index = 0; index < m_staticObjects.size(); index++)
 	{
 		m_staticObjects[index]->draw(window);

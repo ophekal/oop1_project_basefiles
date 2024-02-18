@@ -109,7 +109,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	}
 	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
 	{
-		//startGame();	//calls on controller and starts the game
+		startGame();	//calls on controller and starts the game
 	}
 }
 

@@ -2,6 +2,8 @@
 #include "Wall.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
+#include "Cat.h"
+#include "Mouse.h"
 
 //------------------------------------------------------------------------
 Wall::Wall(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)

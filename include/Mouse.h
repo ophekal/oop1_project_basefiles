@@ -12,7 +12,7 @@ public:
 	virtual void movement();
 
 protected:
-	int m_lives;
-	int m_keys;
-	sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
+	int m_lives = 3;
+	int m_keys = 0;
+	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
 };

@@ -22,6 +22,7 @@ private:
 	std::vector<std::unique_ptr<MovingObjects>> m_movingObjects;
 	std::vector<std::string> m_playlist;
 
+	int m_numOfCheese = 0;
 	//Mouse m_mouse;
 	//std::vector<std::unique_ptr<Cat>> m_cats;
 

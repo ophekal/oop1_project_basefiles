@@ -4,6 +4,11 @@
 #include <string.h>
 #include "Macros.h"
 #include <SFML/Graphics.hpp>
+#include "StupidCat.h"
+#include "SmartCat.h"
+#include "Cat.h"
+#include "Mouse.h"
+#include "Cheese.h"
 
 //-----------------------------------------------------------------------------
 Board::Board()
@@ -31,7 +36,7 @@ std::vector<std::string> Board::getBoard() const
 //-------------------------------------------------------------------------
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjects,
 	                    const std::vector<sf::Texture>& objectsTextures,
-	                    const std::vector<sf::Texture>& backgroundsTextures)
+	                    const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
@@ -44,7 +49,7 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 	m_tileSize = { tileHeight,tileWidth };
 
 
-	updateObjects(movingObjects,objectsTextures,backgroundsTextures));
+	updateObjects(movingObjects,objectsTextures,backgroundsTextures);
 }
 
 //--------------------------------------------------------------------------
@@ -53,7 +58,7 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 
 void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 	                      const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures)
+	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
 	auto rows = m_currLevel.size();
 
@@ -67,7 +72,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 		for (int col = 0; col < cols; col++)
 		{
 			char character = currLine[col];
-			updateMembers(character, row, col);
+			updateMembers(movingObjects,character, row, col, objectsTextures, backgroundsTextures, numOfCheese);
 		}
 	}
 }
@@ -76,8 +81,9 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 //This function checks what is the character in the given location and updates
 //the relevant members.
 
-void Board::updateMembers(const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures)
+void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
+	                      const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
+	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
@@ -86,46 +92,46 @@ void Board::updateMembers(const char character, int row, int col, const std::vec
 	{
 		case '^':
 		{
-			Cat kitten(objectsTextures[I_CAT],position, m_tileSize);				//calling the default constructor 
-			kitten.setLocation(place);
-			kitten.setInitLocation(place);
-			m_cats.push_back(kitten);
+			if (Cat::getCount() % 2 == 0)
+			{
+				movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
+			}
+			else
+			{
+				movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
+			}
+
 			return;
 		}
 		case '%':
 		{
-			m_mouse.setInitLocation(place);
-			m_mouse.setLocation(place);
+			movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
 			return;
 		}
 		case '*':
 		{
-			int numOfCheeses = m_board.getCheeses() + 1;
-			m_board.setCheeses(numOfCheeses);
+		    numOfCheese ++;
+			m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
 			return;
 		}
 		case '$':
 		{
-			int numOfCheeses = m_board.getCheeses() + 1;
-			m_board.setCheeses(numOfCheeses);
+			
 			return;
 		}
 		case 'F':
 		{
-			int numOfCheeses = m_board.getCheeses() + 1;
-			m_board.setCheeses(numOfCheeses);
+			
 			return;
 		}
 		case 'D':
 		{
-			int numOfCheeses = m_board.getCheeses() + 1;
-			m_board.setCheeses(numOfCheeses);
+			
 			return;
 		}
 		case '#':
 		{
-			int numOfCheeses = m_board.getCheeses() + 1;
-			m_board.setCheeses(numOfCheeses);
+		
 			return;
 		}
 	}

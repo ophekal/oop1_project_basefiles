@@ -34,7 +34,7 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 		}
 
 		m_board.readTheLevel(levelFile);    //the board game is ready
-		m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures); //function that also updates the moving objects
+		m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures,m_numOfCheese); //function that also updates the moving objects
 		/*checkMembers(); */                    
 		m_levelNum++;
 		startGame();

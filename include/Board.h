@@ -16,11 +16,12 @@ public:
 	void readTheLevel(std::ifstream& levelFile);
 	std::vector<std::string> getBoard() const;
 	void updateBoard(std::vector<std::unique_ptr<MovingObjects>>& movingObjects, const std::vector<sf::Texture>& objectsTextures,
-		             const std::vector<sf::Texture>& backgroundsTextures);
+		             const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
 	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,const std::vector<sf::Texture>& objectsTextures,
-	                	const std::vector<sf::Texture>& backgroundsTextures);
-	void updateMembers(const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
-		               const std::vector<sf::Texture>& backgroundsTextures);
+	                	const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
+	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
+		               const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
+		               const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
 
 	//void print(sf::RenderWindow &);
 

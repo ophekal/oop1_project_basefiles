@@ -30,8 +30,8 @@ std::vector<std::string> Board::getBoard() const
 
 //-------------------------------------------------------------------------
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjects,
-	                    std::vector<sf::Texture>& objectsTextures,
-	                    std::vector<sf::Texture>& backgroundsTextures)
+	                    const std::vector<sf::Texture>& objectsTextures,
+	                    const std::vector<sf::Texture>& backgroundsTextures)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
@@ -51,8 +51,9 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 //Function that goes through the board and is responsible of calling other
 //functions in order to update the game objects' location
 
-void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects, std::vector<sf::Texture>& objectsTextures,
-	                      std::vector<sf::Texture>& backgroundsTextures)
+void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
+	                      const std::vector<sf::Texture>& objectsTextures,
+	                      const std::vector<sf::Texture>& backgroundsTextures)
 {
 	auto rows = m_currLevel.size();
 
@@ -75,7 +76,8 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 //This function checks what is the character in the given location and updates
 //the relevant members.
 
-void Board::updateMembers(const char character, int row, int col)
+void Board::updateMembers(const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
+	                      const std::vector<sf::Texture>& backgroundsTextures)
 {
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
@@ -84,7 +86,7 @@ void Board::updateMembers(const char character, int row, int col)
 	{
 		case '^':
 		{
-			Cat kitten(position, m_tileSize);				//calling the default constructor 
+			Cat kitten(objectsTextures[I_CAT],position, m_tileSize);				//calling the default constructor 
 			kitten.setLocation(place);
 			kitten.setInitLocation(place);
 			m_cats.push_back(kitten);

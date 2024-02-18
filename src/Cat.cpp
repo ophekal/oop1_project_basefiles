@@ -4,5 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 //---------------------------------------------------------------
-Cat::Cat(const sf::Vector2f& position, const sf::Vector2f& size)
-    : 
+Cat::Cat(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
+    : MovingObjects(icon, position, size)
+{
+
+}

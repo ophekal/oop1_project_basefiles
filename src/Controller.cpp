@@ -11,8 +11,8 @@ Controller::Controller(sf::Font& font)
 }
 //-------------------------------------------------------------------------
 
-void Controller::run(sf::RenderWindow& window, std::vector<sf::Texture>& objectsTextures,
-	                std::vector<sf::Texture>& backgroundsTextures)
+void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& objectsTextures,
+	                const std::vector<sf::Texture>& backgroundsTextures)
 {
 	// open streams for reading from file playlist
 	auto line = std::string();

@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 
-void AddLifeGift::collisionHandling()
+void AddLifeGift::collisionHandling(AddLifeGift& gift)
 {
 
 }

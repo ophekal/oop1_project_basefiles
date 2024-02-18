@@ -9,7 +9,7 @@ public:
 	using Gift::Gift;
 	virtual ~AddLifeGift() = default;
 	//virtual void draw(sf::RenderWindow& window);	//a specific icon for adding life gift
-	virtual void collisionHandling();	//mouse lives ++
+	virtual void collisionHandling(AddLifeGift&);	//mouse lives ++
 
 private:
 

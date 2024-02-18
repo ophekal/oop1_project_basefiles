@@ -26,4 +26,8 @@ private:
 	//Mouse m_mouse;
 	//std::vector<std::unique_ptr<Cat>> m_cats;
 
+	void startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
+	            	const std::vector<sf::Texture>& backgroundsTextures);
+	void printMovingObjects(sf::RenderWindow& window)const;
+	void print(sf::RenderWindow& window, sf::Sprite& background);
 };

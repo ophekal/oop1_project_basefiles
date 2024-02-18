@@ -9,6 +9,10 @@
 #include "Cat.h"
 #include "Mouse.h"
 #include "Cheese.h"
+#include "AddLifeGift.h"
+#include "Key.h"
+#include "Door.h"
+#include "Wall.h"
 
 //-----------------------------------------------------------------------------
 Board::Board()
@@ -89,55 +93,63 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
 
-	//switch (character)
-	//{
-	//	case '^':
-	//	{
-	//		if (Cat::getCount() % 2 == 0)
-	//		{
-	//			movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
-	//		}
-	//		else
-	//		{
-	//			movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
-	//		}
+	switch (character)
+	{
+		case '^':
+		{
+			if (Cat::getCount() % 2 == 0)
+			{
+				movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
+			}
+			else
+			{
+				movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
+			}
 
-	//		return;
-	//	}
-	//	case '%':
-	//	{
-	//		movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
-	//		return;
-	//	}
-	//	case '*':
-	//	{
-	//	    numOfCheese ++;
-	//		m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
-	//		return;
-	//	}
-	//	case '$':
-	//	{
-	//		
-	//		return;
-	//	}
-	//	case 'F':
-	//	{
-	//		
-	//		return;
-	//	}
-	//	case 'D':
-	//	{
-	//		
-	//		return;
-	//	}
-	//	case '#':
-	//	{
-	//	
-	//		return;
-	//	}
-	//}
+			return;
+		}
+		case '%':
+		{
+			movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
+			return;
+		}
+		case '*':
+		{
+		    numOfCheese ++;
+			m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
+			return;
+		}
+		case '$':
+		{
+			m_staticObjects.push_back(std::make_unique<AddLifeGift>(objectsTextures[I_GIFT], position, m_tileSize));
+			return;
+		}
+		case 'F':
+		{
+			m_staticObjects.push_back(std::make_unique<Key>(objectsTextures[I_KEY], position, m_tileSize));
+			return;
+		}
+		case 'D':
+		{
+			m_staticObjects.push_back(std::make_unique<Door>(objectsTextures[I_DOOR], position, m_tileSize));
+			return;
+		}
+		case '#':
+		{
+			m_staticObjects.push_back(std::make_unique<Wall>(objectsTextures[I_WALL], position, m_tileSize));
+			return;
+		}
+	}
 }
+//------------------------------------------------------------------------
 
+void Board::printStaticObjects(sf::RenderWindow& window) const
+{
+	for (size_t index = 0; index < m_staticObjects.size(); index++)
+	{
+		m_staticObjects[index]->draw(window);
+	}
+}
 
 //
 //

@@ -14,3 +14,7 @@ MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& pos
 }
 
 //-------------------------------------------------------------------------
+void MovingObjects::collisionHandling(Wall& wall)
+{
+    m_object.setPosition(m_oldPosition);
+}

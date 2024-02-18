@@ -10,8 +10,19 @@ Door::Door(const sf::Texture& picture, const sf::Vector2f& position, const sf::V
 {
 
 }
-//-----------------------------------------------------------------------
-void Door::collisionHandling()
+
+//--------------------------------------------------------------------------
+void Door::collisionHandling(GameObjects& object)
+{
+
+}
+//--------------------------------------------------------------------------
+void Door::collisionHandling(Mouse& mouse)
+{
+
+}
+//--------------------------------------------------------------------------
+void Door::collisionHandling(Cat& cat)
 {
 
 }

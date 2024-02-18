@@ -36,7 +36,79 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 		m_board.readTheLevel(levelFile);    //the board game is ready
 		m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures,m_numOfCheese); //function that also updates the moving objects                  
 		m_levelNum++;
-		//startGame();
+		startGame(window, objectsTextures, backgroundsTextures);
 	}
 
+}
+//------------------------------------------------------------------------
+void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
+	                       const std::vector<sf::Texture>& backgroundsTextures)
+{
+	//we need to start the clock;
+	sf::Sprite background;
+	background.setTexture(backgroundsTextures[1]);
+	sf::Vector2u textureSize = backgroundsTextures[1].getSize();
+
+	// Scale the background sprite to fit the window
+	background.setScale((float)(window.getSize().x) / textureSize.x,
+		                (float)(window.getSize().y) / textureSize.y);
+
+	while (window.isOpen())
+	{
+		print(window,background);
+
+		if (auto event = sf::Event{}; window.waitEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Event::MouseButtonReleased:
+				//handleClick(event.mouseButton);
+				break;
+			}
+		}
+	}
+	//if (auto event = sf::Event{}; window.pollEvent(event))
+	//{
+	//	switch (event.type)
+	//	{
+	//	case sf::Event::Closed:
+	//		m_window.close();
+	//		break;
+	//	case sf::Event::MouseButtonReleased:
+	//		if (m_reloadButton.contain(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+	//			controller.newLevel();
+	//		else if (m_musicButton.contain(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+	//		{
+	//			if (m_gameSound.getStatus() == m_gameSound.Playing)
+	//				m_gameSound.stop();
+	//			else
+	//				m_gameSound.play();
+	//		}
+	//		break;
+	//	}
+	//}
+
+
+}
+//------------------------------------------------------------------------
+
+void Controller::printMovingObjects(sf::RenderWindow& window)const
+{
+	for (size_t index = 0; index < m_movingObjects.size(); index++)
+	{
+		m_movingObjects[index]->draw(window);
+	}
+}
+//------------------------------------------------------------------------
+void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
+{
+	window.clear();
+	window.draw(background);
+	m_board.printStaticObjects(window);
+	printMovingObjects(window);
+	m_infoBar.printInfoBar(window);
+	window.display();
 }

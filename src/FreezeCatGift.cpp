@@ -1,4 +1,5 @@
 
+
 #include "StaticObjects.h"
 #include "Gift.h"
 #include <SFML/Graphics.hpp>
@@ -7,7 +8,8 @@
 
 //------------------------------------------------------------------------
 
-void FreezeCatGift::collisionHandling()
+void FreezeCatGift::collisionHandling(FreezeCatGift& gift)
 {
 
 }
+

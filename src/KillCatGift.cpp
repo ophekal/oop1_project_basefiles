@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 
-void KillCatGift::collisionHandling()
+void KillCatGift::collisionHandling(KillCatGift& gift)
 {
 
 }

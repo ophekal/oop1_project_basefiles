@@ -22,8 +22,7 @@ public:
 	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 		               const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
 		               const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
-
-	//void print(sf::RenderWindow &);
+	void printStaticObjects(sf::RenderWindow& window) const;
 
 private:
 	

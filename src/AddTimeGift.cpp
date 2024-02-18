@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 
-void AddTimeGift::collisionHandling()
+void AddTimeGift::collisionHandling(AddTimeGift& gift)
 {
 
 }

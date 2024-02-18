@@ -13,3 +13,7 @@ GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& positio
 }
 
 //-------------------------------------------------------------------------
+void GameObjects::draw(sf::RenderWindow& window)
+{
+    window.draw(m_object);
+}

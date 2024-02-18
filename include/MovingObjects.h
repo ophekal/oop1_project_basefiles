@@ -19,7 +19,7 @@ class MovingObjects : public GameObjects
 public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	//virtual ~MovingObject() = default;
-	virtual void draw(sf::RenderWindow& window) = 0;
+	//virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void movement() = 0;
 
 	//virtual void collisionHandling(GameObjects&) = 0;
@@ -37,6 +37,6 @@ public:
 protected:
 	sf::Vector2f m_oldPosition;
 	sf::Vector2f m_nextPosition;
-	float objectSpeed;				//each object will update according to the speed we will set it to
+	//float objectSpeed;				//each object will update according to the speed we will set it to
 	//sf::Clock m_MovementTime;		//hold the previous time the object moved
 };

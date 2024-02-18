@@ -1,6 +1,6 @@
 
 #include "GameObjects.h"
-//#include "movingInclude/MovingObjects.h"
+#include "MovingObjects.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 

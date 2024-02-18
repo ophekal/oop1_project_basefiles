@@ -14,7 +14,6 @@ public:
 private:
 	sf::Text m_text;
 	sf::RectangleShape m_rectangle;
-	sf::Sprite m_sprite;
 
 	//sf::Sound m_buttonSound;	//the sound when a button is pressed
 };

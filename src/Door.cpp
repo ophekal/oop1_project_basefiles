@@ -10,3 +10,8 @@ Door::Door(const sf::Texture& picture, const sf::Vector2f& position, const sf::V
 {
 
 }
+//-----------------------------------------------------------------------
+void Door::collisionHandling()
+{
+
+}

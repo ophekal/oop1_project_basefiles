@@ -16,9 +16,9 @@ class Door;
 class StaticObjects:public GameObjects
 {
 public:
-	using GameObjects::GameObjects;
+	StaticObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	//virtual ~StaticObject() = default;
-	virtual void draw(sf::RenderWindow& window) = 0;
+	//virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void collisionHandling() = 0;
 
 

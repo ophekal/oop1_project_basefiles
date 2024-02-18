@@ -16,7 +16,8 @@ void Button::updateButton(const sf::Font& font, const sf::Texture& background,
 {
     //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
-    m_rectangle.setFillColor(sf::Color::White);
+   // m_rectangle.setFillColor(sf::Color::White);
+    m_rectangle.setTexture(&background);
     m_text.setFont(font);
     m_text.setString(type);
     m_text.setCharacterSize(48);
@@ -27,10 +28,6 @@ void Button::updateButton(const sf::Font& font, const sf::Texture& background,
     float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
     float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
     m_text.setPosition(textX, textY);
-
-    //set the position of the sprite
-    m_sprite.setPosition(x, y);
-    m_sprite.setTexture(background);
 
 }
 

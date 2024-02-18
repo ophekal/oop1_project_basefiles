@@ -8,8 +8,8 @@ class Cheese: public StaticObjects
 public:
 	Cheese (const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Cheese() = default;
-	virtual void draw(sf::RenderWindow& window);
-	virtual void collisionHandling();
+	//virtual void draw(sf::RenderWindow& window);
+	virtual void collisionHandling() { return; };
 
 private:
 };

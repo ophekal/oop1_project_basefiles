@@ -15,6 +15,7 @@ Board::Board()
 	: m_board(sf::Vector2f(BOARD_HIG, BOARD_WID))
 {
 	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
+	m_board.setFillColor(sf::Color::White);
 }
 
 //-----------------------------------------------------------------------------
@@ -49,7 +50,7 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>> &movingObjec
 	m_tileSize = { tileHeight,tileWidth };
 
 
-	updateObjects(movingObjects,objectsTextures,backgroundsTextures);
+	updateObjects(movingObjects,objectsTextures,backgroundsTextures,numOfCheese);
 }
 
 //--------------------------------------------------------------------------
@@ -88,53 +89,53 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObj
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
 
-	switch (character)
-	{
-		case '^':
-		{
-			if (Cat::getCount() % 2 == 0)
-			{
-				movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
-			}
-			else
-			{
-				movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
-			}
+	//switch (character)
+	//{
+	//	case '^':
+	//	{
+	//		if (Cat::getCount() % 2 == 0)
+	//		{
+	//			movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
+	//		}
+	//		else
+	//		{
+	//			movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
+	//		}
 
-			return;
-		}
-		case '%':
-		{
-			movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
-			return;
-		}
-		case '*':
-		{
-		    numOfCheese ++;
-			m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
-			return;
-		}
-		case '$':
-		{
-			
-			return;
-		}
-		case 'F':
-		{
-			
-			return;
-		}
-		case 'D':
-		{
-			
-			return;
-		}
-		case '#':
-		{
-		
-			return;
-		}
-	}
+	//		return;
+	//	}
+	//	case '%':
+	//	{
+	//		movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
+	//		return;
+	//	}
+	//	case '*':
+	//	{
+	//	    numOfCheese ++;
+	//		m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
+	//		return;
+	//	}
+	//	case '$':
+	//	{
+	//		
+	//		return;
+	//	}
+	//	case 'F':
+	//	{
+	//		
+	//		return;
+	//	}
+	//	case 'D':
+	//	{
+	//		
+	//		return;
+	//	}
+	//	case '#':
+	//	{
+	//	
+	//		return;
+	//	}
+	//}
 }
 
 

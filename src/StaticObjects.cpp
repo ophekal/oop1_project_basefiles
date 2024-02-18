@@ -7,7 +7,7 @@
 
 //------------------------------------------------------------------------
 StaticObjects::StaticObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    :GameObjects(picture, position, size)
+              :GameObjects(picture, position, size)
 {
     m_currOnBoard = true;
 }

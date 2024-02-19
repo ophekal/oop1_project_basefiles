@@ -34,8 +34,8 @@ public:
 	virtual void collisionHandling(Wall&);
 
 protected:
-	sf::Vector2f m_oldPosition;
-	sf::Vector2f m_nextPosition;
-	//float objectSpeed;				//each object will update according to the speed we will set it to
+	sf::Vector2f m_position;
+	sf::Vector2f m_direction;
+	float m_objectSpeed;				//each object will update according to the speed we will set it to
 	//sf::Clock m_MovementTime;		//hold the previous time the object moved
 };

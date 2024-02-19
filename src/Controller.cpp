@@ -16,29 +16,32 @@ Controller::Controller(sf::Font& font, const sf::Texture& background)
 void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& objectsTextures,
 	                const std::vector<sf::Texture>& backgroundsTextures)
 {
-	// open streams for reading from file playlist
-	auto line = std::string();
-	auto file = std::ifstream("playlist.txt");
-	if (!file.is_open())
+	while (window.isOpen())
 	{
-		std::cerr << "can't open file\n";
-		exit(EXIT_FAILURE);
-	}
-
-	// going through all the level files
-	while (std::getline(file, line))
-	{
-		auto levelFile = std::ifstream(line);
-		if (!levelFile.is_open())
+		// open streams for reading from file playlist
+		auto line = std::string();
+		auto file = std::ifstream("playlist.txt");
+		if (!file.is_open())
 		{
 			std::cerr << "can't open file\n";
 			exit(EXIT_FAILURE);
 		}
 
-		m_board.readTheLevel(levelFile);    //the board game is ready
-		m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures,m_numOfCheese); //function that also updates the moving objects                  
-		m_levelNum++;
-		startGame(window, objectsTextures, backgroundsTextures);
+		// going through all the level files
+		while (std::getline(file, line))
+		{
+			auto levelFile = std::ifstream(line);
+			if (!levelFile.is_open())
+			{
+				std::cerr << "can't open file\n";
+				exit(EXIT_FAILURE);
+			}
+
+			m_board.readTheLevel(levelFile);    //the board game is ready
+			m_board.updateBoard(m_cats, m_mouse, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
+			m_levelNum++;
+			startGame(window, objectsTextures, backgroundsTextures);
+		}
 	}
 
 }
@@ -55,7 +58,7 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 	background.setScale((float)(window.getSize().x) / textureSize.x,
 		                (float)(window.getSize().y) / textureSize.y);
 
-	while (window.isOpen())
+	while (window.isOpen())// numOfchesse and if the time of the level end 
 	{
 		print(window,background);
 
@@ -110,7 +113,7 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 		m_cats[index]->draw(window);
 	}
 
-	m_mouse->draw(window);
+	m_mouse[0]->draw(window);
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)

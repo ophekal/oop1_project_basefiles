@@ -7,6 +7,6 @@
 
 
 //------------------------------------------------------------------------
-void StupidCat::movement()
+void StupidCat::movement(sf::Time deltaTime)
 {
 }

@@ -6,6 +6,6 @@
 
 
 //------------------------------------------------------------------------
-void SmartCat::movement()
+void SmartCat::movement(sf::Time deltaTime)
 {
 }

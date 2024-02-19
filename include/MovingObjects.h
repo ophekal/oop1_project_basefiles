@@ -19,7 +19,7 @@ class MovingObjects : public GameObjects
 public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
-	virtual void movement() = 0;
+	virtual void movement(sf::Time deltaTime) = 0;
 
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;

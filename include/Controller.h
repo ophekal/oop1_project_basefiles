@@ -23,17 +23,17 @@ private:
 	
 	int m_levelNum = 0;	//saves the level number
 
-	std::vector<std::unique_ptr<MovingObjects>> m_movingObjects;
-	//std::vector<std::unique_ptr<MovingObjects>> m_mouse;
+	std::vector<std::unique_ptr<MovingObjects>> m_cats;
+	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;
 
 	int m_numOfCheese = 0;
-	//Mouse m_mouse;
 	
-	//std::vector<std::unique_ptr<Cat>> m_cats;
-
 	void startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
 	            	const std::vector<sf::Texture>& backgroundsTextures);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, sf::Sprite& background);
+	void moveCats(sf::Time deltaTime);
+
+
 };

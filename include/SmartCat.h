@@ -8,7 +8,7 @@ class SmartCat: public Cat
 public:
 	using Cat::Cat;
 	virtual ~SmartCat() = default;
-	virtual void movement();
+	virtual void movement(sf::Time deltaTime);
 
 private:
 };

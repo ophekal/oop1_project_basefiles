@@ -16,8 +16,8 @@ Controller::Controller(sf::Font& font, const sf::Texture& background)
 void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& objectsTextures,
 	                const std::vector<sf::Texture>& backgroundsTextures)
 {
-	//while (window.isOpen())
-	//{
+	while (window.isOpen())
+	{
 		// open streams for reading from file playlist
 		auto line = std::string();
 		auto file = std::ifstream("playlist.txt");
@@ -38,11 +38,11 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 			}
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
+			m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
 			m_levelNum++;
 			startGame(window, objectsTextures, backgroundsTextures);
 		}
-//	}
+	}
 
 }
 //------------------------------------------------------------------------
@@ -58,9 +58,12 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 	background.setScale((float)(window.getSize().x) / textureSize.x,
 		                (float)(window.getSize().y) / textureSize.y);
 
-	while (window.isOpen())// numOfchesse and if the time of the level end 
+	sf::Clock clock;
+	const auto deltaTime = clock.restart();
+
+	while (m_numOfCheese != 0) // and if the time of the level end 
 	{
-		print(window,background);
+		print(window, background);
 
 		if (auto event = sf::Event{}; window.waitEvent(event))
 		{
@@ -69,18 +72,16 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 			case sf::Event::Closed:
 				window.close();
 				break;
-			//case sf::Event::MouseButtonReleased:
-				//handleClick(event.mouseButton);
-			//	break;
+				//case sf::Event::MouseButtonReleased:
+					//handleClick(event.mouseButton);
+				//	break;
 			}
 		}
 
-
-
-
-
-
+		m_mouse->movement(deltaTime);
+		moveCats(deltaTime);
 	}
+}
 	//if (auto event = sf::Event{}; window.pollEvent(event))
 	//{
 	//	switch (event.type)
@@ -102,18 +103,16 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 	//	}
 	//}
 
-
-}
 //------------------------------------------------------------------------
 
 void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
-	for (size_t index = 0; index < m_movingObjects.size(); index++)
+	for (size_t index = 0; index < m_cats.size(); index++)
 	{
-		m_movingObjects[index]->draw(window);
+		m_cats[index]->draw(window);
 	}
 
-	//m_mouse[0]->draw(window);
+	m_mouse->draw(window);
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
@@ -124,4 +123,13 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 	m_board.printBoard(window);
 	printMovingObjects(window);
 	window.display();
+}
+
+//--------------------------------------------------------------------------
+void Controller::moveCats (sf::Time deltaTime)
+{
+	for (int i = 0; i < (int)m_cats.size(); i++)
+	{
+		m_cats[i]->movement(deltaTime);
+	}
 }

@@ -20,6 +20,8 @@ public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
 	virtual void movement(sf::Time deltaTime) = 0;
+	void setDirection(sf::Keyboard::Key key);
+	void setObjectSpeed(float speed);
 
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
@@ -36,6 +38,6 @@ public:
 protected:
 	sf::Vector2f m_position;
 	sf::Vector2f m_direction;
-	float m_objectSpeed;				//each object will update according to the speed we will set it to
+	float m_objectSpeed = 50.f;		//each object will update according to the speed we will set it to
 	//sf::Clock m_MovementTime;		//hold the previous time the object moved
 };

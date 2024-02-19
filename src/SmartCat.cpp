@@ -8,4 +8,6 @@
 //------------------------------------------------------------------------
 void SmartCat::movement(sf::Time deltaTime)
 {
+	MovingObjects::setObjectSpeed(40.f);
+
 }

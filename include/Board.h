@@ -8,8 +8,6 @@
 #include "Macros.h"
 
 class MovingObjects;
-class Mouse;
-class Cat;
 
 class Board
 {
@@ -17,11 +15,11 @@ public:
 	Board();
 	void readTheLevel(std::ifstream& levelFile);
 	std::vector<std::string> getBoard() const;
-	void updateBoard(std::vector<std::unique_ptr<MovingObjects>> & cats, std::vector<std::unique_ptr<MovingObjects>>& mouse, const std::vector<sf::Texture>& objectsTextures,
+	void updateBoard(std::vector<std::unique_ptr<MovingObjects>> & movingObjects, const std::vector<sf::Texture>& objectsTextures,
 		             const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
-	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::vector <std::unique_ptr<MovingObjects>> & mouse,const std::vector<sf::Texture>& objectsTextures,
+	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,const std::vector<sf::Texture>& objectsTextures,
 	                	const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
-	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::vector <std::unique_ptr<MovingObjects>>& mouse,
+	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 		               const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
 		               const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
 	void printBoard(sf::RenderWindow& window) const;

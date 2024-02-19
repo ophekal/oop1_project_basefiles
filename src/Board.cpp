@@ -13,6 +13,7 @@
 #include "Key.h"
 #include "Door.h"
 #include "Wall.h"
+#include <memory>
 
 //-----------------------------------------------------------------------------
 Board::Board()
@@ -39,18 +40,16 @@ std::vector<std::string> Board::getBoard() const
 }
 
 //-------------------------------------------------------------------------
-void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats, std::vector <std::unique_ptr<MovingObjects>>& mouse,
+void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 	                    const std::vector<sf::Texture>& objectsTextures,
 	                    const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
 
-	//int numOfTiles = m_boardHeight * m_boardWidth; //500
-
 	updateBoradSize();
 
-	updateObjects(cats, mouse,objectsTextures,backgroundsTextures,numOfCheese);
+	updateObjects(movingObjects,objectsTextures,backgroundsTextures,numOfCheese);
 }
 //--------------------------------------------------------------------------
 
@@ -85,7 +84,7 @@ void Board::updateBoradSize()
 //Function that goes through the board and is responsible of calling other
 //functions in order to update the game objects' location
 
-void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::vector <std::unique_ptr<MovingObjects>>& mouse,
+void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 	                      const std::vector<sf::Texture>& objectsTextures,
 	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
@@ -101,7 +100,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		for (int col = 0; col < cols; col++)
 		{
 			char character = currLine[col];
-			updateMembers(cats,mouse,character, row, col, objectsTextures, backgroundsTextures, numOfCheese);
+			updateMembers(movingObjects,character, row, col, objectsTextures, backgroundsTextures, numOfCheese);
 		}
 	}
 }
@@ -110,7 +109,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 //This function checks what is the character in the given location and updates
 //the relevant members.
 
-void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::vector <std::unique_ptr<MovingObjects>>& mouse,
+void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
 	                      const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
 	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
 {
@@ -123,18 +122,18 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		{
 			if (Cat::getCount() % 2 == 0)
 			{
-				cats.push_back(std::make_unique<MovingObjects>(objectsTextures[I_CAT], position, m_tileSize));
+				movingObjects.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
 			}
 			else
 			{
-				cats.push_back(std::make_unique<MovingObjects>(objectsTextures[I_CAT], position, m_tileSize));
+				movingObjects.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
 			}
 
 			return;
 		}
 		case '%':
 		{
-			mouse.push_back(std::make_unique<MovingObjects>(objectsTextures[I_MOUSE], position, m_tileSize));
+			movingObjects.push_back(std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize));
 			return;
 		}
 		case '*':

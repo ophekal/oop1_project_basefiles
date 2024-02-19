@@ -23,8 +23,8 @@ private:
 	
 	int m_levelNum = 0;	//saves the level number
 
-	std::vector<std::unique_ptr<MovingObjects>> m_cats;
-	std::vector<std::unique_ptr<MovingObjects>> m_mouse;
+	std::vector<std::unique_ptr<MovingObjects>> m_movingObjects;
+	//std::vector<std::unique_ptr<MovingObjects>> m_mouse;
 	std::vector<std::string> m_playlist;
 
 	int m_numOfCheese = 0;

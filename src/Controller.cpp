@@ -16,8 +16,8 @@ Controller::Controller(sf::Font& font, const sf::Texture& background)
 void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& objectsTextures,
 	                const std::vector<sf::Texture>& backgroundsTextures)
 {
-	while (window.isOpen())
-	{
+	//while (window.isOpen())
+	//{
 		// open streams for reading from file playlist
 		auto line = std::string();
 		auto file = std::ifstream("playlist.txt");
@@ -38,11 +38,11 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 			}
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_cats, m_mouse, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
+			m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
 			m_levelNum++;
 			startGame(window, objectsTextures, backgroundsTextures);
 		}
-	}
+//	}
 
 }
 //------------------------------------------------------------------------
@@ -69,9 +69,9 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 			case sf::Event::Closed:
 				window.close();
 				break;
-			case sf::Event::MouseButtonReleased:
+			//case sf::Event::MouseButtonReleased:
 				//handleClick(event.mouseButton);
-				break;
+			//	break;
 			}
 		}
 
@@ -108,12 +108,12 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 
 void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
-	for (size_t index = 0; index < m_cats.size(); index++)
+	for (size_t index = 0; index < m_movingObjects.size(); index++)
 	{
-		m_cats[index]->draw(window);
+		m_movingObjects[index]->draw(window);
 	}
 
-	m_mouse[0]->draw(window);
+	//m_mouse[0]->draw(window);
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)

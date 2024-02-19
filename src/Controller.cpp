@@ -59,10 +59,11 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 		                (float)(window.getSize().y) / textureSize.y);
 
 	sf::Clock clock;
-	const auto deltaTime = clock.restart();
+	//const auto deltaTime = clock.restart();
 
 	while (m_numOfCheese != 0) // and if the time of the level end 
 	{
+		const auto deltaTime = clock.restart();
 		print(window, background);
 
 		if (auto event = sf::Event{}; window.waitEvent(event))

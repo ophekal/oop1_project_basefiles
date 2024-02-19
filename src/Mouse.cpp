@@ -2,26 +2,26 @@
 
 #include <SFML/Graphics.hpp>
 #include "Mouse.h"
-
+#include<iostream>
 
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
 	  : MovingObjects(icon, position, size)
 {
-	MovingObjects::setObjectSpeed(50.f);
+	MovingObjects::setObjectSpeed(100.f);
 }
 
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime)
 {
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
-
+		std::cout << "gugi";
 		MovingObjects::setDirection(sf::Keyboard::Left);
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
-		m_position.y
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{

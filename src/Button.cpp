@@ -8,11 +8,15 @@ Button::Button()
     :m_rectangle(sf::Vector2f(400.f, 150.f))
 {
 }
-
+//---------------------------------------------------------------------------------------
+void Button::updateSize(float width, float hight)
+{
+    m_rectangle.setSize({ width, hight });
+}
 //---------------------------------------------------------------------------------------
 
 void Button::updateButton(const sf::Font& font, const sf::Texture& background,
-                          std::string type, float x, float y)
+                          std::string type, float x, float y, int textSize)
 {
     //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
@@ -20,7 +24,7 @@ void Button::updateButton(const sf::Font& font, const sf::Texture& background,
     m_rectangle.setTexture(&background);
     m_text.setFont(font);
     m_text.setString(type);
-    m_text.setCharacterSize(48);
+    m_text.setCharacterSize(textSize);
     m_text.setFillColor(sf::Color::Black);
 
     // Set the position of the text to be centered within the rectangle

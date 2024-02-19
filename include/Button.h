@@ -6,8 +6,9 @@ class Button
 {
 public:
 	Button();
+	void updateSize(float width, float hight);
 	void updateButton(const sf::Font& font,const sf::Texture& background,
-		              std::string type, float x, float y);
+		              std::string type, float x, float y, int textSize);
 	void printButton(sf::RenderWindow& window) const;
 	sf::RectangleShape getRectangleButton()const;
 

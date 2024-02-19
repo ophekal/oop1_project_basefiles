@@ -71,9 +71,9 @@ void Menu::updateBackgroundVector()
 //-------------------------------------------------------------------------
 void Menu::updateButton()
 {
-	m_buttons[M_EXIT].updateButton(m_font, m_backgroundsTextures[2], "EXIT", EXIT_X, EXIT_Y);
-	m_buttons[M_HELP].updateButton(m_font, m_backgroundsTextures[2], "HELP", HELP_X, HELP_Y);
-	m_buttons[M_START].updateButton(m_font, m_backgroundsTextures[2], "START", START_X, START_Y);
+	m_buttons[M_EXIT].updateButton(m_font, m_backgroundsTextures[2], "EXIT", EXIT_X, EXIT_Y,48);
+	m_buttons[M_HELP].updateButton(m_font, m_backgroundsTextures[2], "HELP", HELP_X, HELP_Y, 48);
+	m_buttons[M_START].updateButton(m_font, m_backgroundsTextures[2], "START", START_X, START_Y,48);
 }
 
 //------------------------------------------------------------------
@@ -138,6 +138,6 @@ void Menu:: pressedHelp()
 //----------------------------------------------------------------------
 void Menu::startGame()
 {
-	Controller controller(m_font);
+	Controller controller(m_font,m_backgroundsTextures[2]);
 	controller.run(m_window, m_objectsTextures,m_backgroundsTextures); //also sound!
 }

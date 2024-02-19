@@ -2,10 +2,12 @@
 #include "Controller.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Cat.h"
+#include "Mouse.h"
 //------------------------------------------------------------------------
 
-Controller::Controller(sf::Font& font)
-	:m_infoBar(font)
+Controller::Controller(sf::Font& font, const sf::Texture& background)
+	:m_infoBar(font, background)
 {
 
 }
@@ -34,7 +36,7 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 		}
 
 		m_board.readTheLevel(levelFile);    //the board game is ready
-		m_board.updateBoard(m_movingObjects, objectsTextures, backgroundsTextures,m_numOfCheese); //function that also updates the moving objects                  
+		m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures,m_numOfCheese); //function that also updates the moving objects                  
 		m_levelNum++;
 		startGame(window, objectsTextures, backgroundsTextures);
 	}
@@ -69,6 +71,12 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 				break;
 			}
 		}
+
+
+
+
+
+
 	}
 	//if (auto event = sf::Event{}; window.pollEvent(event))
 	//{
@@ -97,18 +105,20 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 
 void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
-	for (size_t index = 0; index < m_movingObjects.size(); index++)
+	for (size_t index = 0; index < m_cats.size(); index++)
 	{
-		m_movingObjects[index]->draw(window);
+		m_cats[index]->draw(window);
 	}
+
+	m_mouse->draw(window);
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 {
 	window.clear();
 	window.draw(background);
+	m_infoBar.printInfoBar(window);
 	m_board.printBoard(window);
 	printMovingObjects(window);
-	m_infoBar.printInfoBar(window);
 	window.display();
 }

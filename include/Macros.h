@@ -47,7 +47,7 @@ enum Direction {
 };
 
 //------------menu------------
-const int WINDOW_HEIGHT = 850;
+const int WINDOW_HEIGHT = 1070;
 const int WINDOW_WIDTH = 1500;
 const float EXIT_X = 50;
 const float EXIT_Y = 150;
@@ -58,7 +58,7 @@ const float START_Y = 150;
 
 //------------board------------
 const float BOARD_HIG = 1000;
-const float BOARD_WID = 750;
+const float BOARD_WID = 1000;
 const float BOARD_START_X = 450;
 const float BOARD_START_Y = 50;
 

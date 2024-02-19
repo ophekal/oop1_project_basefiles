@@ -8,6 +8,8 @@
 #include "Macros.h"
 
 class MovingObjects;
+class Mouse;
+class Cat;
 
 class Board
 {
@@ -15,11 +17,11 @@ public:
 	Board();
 	void readTheLevel(std::ifstream& levelFile);
 	std::vector<std::string> getBoard() const;
-	void updateBoard(std::vector<std::unique_ptr<MovingObjects>>& movingObjects, const std::vector<sf::Texture>& objectsTextures,
+	void updateBoard(std::vector<std::unique_ptr<Cat>> & cats, std::unique_ptr<Mouse>& mouse, const std::vector<sf::Texture>& objectsTextures,
 		             const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
-	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,const std::vector<sf::Texture>& objectsTextures,
+	void updateObjects(std::vector<std::unique_ptr<Cat>>& cats, std::unique_ptr<Mouse>& mouse,const std::vector<sf::Texture>& objectsTextures,
 	                	const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
-	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& movingObjects,
+	void updateMembers(std::vector<std::unique_ptr<Cat>>& cats, std::unique_ptr<Mouse>& mouse,
 		               const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
 		               const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
 	void printBoard(sf::RenderWindow& window) const;
@@ -40,6 +42,8 @@ private:
 	sf::RectangleShape m_board; //hold the level itself
 	std::vector <std::string> m_currLevel;
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
+
+	void updateBoradSize();
 
 };
 

@@ -9,27 +9,34 @@
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
 	  : MovingObjects(icon, position, size)
 {
-
+	MovingObjects::setObjectSpeed(50.f);
 }
+
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		MovingObjects::setDirection(Left);
-		//move left
+		//we need to do scale if turns left since picture is to the right
+
+		MovingObjects::setDirection(sf::Keyboard::Left);
+		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
+		m_position.y
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		//move left
+		MovingObjects::setDirection(sf::Keyboard::Right);
+		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		//move left
+		MovingObjects::setDirection(sf::Keyboard::Up);
+		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		//move left
+		MovingObjects::setDirection(sf::Keyboard::Down);
+		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 
 }
@@ -75,7 +82,7 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
-	m_object.setPosition(m_nextPosition);
+	m_object.setPosition(m_position);
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)

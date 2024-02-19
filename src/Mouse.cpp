@@ -14,6 +14,23 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime)
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		MovingObjects::setDirection(Left);
+		//move left
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		//move left
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		//move left
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		//move left
+	}
 
 }
 //-----------------------------------------------------------------------

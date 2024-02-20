@@ -10,6 +10,9 @@
 #include "Mouse.h"
 #include "Cheese.h"
 #include "AddLifeGift.h"
+#include "AddTimeGift.h"
+#include "FreezeCatGift.h"
+#include "KillCatGift.h"
 #include "Key.h"
 #include "Door.h"
 #include "Wall.h"
@@ -43,14 +46,14 @@ std::vector<std::string> Board::getBoard() const
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats, 
 						std::unique_ptr<MovingObjects >& mouse,
 	                    const std::vector<sf::Texture>& objectsTextures,
-	                    const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
+	                    const std::vector<sf::Texture>& backgroundsTextures)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
 
 	updateBoradSize();
 
-	updateObjects(cats,mouse,objectsTextures,backgroundsTextures,numOfCheese);
+	updateObjects(cats,mouse,objectsTextures,backgroundsTextures);
 }
 //--------------------------------------------------------------------------
 
@@ -87,7 +90,7 @@ void Board::updateBoradSize()
 
 void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
 	                      const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
+	                      const std::vector<sf::Texture>& backgroundsTextures)
 {
 	auto rows = m_currLevel.size();
 
@@ -101,7 +104,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		for (int col = 0; col < cols; col++)
 		{
 			char character = currLine[col];
-			updateMembers(cats,mouse,character, row, col, objectsTextures, backgroundsTextures, numOfCheese);
+			updateMembers(cats,mouse,character, row, col, objectsTextures, backgroundsTextures);
 		}
 	}
 }
@@ -112,7 +115,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 
 void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
 	                      const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese)
+	                      const std::vector<sf::Texture>& backgroundsTextures)
 {
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
@@ -121,15 +124,7 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 	{
 		case '^':
 		{
-			if (Cat::getCount() % 2 == 0)
-			{
-				cats.push_back(std::make_unique<SmartCat>(objectsTextures[I_CAT], position, m_tileSize));
-			}
-			else
-			{
-				cats.push_back(std::make_unique<StupidCat>(objectsTextures[I_CAT], position, m_tileSize));
-			}
-
+			pushCat(cats, objectsTextures[I_CAT], position);
 			return;
 		}
 		case '%':
@@ -139,13 +134,12 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		}
 		case '*':
 		{
-		    numOfCheese ++;
 			m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
 			return;
 		}
 		case '$':
 		{
-			m_staticObjects.push_back(std::make_unique<AddLifeGift>(objectsTextures[I_GIFT], position, m_tileSize));
+			pushGift(objectsTextures[I_GIFT], position);
 			return;
 		}
 		case 'F':
@@ -166,7 +160,43 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 	}
 }
 //------------------------------------------------------------------------
+void Board::pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
+	        const sf::Texture& icon, sf::Vector2f& position)
+{
+	if (Cat::getCount() % 2 == 0)
+	{
+		cats.push_back(std::make_unique<SmartCat>(icon, position, m_tileSize));
+	}
+	else
+	{
+		cats.push_back(std::make_unique<StupidCat>(icon, position, m_tileSize));
+	}
+}
+//------------------------------------------------------------------------
+void Board::pushGift(const sf::Texture& icon, sf::Vector2f& position)
+{
+	int gift = Gift::getCount();
 
+	if (gift % 4 == 0)
+	{
+		m_staticObjects.push_back(std::make_unique<AddLifeGift>(icon, position, m_tileSize));
+	}
+	else if (gift % 4 == 1)
+	{
+		m_staticObjects.push_back(std::make_unique<AddTimeGift>(icon, position, m_tileSize));
+	}
+	else if (gift % 4 == 2)
+	{
+		m_staticObjects.push_back(std::make_unique<FreezeCatGift>(icon, position, m_tileSize));
+	}
+	else if (gift % 4 == 3)
+	{
+		m_staticObjects.push_back(std::make_unique<KillCatGift>(icon, position, m_tileSize));
+	}
+	
+}
+
+//-------------------------------------------------------------------------
 void Board::printBoard(sf::RenderWindow& window) const
 {
 	window.draw(m_board);

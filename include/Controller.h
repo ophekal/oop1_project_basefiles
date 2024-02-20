@@ -27,7 +27,7 @@ private:
 	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;
 
-	int m_numOfCheese = 0;
+	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
 	            	const std::vector<sf::Texture>& backgroundsTextures);

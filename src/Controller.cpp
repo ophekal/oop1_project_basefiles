@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Cat.h"
 #include "Mouse.h"
+#include "Cheese.h"
+
 //------------------------------------------------------------------------
 
 Controller::Controller(sf::Font& font, const sf::Texture& background)
@@ -38,7 +40,7 @@ void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& ob
 			}
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures, m_numOfCheese); //function that also updates the moving objects                  
+			m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures); //function that also updates the moving objects                  
 			m_levelNum++;
 			startGame(window, objectsTextures, backgroundsTextures);
 		}
@@ -61,7 +63,7 @@ void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Textu
 	sf::Clock clock;
 	//const auto deltaTime = clock.restart();
 
-	while (m_numOfCheese != 0) // and if the time of the level end 
+	while (Cheese::getCount != 0) // and if the time of the level end 
 	{
 		const auto deltaTime = clock.restart();
 		print(window, background);

@@ -11,7 +11,9 @@ public:
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Cat&);
 	virtual void collisionHandling(Mouse&);
+	static int getCount();
 
 private:
+	static int m_count;
 
 };

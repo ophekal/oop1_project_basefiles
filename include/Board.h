@@ -16,12 +16,12 @@ public:
 	void readTheLevel(std::ifstream& levelFile);
 	std::vector<std::string> getBoard() const;
 	void updateBoard(std::vector<std::unique_ptr<MovingObjects>> & cats, std::unique_ptr<MovingObjects > &mouse, const std::vector<sf::Texture>& objectsTextures,
-		             const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
+		             const std::vector<sf::Texture>& backgroundsTextures);
 	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,const std::vector<sf::Texture>& objectsTextures,
-	                	const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
+	                	const std::vector<sf::Texture>& backgroundsTextures);
 	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
 		               const char character, int row, int col,const std::vector<sf::Texture>& objectsTextures,
-		               const std::vector<sf::Texture>& backgroundsTextures, int& numOfCheese);
+		               const std::vector<sf::Texture>& backgroundsTextures);
 	void printBoard(sf::RenderWindow& window) const;
 
 private:
@@ -42,6 +42,8 @@ private:
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 
 	void updateBoradSize();
-
+	void pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
+		         const sf::Texture& icon, sf::Vector2f& position);
+	void pushGift(const sf::Texture& icon, sf::Vector2f& position);
 };
 

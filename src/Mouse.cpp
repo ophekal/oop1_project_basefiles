@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Mouse.h"
-#include<iostream>
 
 //------------------------------------------------------------------------
 
@@ -19,7 +18,6 @@ void Mouse::movement(sf::Time deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
-		std::cout << "gugi";
 		MovingObjects::setDirection(sf::Keyboard::Left);
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}

@@ -58,7 +58,6 @@ void Controller::startGame(sf::RenderWindow& window)
 
 	while (Cheese::getCount != 0) // and if the time of the level end 
 	{
-		const auto deltaTime = clock.restart();
 		print(window, background);
 
 		if (auto event = sf::Event{}; window.waitEvent(event))
@@ -73,6 +72,7 @@ void Controller::startGame(sf::RenderWindow& window)
 				//	break;
 			}
 		}
+		const auto deltaTime = clock.restart();
 
 		moveMouse(deltaTime);
 		moveCats(deltaTime);

@@ -19,25 +19,25 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
-		MovingObjects::setDirection(sf::Keyboard::Left);
+		setDirection(sf::Keyboard::Left);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		MovingObjects::setDirection(sf::Keyboard::Right);
+		setDirection(sf::Keyboard::Right);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		MovingObjects::setDirection(sf::Keyboard::Up);
+		setDirection(sf::Keyboard::Up);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		MovingObjects::setDirection(sf::Keyboard::Down);
+		setDirection(sf::Keyboard::Down);
 		checkMovement(deltaTime, board);
 		return;
 	}

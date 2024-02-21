@@ -18,7 +18,7 @@
 #include "Wall.h"
 #include <memory>
 #include "HandleResources.h"
-
+#include <iostream>
 //-----------------------------------------------------------------------------
 Board::Board()
 	: m_board(sf::Vector2f(BOARD_HIG, BOARD_WID))
@@ -229,6 +229,7 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
 {
 	for (auto i = 0; i < m_staticObjects.size(); i++)
 	{
+
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
 			object->collisionHandling(*m_staticObjects[i]);

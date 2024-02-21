@@ -59,6 +59,11 @@ void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 		m_object.setPosition(newPosition.getPosition());
 	}
+	else
+	{
+		m_object.setPosition(m_position);
+	}
+
 }
 
 //-----------------------------------------------------------------------
@@ -69,6 +74,11 @@ void Mouse::collisionHandling(GameObjects& object)
 		return;
 	}
 	object.collisionHandling(*this);
+}
+//-----------------------------------------------------------------------
+void Mouse::collisionHandling(Wall& wall)
+{
+	m_object.setPosition(m_position);
 }
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(Mouse& mouse)

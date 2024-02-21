@@ -19,6 +19,7 @@ bool GameObjects::checkCollision(GameObjects& other)
         return false;
     }
     // check all 4 corners
+
     return m_object.getGlobalBounds().intersects(other.m_object.getGlobalBounds());
 }
 //-------------------------------------------------------------------------

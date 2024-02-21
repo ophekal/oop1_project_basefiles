@@ -27,6 +27,11 @@ void Cat::collisionHandling(GameObjects& object)
 	object.collisionHandling(*this);
 }
 //------------------------------------------------------------------------
+void Cat::collisionHandling(Wall& wall)
+{
+	m_object.setPosition(m_position);
+}
+//------------------------------------------------------------------------
 void Cat::collisionHandling(Mouse& mouse)
 {
 

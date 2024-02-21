@@ -9,6 +9,7 @@ public:
 	Mouse (const sf::Texture& icon,const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Mouse() = default;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board);
+	virtual void move(sf::Time deltaTime);
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Mouse&);
 	virtual void collisionHandling(Cat&);
@@ -24,4 +25,5 @@ protected:
 	int m_lives = 3;
 	int m_keys = 0;
 	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
+	void checkMovement(sf::Time deltaTime, const sf::RectangleShape& board);
 };

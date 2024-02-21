@@ -66,8 +66,3 @@ void MovingObjects::setDirection(sf::Keyboard::Key key)
             break;
     }
 }
-//------------------------------------------------------------------------
-void MovingObjects::setPosition(const sf::Vector2f& newPosition)
-{
-    m_position = newPosition;
-}

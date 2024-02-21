@@ -15,42 +15,47 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
-	m_direction = {0, 0};
+	m_direction = {0,0};
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
 		MovingObjects::setDirection(sf::Keyboard::Left);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Right);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Up);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Down);
 	}
 
+	checkMovement(deltaTime,board);
+
+
+}
+//-----------------------------------------------------------------------
+void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
+{
 	sf::RectangleShape newPosition = m_object;
 	newPosition.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 
-	if (MovingObjects::isMovementValid(board,newPosition))
+	if (MovingObjects::isMovementValid(board, newPosition))
 	{
-		MovingObjects::setPosition(newPosition.getPosition());
-		//add a loop that goes through the movingObjects vector and the static objects
-		//we'll send the 
-
-		if ( GameObjects::checkCollision())
-		{
-			// handle collosion
-		}
-		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
+		GameObjects::setPosition(newPosition.getPosition());
 	}
-
 }
+//----------------------------------------------------------------------
+void Mouse::move(sf::Time deltaTime)
+{
+	m_position = m_object.getPosition();
+	m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
+}
+
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(GameObjects& object)
 {

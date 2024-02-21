@@ -25,3 +25,8 @@ void GameObjects::draw(sf::RenderWindow& window)
 {
     window.draw(m_object);
 }
+//------------------------------------------------------------------------
+void GameObjects::setPosition(const sf::Vector2f& newPosition)
+{
+    m_object.setPosition(newPosition);
+}

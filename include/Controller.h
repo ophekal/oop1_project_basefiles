@@ -32,6 +32,7 @@ private:
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, sf::Sprite& background);
 	void moveCats(sf::Time deltaTime);
+	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 
 
 };

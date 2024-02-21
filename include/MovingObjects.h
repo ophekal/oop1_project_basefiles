@@ -20,10 +20,10 @@ public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board) = 0;
+	virtual void move(sf::Time deltaTime)=0;
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	void setDirection(sf::Keyboard::Key key);
 	void setObjectSpeed(float speed);
-	void setPosition(const sf::Vector2f& newPosition);
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
 	virtual void collisionHandling(Cat&) = 0;

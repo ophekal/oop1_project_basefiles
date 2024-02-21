@@ -75,9 +75,35 @@ void Controller::startGame(sf::RenderWindow& window)
 		}
 
 		m_mouse->movement(deltaTime,m_board.getRectangle());
+		checkMovingObjectCollision(m_mouse);
+		m_board.checkStaticObjectCollision(m_mouse);
+		m_mouse->move(deltaTime); 
+
 		moveCats(deltaTime);
 	}
 }
+//-----------------------------------------------------------------
+void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object)
+{
+	for (auto index = 0; index < m_cats.size(); index++)
+	{
+		if (object->checkCollision(*m_cats[index]))
+		{
+			object->collisionHandling(*m_cats[index]);
+		}
+	}
+
+	if (object->checkCollision(*m_mouse))
+	{
+		object->collisionHandling(*m_mouse);
+	}
+
+}
+
+
+
+
+//-----------------------------------------------------------------------
 	//if (auto event = sf::Event{}; window.pollEvent(event))
 	//{
 	//	switch (event.type)

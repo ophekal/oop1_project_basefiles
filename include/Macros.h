@@ -44,13 +44,14 @@ enum MenuButton
 	M_START
 };
 
+//-------keyboard-movement-----
 const sf::Vector2f Directions[] = { {-1,0},{1,0},{0,-1},{0,1} };
 
 enum Direction {
-	D_UP,
-	D_DOWN,
 	D_LEFT,
-	D_RIGHT
+	D_RIGHT,
+	D_UP,
+	D_DOWN	
 };
 
 //------------menu------------

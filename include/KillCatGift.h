@@ -8,7 +8,10 @@ public:
 	using Gift::Gift;
 	virtual ~KillCatGift() = default;
 	//virtual void draw(sf::RenderWindow& window);	//a specific icon for killing cat gift
-	virtual void collisionHandling(KillCatGift & );	//cat dies
+	//virtual void collisionHandling(KillCatGift & );	//cat dies
+	void collisionHandling(GameObjects& object);
+	void collisionHandling(Mouse& mouse);
+	void collisionHandling(Cat& cat);
 
 private:
 

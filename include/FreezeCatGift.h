@@ -8,7 +8,10 @@ public:
 	using Gift::Gift;
 	virtual ~FreezeCatGift() = default;
 	//virtual void draw(sf::RenderWindow& window);	//a specific icon for freeze cat gift
-	virtual void collisionHandling(FreezeCatGift& gift);	//freeze a cat
+	//virtual void collisionHandling(FreezeCatGift& gift);	//freeze a cat
+	void collisionHandling(GameObjects& object);
+	void collisionHandling(Mouse& mouse);
+	void collisionHandling(Cat& cat);
 
 private:
 

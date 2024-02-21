@@ -55,7 +55,7 @@ void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 	if (MovingObjects::isMovementValid(board, newPosition))
 	{
-		std::cout << "movement is valid";
+		//std::cout << "movement is valid";
 
 		m_object.setPosition(newPosition.getPosition());
 	}

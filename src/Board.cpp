@@ -235,6 +235,8 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
 		}
 	}
 }
+
+
 //
 //
 //

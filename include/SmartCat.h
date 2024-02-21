@@ -8,7 +8,7 @@ class SmartCat: public Cat
 public:
 	using Cat::Cat;
 	virtual ~SmartCat() = default;
-	virtual void movement(sf::Time deltaTime, sf::Vector2f tileSize);
+	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board);
 
 private:
 };

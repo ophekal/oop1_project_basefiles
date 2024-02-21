@@ -200,8 +200,7 @@ void Board::pushGift(const sf::Texture& icon, sf::Vector2f& position)
 	else if (gift % 4 == 3)
 	{
 		m_staticObjects.push_back(std::make_unique<KillCatGift>(icon, position, m_tileSize));
-	}
-	
+	}	
 }
 
 //-------------------------------------------------------------------------
@@ -217,7 +216,12 @@ void Board::printBoard(sf::RenderWindow& window) const
 //--------------------------------------------------------------------------
 sf::Vector2f Board::getTileSize() const
 {
-	m_tileSize;
+	return m_tileSize;
+}
+//--------------------------------------------------------------------------
+const sf::RectangleShape& Board::getRectangle() const
+{
+	return m_board;
 }
 //--------------------------------------------------------------------------
 //

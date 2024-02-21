@@ -74,7 +74,7 @@ void Controller::startGame(sf::RenderWindow& window)
 			}
 		}
 
-		m_mouse->movement(deltaTime,m_board.getTileSize());
+		m_mouse->movement(deltaTime,m_board.getRectangle());
 		moveCats(deltaTime);
 	}
 }
@@ -126,6 +126,6 @@ void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
-		m_cats[i]->movement(deltaTime);
+		m_cats[i]->movement(deltaTime,m_board.getRectangle());
 	}
 }

@@ -9,7 +9,7 @@ public:
 	Cat(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Cat() = default;
 	//virtual void draw(sf::RenderWindow& window) const;
-	virtual void movement(sf::Time deltaTime, sf::Vector2f tileSize) = 0;
+	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board)=0;
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Mouse&);
 	virtual void collisionHandling(Cat&);

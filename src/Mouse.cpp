@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Mouse.h"
-
+#include <iostream>
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
@@ -12,29 +12,32 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 }
 
 //------------------------------------------------------------------------
-void Mouse::movement(sf::Time deltaTime, sf::Vector2f tileSize)
+void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
 		MovingObjects::setDirection(sf::Keyboard::Left);
-		//checkIfMovementValid();
-
-		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Right);
-		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Up);
-		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Down);
+	}
+
+	sf::RectangleShape newPosition = m_object;
+	newPosition.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
+	std::cout << "in mouse";
+
+	if (MovingObjects::isMovementValid(board,newPosition))
+	{
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 

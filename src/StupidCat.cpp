@@ -7,7 +7,7 @@
 
 
 //------------------------------------------------------------------------
-void StupidCat::movement(sf::Time deltaTime, sf::Vector2f tileSize)
+void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
 	MovingObjects::setObjectSpeed(25.f);
 }

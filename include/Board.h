@@ -21,6 +21,7 @@ public:
 		               const char character, int row, int col);
 	void printBoard(sf::RenderWindow& window) const;
 	sf::Vector2f getTileSize() const;
+	const sf::RectangleShape& getRectangle() const;
 
 private:
 	

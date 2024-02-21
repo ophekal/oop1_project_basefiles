@@ -6,7 +6,7 @@
 
 
 //------------------------------------------------------------------------
-void SmartCat::movement(sf::Time deltaTime, sf::Vector2f tileSize)
+void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
 	MovingObjects::setObjectSpeed(40.f);
 

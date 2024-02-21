@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
+#include<iostream>
 
 //------------------------------------------------------------------------
 MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
@@ -14,12 +15,15 @@ MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& pos
 }
 
 //------------------------------------------------------------------------
-bool MovingObjects:: isMovementValid ()
+bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::RectangleShape& newPosition )const
 {
-
-    
+    if (board.getGlobalBounds().contains(newPosition.getGlobalBounds().getPosition()))
+    {
+        std::cout << "hi";
+        return true;
+    }
+    return false;
 }
-
 //-------------------------------------------------------------------------
 void MovingObjects::collisionHandling(Wall& wall)
 {

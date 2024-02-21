@@ -8,7 +8,7 @@ class Mouse: public MovingObjects
 public:
 	Mouse (const sf::Texture& icon,const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Mouse() = default;
-	virtual void movement(sf::Time deltaTime, sf::Vector2f tileSize);
+	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board);
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Mouse&);
 	virtual void collisionHandling(Cat&);

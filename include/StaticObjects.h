@@ -18,7 +18,6 @@ class StaticObjects:public GameObjects
 public:
 	StaticObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~StaticObjects() = default;
-	//virtual void collisionHandling() = 0;
 
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;

@@ -12,16 +12,17 @@
 
 void Controller::run(sf::RenderWindow& window)
 {
+	// open streams for reading from file playlist
+	auto line = std::string();
+	auto file = std::ifstream("playlist.txt");
+	if (!file.is_open())
+	{
+		std::cerr << "can't open file\n";
+		exit(EXIT_FAILURE);
+	}
+
 	while (window.isOpen())
 	{
-		// open streams for reading from file playlist
-		auto line = std::string();
-		auto file = std::ifstream("playlist.txt");
-		if (!file.is_open())
-		{
-			std::cerr << "can't open file\n";
-			exit(EXIT_FAILURE);
-		}
 
 		// going through all the level files
 		while (std::getline(file, line))
@@ -76,6 +77,13 @@ void Controller::startGame(sf::RenderWindow& window)
 
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
+		std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
+		if (Cheese::getCount() == 0)
+		{
+			m_board.clear();
+			m_cats.clear();
+			break;
+		}
 	}
 }
 //-----------------------------------------------------------------

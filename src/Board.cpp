@@ -233,11 +233,28 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
 			object->collisionHandling(*m_staticObjects[i]);
-			return;
+			std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
+			break;
 		}
 	}
-}
 
+	std::erase_if(m_staticObjects, [](const auto& object) {
+		return object->offBoard();
+		});
+
+}
+//------------------------------------------------------------------------
+
+void Board::clear()
+{
+	m_staticObjects.clear();
+	m_currLevel.clear();
+	m_tileSize = { 0,0 };
+    m_boardHeight = 0;	//to initialize the values
+	m_boardWidth = 0;
+	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
+	m_board.setFillColor(sf::Color::White);
+}
 
 //
 //

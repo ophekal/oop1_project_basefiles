@@ -12,12 +12,12 @@ int Cheese::m_count = 0;
 Cheese::Cheese (const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
   :StaticObjects(picture, position, size)
 {
-
+	m_count++;
 }
 //--------------------------------------------------------------------------
 Cheese::~Cheese()
 {
-	m_count--;
+	--m_count;
 }
 //--------------------------------------------------------------------------
 void Cheese::collisionHandling(GameObjects& object)

@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    : m_object(size)
+    : m_object(size),m_offBoard(false)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);
@@ -26,6 +26,16 @@ bool GameObjects::checkCollision(GameObjects& other)
 void GameObjects::draw(sf::RenderWindow& window)
 {
     window.draw(m_object);
+}
+//--------------------------------------------------------------------------
+bool GameObjects::offBoard()const
+{
+    return m_offBoard;
+}
+//--------------------------------------------------------------------------
+void GameObjects::setOffBoard(bool off)
+{
+    m_offBoard = off;
 }
 ////------------------------------------------------------------------------
 //void GameObjects::setPosition(const sf::Vector2f& newPosition)

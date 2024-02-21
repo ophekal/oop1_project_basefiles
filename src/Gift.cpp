@@ -13,7 +13,7 @@ int Gift::m_count = 0;
 Gift::Gift(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
 	:StaticObjects(picture, position, size)
 {
-
+	m_count++;
 }
 //------------------------------------------------------------------------
 int Gift::getCount()

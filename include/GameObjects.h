@@ -19,7 +19,9 @@ public:
 	GameObjects(const sf::Texture& picture, const sf::Vector2f& position,const sf::Vector2f& size);
 	virtual ~GameObjects() = default;
 	virtual void draw(sf::RenderWindow& window);
-	void setPosition(const sf::Vector2f& newPosition);
+	//void setPosition(const sf::Vector2f& newPosition);
+	bool offBoard()const;
+	void setOffBoard(bool off);
 	bool checkCollision(GameObjects& objcet);
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
@@ -36,4 +38,5 @@ public:
 
 protected:
 	sf::RectangleShape m_object;
+	bool m_offBoard;
 };

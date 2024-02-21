@@ -23,6 +23,7 @@ public:
 	void printBoard(sf::RenderWindow& window) const;
 	sf::Vector2f getTileSize() const;
 	const sf::RectangleShape& getRectangle() const;
+	void clear();
 
 private:
 	

@@ -4,6 +4,9 @@
 #include "Mouse.h"
 #include <iostream>
 #include "GameObjects.h"
+#include "Key.h"
+#include "Cheese.h"
+
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
@@ -114,16 +117,24 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
+	key.setOffBoard(true);  // m_offBoard = true;
 	m_position = m_object.getPosition();
+	std::cout << "num of keys:" << m_keys << std::endl;
 	//m_object.setPosition(m_position);
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)
 {
-
+	//m_offBoard = true;
+	cheese.setOffBoard(true);
 }
 //----------------------------------------------------------------------
 void Mouse::collisionHandling(Door& door)
 {
 
+}
+//----------------------------------------------------------------------
+int Mouse::getKeys()const
+{
+	return m_keys;
 }

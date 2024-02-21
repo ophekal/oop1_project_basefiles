@@ -11,8 +11,8 @@ public:
 	void run();   //holds the waitevents of the different options in menu
 
 private:
-	void updateObjectVector();
-	void updateBackgroundVector();
+	//void updateObjectVector();
+	//void updateBackgroundVector();
 	void updateButton();
 	void print(sf::Sprite& background);
 	void printButtons();
@@ -28,9 +28,9 @@ private:
 
 	//sf::Music m_gameMusic;	//maybe needs to be in controller?
 
-	std::vector<sf::Texture> m_objectsTextures;
-	std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window
+	//std::vector<sf::Texture> m_objectsTextures;
+	//std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window
 
-	sf::Font m_font;
+	//sf::Font m_font;
 };
 

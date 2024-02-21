@@ -12,7 +12,7 @@ class Mouse;
 class Controller
 {
 public:
-	Controller();
+	Controller() = default;
 	void run(sf::RenderWindow& window);
 
 private:
@@ -28,8 +28,7 @@ private:
 
 	//int m_numOfCheese = 0;
 	
-	void startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
-	            	const std::vector<sf::Texture>& backgroundsTextures);
+	void startGame(sf::RenderWindow& window);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, sf::Sprite& background);
 	void moveCats(sf::Time deltaTime);

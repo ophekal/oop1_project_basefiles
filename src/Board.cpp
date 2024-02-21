@@ -17,6 +17,7 @@
 #include "Door.h"
 #include "Wall.h"
 #include <memory>
+#include "HandleResources.h"
 
 //-----------------------------------------------------------------------------
 Board::Board()
@@ -44,16 +45,14 @@ std::vector<std::string> Board::getBoard() const
 
 //-------------------------------------------------------------------------
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats, 
-						std::unique_ptr<MovingObjects >& mouse,
-	                    const std::vector<sf::Texture>& objectsTextures,
-	                    const std::vector<sf::Texture>& backgroundsTextures)
+						std::unique_ptr<MovingObjects >& mouse)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
 
 	updateBoradSize();
 
-	updateObjects(cats,mouse,objectsTextures,backgroundsTextures);
+	updateObjects(cats,mouse);
 }
 //--------------------------------------------------------------------------
 
@@ -88,9 +87,8 @@ void Board::updateBoradSize()
 //Function that goes through the board and is responsible of calling other
 //functions in order to update the game objects' location
 
-void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
-	                      const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures)
+void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, 
+	                      std::unique_ptr<MovingObjects >& mouse)
 {
 	auto rows = m_currLevel.size();
 
@@ -104,7 +102,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		for (int col = 0; col < cols; col++)
 		{
 			char character = currLine[col];
-			updateMembers(cats,mouse,character, row, col, objectsTextures, backgroundsTextures);
+			updateMembers(cats,mouse,character, row, col);
 		}
 	}
 }
@@ -114,8 +112,7 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 //the relevant members.
 
 void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
-	                      const char character, int row, int col, const std::vector<sf::Texture>& objectsTextures,
-	                      const std::vector<sf::Texture>& backgroundsTextures)
+	                      const char character, int row, int col)
 {
 	// set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
@@ -124,37 +121,48 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 	{
 		case '^':
 		{
-			pushCat(cats, objectsTextures[I_CAT], position);
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_CAT);
+			pushCat(cats, *icon, position);
 			return;
 		}
 		case '%':
 		{
-			mouse = std::make_unique<Mouse>(objectsTextures[I_MOUSE], position, m_tileSize);
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_MOUSE);
+			mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
 			return;
 		}
 		case '*':
 		{
-			m_staticObjects.push_back(std::make_unique<Cheese>(objectsTextures[I_CHEESE], position, m_tileSize));
+
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_CHEESE);
+			m_staticObjects.push_back(std::make_unique<Cheese>(*icon, position, m_tileSize));
 			return;
 		}
 		case '$':
 		{
-			pushGift(objectsTextures[I_GIFT], position);
+
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_GIFT);
+			pushGift(*icon, position);
 			return;
 		}
 		case 'F':
 		{
-			m_staticObjects.push_back(std::make_unique<Key>(objectsTextures[I_KEY], position, m_tileSize));
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_KEY);
+			m_staticObjects.push_back(std::make_unique<Key>(*icon, position, m_tileSize));
 			return;
 		}
 		case 'D':
 		{
-			m_staticObjects.push_back(std::make_unique<Door>(objectsTextures[I_DOOR], position, m_tileSize));
+
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_DOOR);
+			m_staticObjects.push_back(std::make_unique<Door>(*icon, position, m_tileSize));
 			return;
 		}
 		case '#':
 		{
-			m_staticObjects.push_back(std::make_unique<Wall>(objectsTextures[I_WALL], position, m_tileSize));
+
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_WALL);
+			m_staticObjects.push_back(std::make_unique<Wall>(*icon, position, m_tileSize));
 			return;
 		}
 	}

@@ -18,7 +18,7 @@ void Mouse::movement(sf::Time deltaTime)
 	{
 		//we need to do scale if turns left since picture is to the right
 		MovingObjects::setDirection(sf::Keyboard::Left);
-		checkIfMovementValid();
+		//checkIfMovementValid();
 
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}

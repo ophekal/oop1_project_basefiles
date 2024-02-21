@@ -19,8 +19,9 @@ Menu::Menu()
 void Menu::run()
 {
 	sf::Sprite background;
-	background.setTexture(m_backgroundsTextures[0]);
-	sf::Vector2u textureSize = m_backgroundsTextures[0].getSize();
+	const sf::Texture* backgroundTexture = HandleResources::instance().getBackgroundTexture(B_MENU);
+	background.setTexture(*backgroundTexture);
+	sf::Vector2u textureSize = (*backgroundTexture).getSize();
 
 	// Scale the background sprite to fit the window
 	background.setScale((float)(m_window.getSize().x) / textureSize.x,
@@ -94,7 +95,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 }
 
 //---------------------------------------------------------------------------------------
-void Menu:: pressedHelp()
+void Menu::pressedHelp()
 {
 	sf::RenderWindow helpWindow(sf::VideoMode(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), "Game Information");
 
@@ -118,6 +119,6 @@ void Menu:: pressedHelp()
 //----------------------------------------------------------------------
 void Menu::startGame()
 {
-	Controller controller();
+	Controller controller;
 	controller.run(m_window); //also sound!
 }

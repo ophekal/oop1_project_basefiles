@@ -8,11 +8,6 @@
 #include "HandleResources.h"
 
 //------------------------------------------------------------------------
-
-//Controller::Controller(sf::Font& font, const sf::Texture& background)
-//{
-//
-//}
 //-------------------------------------------------------------------------
 
 void Controller::run(sf::RenderWindow& window)
@@ -47,8 +42,7 @@ void Controller::run(sf::RenderWindow& window)
 
 }
 //------------------------------------------------------------------------
-void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
-	                       const std::vector<sf::Texture>& backgroundsTextures)
+void Controller::startGame(sf::RenderWindow& window)
 {
 	//setting the background of the game
 	sf::Sprite background;

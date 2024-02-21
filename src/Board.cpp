@@ -214,7 +214,12 @@ void Board::printBoard(sf::RenderWindow& window) const
 		m_staticObjects[index]->draw(window);
 	}
 }
-
+//--------------------------------------------------------------------------
+sf::Vector2f Board::getTileSize() const
+{
+	m_tileSize;
+}
+//--------------------------------------------------------------------------
 //
 //
 //

@@ -20,6 +20,7 @@ public:
 	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
 		               const char character, int row, int col);
 	void printBoard(sf::RenderWindow& window) const;
+	sf::Vector2f getTileSize() const;
 
 private:
 	

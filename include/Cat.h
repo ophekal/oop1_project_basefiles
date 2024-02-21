@@ -11,6 +11,7 @@ public:
 	//virtual void draw(sf::RenderWindow& window) const;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board)=0;
 	virtual void collisionHandling(GameObjects&);
+	virtual void collisionHandling(Wall&) {};
 	virtual void collisionHandling(Mouse&);
 	virtual void collisionHandling(Cat&);
 	virtual void collisionHandling(KillCatGift&);

@@ -23,7 +23,7 @@ public:
 	void move(sf::Time deltaTime);
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	bool positionChange()const;
-	void setDirection(sf::Keyboard::Key key);
+	void setDirection(const sf::Vector2f& direction);
 	void setObjectSpeed(float speed);
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
@@ -35,11 +35,11 @@ public:
 	virtual void collisionHandling(Key&) = 0;
 	virtual void collisionHandling(Cheese&) = 0;
 	virtual void collisionHandling(Door&) = 0;
-	virtual void collisionHandling(Wall&);
+	virtual void collisionHandling(Wall&)= 0;
 
 protected:
 	sf::Vector2f m_position;
-	sf::Vector2f m_direction;
+	sf::Vector2f m_direction ={ 0,0 };
 	float m_objectSpeed = 50.f;		//each object will update according to the speed we will set it to
 	//sf::Clock m_MovementTime;		//hold the previous time the object moved
 };

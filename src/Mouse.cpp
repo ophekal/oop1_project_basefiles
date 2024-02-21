@@ -15,31 +15,35 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
-	m_direction = {0,0};
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
-		setDirection(sf::Keyboard::Left);
+		setDirection(Directions[D_LEFT]);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		setDirection(sf::Keyboard::Right);
+		setDirection(Directions[D_RIGHT]);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		setDirection(sf::Keyboard::Up);
+		setDirection(Directions[D_UP]);
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		setDirection(sf::Keyboard::Down);
+		setDirection(Directions[D_DOWN]);
 		checkMovement(deltaTime, board);
 		return;
+	}
+	else
+	{
+		m_direction = { 0,0 };
 	}
 
 }

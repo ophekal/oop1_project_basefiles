@@ -60,7 +60,7 @@ void Controller::startGame(sf::RenderWindow& window)
 	{
 		print(window, background);
 
-		if (auto event = sf::Event{}; window.waitEvent(event))
+		if (auto event = sf::Event{}; window.pollEvent(event))
 		{
 			switch (event.type)
 			{

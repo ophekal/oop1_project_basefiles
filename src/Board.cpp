@@ -225,6 +225,16 @@ const sf::RectangleShape& Board::getRectangle() const
 	return m_board;
 }
 //--------------------------------------------------------------------------
+void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
+{
+	for (auto i = 0; i < m_staticObjects.size(); i++)
+	{
+		if (object->checkCollision(*m_staticObjects[i]))
+		{
+			object->collisionHandling(*m_staticObjects[i]);
+		}
+	}
+}
 //
 //
 //

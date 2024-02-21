@@ -19,6 +19,7 @@ public:
 	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse);
 	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
 		               const char character, int row, int col);
+	void checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object);
 	void printBoard(sf::RenderWindow& window) const;
 	sf::Vector2f getTileSize() const;
 	const sf::RectangleShape& getRectangle() const;

@@ -48,12 +48,12 @@ void Menu::run()
 //-------------------------------------------------------------------------
 void Menu::updateButton()
 {
-	const HandleResources& resources = HandleResources::instance();
-	resources
+	const sf::Font* font = HandleResources::instance().getFont();
+	const sf::Texture* background = HandleResources::instance().getBackgroundTexture(B_BUTTON);
 
-	m_buttons[M_EXIT].updateButton(m_font, m_backgroundsTextures[2], "EXIT", EXIT_X, EXIT_Y,48);
-	m_buttons[M_HELP].updateButton(m_font, m_backgroundsTextures[2], "HELP", HELP_X, HELP_Y, 48);
-	m_buttons[M_START].updateButton(m_font, m_backgroundsTextures[2], "START", START_X, START_Y,48);
+	m_buttons[M_EXIT].updateButton(*font, *background, "EXIT", EXIT_X, EXIT_Y,48);
+	m_buttons[M_HELP].updateButton(*font, *background, "HELP", HELP_X, HELP_Y, 48);
+	m_buttons[M_START].updateButton(*font, *background, "START", START_X, START_Y,48);
 }
 
 //------------------------------------------------------------------
@@ -118,6 +118,6 @@ void Menu:: pressedHelp()
 //----------------------------------------------------------------------
 void Menu::startGame()
 {
-	Controller controller(m_font,m_backgroundsTextures[2]);
-	controller.run(m_window, m_objectsTextures,m_backgroundsTextures); //also sound!
+	Controller controller();
+	controller.run(m_window); //also sound!
 }

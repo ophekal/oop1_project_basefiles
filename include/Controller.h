@@ -12,9 +12,8 @@ class Mouse;
 class Controller
 {
 public:
-	Controller(sf::Font& font, const sf::Texture& background);
-	void run(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
-		     const std::vector<sf::Texture>& backgroundsTextures);
+	Controller();
+	void run(sf::RenderWindow& window);
 
 private:
 	

@@ -8,15 +8,13 @@
 
 //------------------------------------------------------------------------
 
-Controller::Controller(sf::Font& font, const sf::Texture& background)
-	:m_infoBar(font, background)
-{
-
-}
+//Controller::Controller(sf::Font& font, const sf::Texture& background)
+//{
+//
+//}
 //-------------------------------------------------------------------------
 
-void Controller::run(sf::RenderWindow& window,const std::vector<sf::Texture>& objectsTextures,
-	                const std::vector<sf::Texture>& backgroundsTextures)
+void Controller::run(sf::RenderWindow& window)
 {
 	while (window.isOpen())
 	{

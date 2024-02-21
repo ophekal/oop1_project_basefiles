@@ -11,7 +11,15 @@ GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& positio
     m_object.setTexture(&picture);
     m_object.setPosition(position);
 }
-
+//------------------------------------------------------------------------
+bool GameObjects::checkCollision(GameObjects& other)
+{
+    if (&other == this)
+    {
+        return false;
+    }
+    return m_object.getGlobalBounds().intersects(other.m_object.getGlobalBounds());
+}
 //-------------------------------------------------------------------------
 void GameObjects::draw(sf::RenderWindow& window)
 {

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Mouse.h"
 #include <iostream>
+#include "GameObjects.h"
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
@@ -38,7 +39,14 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 	if (MovingObjects::isMovementValid(board,newPosition))
 	{
-		if(checkCollision())
+		MovingObjects::setPosition(newPosition.getPosition());
+		//add a loop that goes through the movingObjects vector and the static objects
+		//we'll send the 
+
+		if ( GameObjects::checkCollision())
+		{
+			// handle collosion
+		}
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 

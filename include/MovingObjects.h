@@ -23,7 +23,7 @@ public:
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	void setDirection(sf::Keyboard::Key key);
 	void setObjectSpeed(float speed);
-
+	void setPosition(const sf::Vector2f& newPosition);
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
 	virtual void collisionHandling(Cat&) = 0;

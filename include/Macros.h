@@ -30,6 +30,13 @@ enum IconType
 	I_WALL
 };
 
+enum Background
+{
+	B_MENU,
+	B_GAME,
+	B_BUTTON
+};
+
 enum MenuButton
 {
 	M_EXIT,

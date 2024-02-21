@@ -15,7 +15,8 @@ MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& pos
 }
 
 //------------------------------------------------------------------------
-bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::RectangleShape& newPosition )const
+bool MovingObjects::isMovementValid(const sf::RectangleShape& board,
+                                    const sf::RectangleShape& newPosition)const
 {
     // Get the global bounds of the board and the new position
     sf::FloatRect boardBounds = board.getGlobalBounds();
@@ -32,6 +33,7 @@ bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::R
     }
     return false;
 }
+
 //------------------------------------------------------------------------
 bool MovingObjects::positionChange()const
 {

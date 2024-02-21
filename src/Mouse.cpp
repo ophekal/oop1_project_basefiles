@@ -50,7 +50,7 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 //-----------------------------------------------------------------------
 void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
-	sf::RectangleShape newPosition = m_object;
+	sf::RectangleShape newPosition= m_object;
 	newPosition.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 
 	if (MovingObjects::isMovementValid(board, newPosition))

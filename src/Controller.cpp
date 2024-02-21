@@ -147,7 +147,8 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 //--------------------------------------------------------------------------
 void Controller::moveMouse(sf::Time deltaTime)
 {
-	m_mouse->movement(deltaTime, m_board.getRectangle());
+	const sf::RectangleShape& boardRectangle = m_board.getRectangle();
+	m_mouse->movement(deltaTime, boardRectangle);
 	if (m_mouse->positionChange())
 	{
 		checkMovingObjectCollision(m_mouse);

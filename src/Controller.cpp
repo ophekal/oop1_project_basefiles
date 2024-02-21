@@ -74,11 +74,7 @@ void Controller::startGame(sf::RenderWindow& window)
 			}
 		}
 
-		m_mouse->movement(deltaTime,m_board.getRectangle());
-		checkMovingObjectCollision(m_mouse);
-		m_board.checkStaticObjectCollision(m_mouse);
-		m_mouse->move(deltaTime); 
-
+		moveMouse(deltaTime);
 		moveCats(deltaTime);
 	}
 }
@@ -90,6 +86,7 @@ void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>
 		if (object->checkCollision(*m_cats[index]))
 		{
 			object->collisionHandling(*m_cats[index]);
+			break;
 		}
 	}
 
@@ -148,10 +145,28 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 }
 
 //--------------------------------------------------------------------------
+void Controller::moveMouse(sf::Time deltaTime)
+{
+	m_mouse->movement(deltaTime, m_board.getRectangle());
+	if (m_mouse->positionChange())
+	{
+		checkMovingObjectCollision(m_mouse);
+		m_board.checkStaticObjectCollision(m_mouse);
+		m_mouse->move(deltaTime);
+	}
+}
+
+//--------------------------------------------------------------------------
 void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
 		m_cats[i]->movement(deltaTime,m_board.getRectangle());
+		if (m_cats[i]->positionChange())
+		{
+			checkMovingObjectCollision(m_cats[i]);
+			m_board.checkStaticObjectCollision(m_cats[i]);
+			m_cats[i]->move(deltaTime);
+		}
 	}
 }

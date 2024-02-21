@@ -20,22 +20,27 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 	{
 		//we need to do scale if turns left since picture is to the right
 		MovingObjects::setDirection(sf::Keyboard::Left);
+		checkMovement(deltaTime, board);
+		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Right);
+		checkMovement(deltaTime, board);
+		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Up);
+		checkMovement(deltaTime, board);
+		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		MovingObjects::setDirection(sf::Keyboard::Down);
+		checkMovement(deltaTime, board);
+		return;
 	}
-
-	checkMovement(deltaTime,board);
-
 
 }
 //-----------------------------------------------------------------------
@@ -46,22 +51,19 @@ void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 	if (MovingObjects::isMovementValid(board, newPosition))
 	{
-		GameObjects::setPosition(newPosition.getPosition());
+		std::cout << "movement is valid";
+
+		m_object.setPosition(newPosition.getPosition());
 	}
-}
-//----------------------------------------------------------------------
-void Mouse::move(sf::Time deltaTime)
-{
-	m_position = m_object.getPosition();
-	m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 }
 
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(GameObjects& object)
 {
 	if (&object == this)
+	{
 		return;
-
+	}
 	object.collisionHandling(*this);
 }
 //------------------------------------------------------------------------
@@ -98,7 +100,8 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
-	m_object.setPosition(m_position);
+	m_position = m_object.getPosition();
+	//m_object.setPosition(m_position);
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)

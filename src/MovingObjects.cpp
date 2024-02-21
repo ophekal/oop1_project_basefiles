@@ -25,7 +25,18 @@ bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::R
     if (boardBounds.contains(newPositionBounds.left, newPositionBounds.top) &&
         boardBounds.contains(newPositionBounds.left + newPositionBounds.width, newPositionBounds.top + newPositionBounds.height))
     {
+        std::cout << "in moving objects func";
+
         // The new position is valid within the board bounds
+        return true;
+    }
+    return false;
+}
+//------------------------------------------------------------------------
+bool MovingObjects::positionChange()const
+{
+    if (m_position != m_object.getPosition())
+    {
         return true;
     }
     return false;
@@ -33,7 +44,7 @@ bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::R
 //-------------------------------------------------------------------------
 void MovingObjects::collisionHandling(Wall& wall)
 {
-    m_object.setPosition(m_position);
+  //  m_object.setPosition(m_position);
 }
 //------------------------------------------------------------------------
 void MovingObjects::setObjectSpeed(float speed)
@@ -65,4 +76,10 @@ void MovingObjects::setDirection(sf::Keyboard::Key key)
             m_direction = sf::Vector2f(0, 0);
             break;
     }
+}
+//----------------------------------------------------------------------
+void MovingObjects::move(sf::Time deltaTime)
+{
+    m_position = m_object.getPosition();
+    m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 }

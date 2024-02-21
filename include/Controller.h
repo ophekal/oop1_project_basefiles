@@ -31,6 +31,7 @@ private:
 	void startGame(sf::RenderWindow& window);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, sf::Sprite& background);
+	void moveMouse(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 

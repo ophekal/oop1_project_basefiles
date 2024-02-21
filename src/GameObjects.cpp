@@ -18,6 +18,7 @@ bool GameObjects::checkCollision(GameObjects& other)
     {
         return false;
     }
+    // check all 4 corners
     return m_object.getGlobalBounds().intersects(other.m_object.getGlobalBounds());
 }
 //-------------------------------------------------------------------------
@@ -25,8 +26,8 @@ void GameObjects::draw(sf::RenderWindow& window)
 {
     window.draw(m_object);
 }
-//------------------------------------------------------------------------
-void GameObjects::setPosition(const sf::Vector2f& newPosition)
-{
-    m_object.setPosition(newPosition);
-}
+////------------------------------------------------------------------------
+//void GameObjects::setPosition(const sf::Vector2f& newPosition)
+//{
+//    m_object.setPosition(newPosition);
+//}

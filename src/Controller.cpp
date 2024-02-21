@@ -5,6 +5,7 @@
 #include "Cat.h"
 #include "Mouse.h"
 #include "Cheese.h"
+#include "HandleResources.h"
 
 //------------------------------------------------------------------------
 
@@ -38,9 +39,9 @@ void Controller::run(sf::RenderWindow& window)
 			}
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_cats,m_mouse, objectsTextures, backgroundsTextures); //function that also updates the moving objects                  
+			m_board.updateBoard(m_cats,m_mouse); //function that also updates the moving objects                  
 			m_levelNum++;
-			startGame(window, objectsTextures, backgroundsTextures);
+			startGame(window);
 		}
 	}
 
@@ -49,17 +50,17 @@ void Controller::run(sf::RenderWindow& window)
 void Controller::startGame(sf::RenderWindow& window, const std::vector<sf::Texture>& objectsTextures,
 	                       const std::vector<sf::Texture>& backgroundsTextures)
 {
-	//we need to start the clock;
+	//setting the background of the game
 	sf::Sprite background;
-	background.setTexture(backgroundsTextures[1]);
-	sf::Vector2u textureSize = backgroundsTextures[1].getSize();
+	const sf::Texture* gameBackground = HandleResources::instance().getBackgroundTexture(B_GAME);
+	background.setTexture(*gameBackground);
+	sf::Vector2u textureSize = (*gameBackground).getSize();
 
 	// Scale the background sprite to fit the window
 	background.setScale((float)(window.getSize().x) / textureSize.x,
 		                (float)(window.getSize().y) / textureSize.y);
 
 	sf::Clock clock;
-	//const auto deltaTime = clock.restart();
 
 	while (Cheese::getCount != 0) // and if the time of the level end 
 	{

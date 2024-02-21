@@ -81,6 +81,7 @@ void Board::updateBoradSize()
 		m_tileSize = { tileHeight,tileHeight };
 		m_board.setSize({ newWidth, newHeight });
 	}
+	m_board.setFillColor(sf::Color::White);
 }
 
 //--------------------------------------------------------------------------

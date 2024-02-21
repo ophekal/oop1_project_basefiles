@@ -14,6 +14,7 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
+	m_direction = {0, 0};
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		//we need to do scale if turns left since picture is to the right
@@ -34,10 +35,10 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 	sf::RectangleShape newPosition = m_object;
 	newPosition.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
-	std::cout << "in mouse";
 
 	if (MovingObjects::isMovementValid(board,newPosition))
 	{
+		if(checkCollision())
 		m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 	}
 

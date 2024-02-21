@@ -17,9 +17,15 @@ MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& pos
 //------------------------------------------------------------------------
 bool MovingObjects::isMovementValid(const sf::RectangleShape& board, const sf::RectangleShape& newPosition )const
 {
-    if (board.getGlobalBounds().contains(newPosition.getGlobalBounds().getPosition()))
+    // Get the global bounds of the board and the new position
+    sf::FloatRect boardBounds = board.getGlobalBounds();
+    sf::FloatRect newPositionBounds = newPosition.getGlobalBounds();
+
+    // Check if the new position bounds are fully contained within the board bounds
+    if (boardBounds.contains(newPositionBounds.left, newPositionBounds.top) &&
+        boardBounds.contains(newPositionBounds.left + newPositionBounds.width, newPositionBounds.top + newPositionBounds.height))
     {
-        std::cout << "hi";
+        // The new position is valid within the board bounds
         return true;
     }
     return false;

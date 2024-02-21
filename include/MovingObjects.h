@@ -19,7 +19,8 @@ class MovingObjects : public GameObjects
 public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
-	virtual void movement(sf::Time deltaTime) = 0;
+	virtual void movement(sf::Time deltaTime, sf::Vector2f tileSize) = 0;
+	bool isMovementValid();
 	void setDirection(sf::Keyboard::Key key);
 	void setObjectSpeed(float speed);
 

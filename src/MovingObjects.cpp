@@ -13,6 +13,13 @@ MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& pos
     m_object.setPosition(position);
 }
 
+//------------------------------------------------------------------------
+bool MovingObjects:: isMovementValid ()
+{
+
+    
+}
+
 //-------------------------------------------------------------------------
 void MovingObjects::collisionHandling(Wall& wall)
 {

@@ -12,7 +12,7 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 }
 
 //------------------------------------------------------------------------
-void Mouse::movement(sf::Time deltaTime)
+void Mouse::movement(sf::Time deltaTime, sf::Vector2f tileSize)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{

@@ -74,7 +74,7 @@ void Controller::startGame(sf::RenderWindow& window)
 			}
 		}
 
-		m_mouse->movement(deltaTime);
+		m_mouse->movement(deltaTime,m_board.getTileSize());
 		moveCats(deltaTime);
 	}
 }

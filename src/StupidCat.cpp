@@ -7,7 +7,7 @@
 
 
 //------------------------------------------------------------------------
-void StupidCat::movement(sf::Time deltaTime)
+void StupidCat::movement(sf::Time deltaTime, sf::Vector2f tileSize)
 {
 	MovingObjects::setObjectSpeed(25.f);
 }

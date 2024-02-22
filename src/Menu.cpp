@@ -97,11 +97,21 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 //---------------------------------------------------------------------------------------
 void Menu::pressedHelp()
 {
+	sf::Sprite help;
+	const sf::Texture* backgroundTexture = HandleResources::instance().getBackgroundTexture(B_HELP);
+	help.setTexture(*backgroundTexture);
+	sf::Vector2u textureSize = (*backgroundTexture).getSize();
+
+	// Scale the background sprite to fit the window
+	help.setScale((float)(m_window.getSize().x) / textureSize.x,
+		(float)(m_window.getSize().y) / textureSize.y);
+
 	sf::RenderWindow helpWindow(sf::VideoMode(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), "Game Information");
 
 	while (helpWindow.isOpen())
 	{
-		helpWindow.clear(sf::Color::White);
+		helpWindow.clear();
+		helpWindow.draw(help);
 		helpWindow.display();
 
 		if (auto event = sf::Event{}; helpWindow.waitEvent(event))

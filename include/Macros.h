@@ -34,7 +34,8 @@ enum Background
 {
 	B_MENU,
 	B_GAME,
-	B_BUTTON
+	B_BUTTON,
+	B_HELP
 };
 
 enum MenuButton

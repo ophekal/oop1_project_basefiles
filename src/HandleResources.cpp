@@ -40,6 +40,7 @@ void HandleResources::updateBackgroundVector()
 	m_backgroundsTextures[B_MENU].loadFromFile("menuLandscape.jpg");
 	m_backgroundsTextures[B_GAME].loadFromFile("landscape.png");
 	m_backgroundsTextures[B_BUTTON].loadFromFile("button.png");
+	m_backgroundsTextures[B_HELP].loadFromFile("helpWindow.png");
 }
 
 //-------------------------------------------------------------------------

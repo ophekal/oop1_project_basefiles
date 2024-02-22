@@ -25,6 +25,7 @@ public:
 	bool positionChange()const;
 	void setDirection(const sf::Vector2f& direction);
 	void setObjectSpeed(float speed);
+	void setOrigin();
 	virtual void collisionHandling(GameObjects&)=0;
 	virtual void collisionHandling(Mouse&) = 0;
 	virtual void collisionHandling(Cat&) = 0;

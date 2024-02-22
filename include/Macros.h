@@ -24,7 +24,10 @@ enum IconType
 	I_CAT,
 	I_MOUSE,
 	I_KEY,
-	I_GIFT,
+	I_ADDLIFEGIFT,
+	I_ADDTIMEGIFT,
+	I_FREEZECATGIFT,
+	I_KILLCATGIFT,
 	I_CHEESE,
 	I_DOOR,
 	I_WALL
@@ -64,6 +67,8 @@ const float HELP_X = 550;
 const float HELP_Y = 150;
 const float START_X = 1050;
 const float START_Y = 150;
+const int HELP_HEIGHT = 720;
+const int HELP_WIDTH = 1280;
 
 //------------board------------
 const float BOARD_HIG = 1000;

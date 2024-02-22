@@ -23,11 +23,14 @@ HandleResources& HandleResources::instance()
 //------------------------------------------------------------------------
 void HandleResources::updateObjectVector()
 {
-	m_objectsTextures.resize(7);
+	m_objectsTextures.resize(10);
 	m_objectsTextures[I_CAT].loadFromFile("cat.png");
 	m_objectsTextures[I_MOUSE].loadFromFile("mouse.png");
 	m_objectsTextures[I_KEY].loadFromFile("key.png");
-	m_objectsTextures[I_GIFT].loadFromFile("gift.png");
+	m_objectsTextures[I_ADDLIFEGIFT].loadFromFile("addLifeGift.png");
+	m_objectsTextures[I_ADDTIMEGIFT].loadFromFile("addTimeGift.png");
+	m_objectsTextures[I_FREEZECATGIFT].loadFromFile("freezeCatGift.png");
+	m_objectsTextures[I_KILLCATGIFT].loadFromFile("killCatGift.png");
 	m_objectsTextures[I_CHEESE].loadFromFile("cheese.png");
 	m_objectsTextures[I_DOOR].loadFromFile("door.png");
 	m_objectsTextures[I_WALL].loadFromFile("wall.png");

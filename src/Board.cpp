@@ -128,22 +128,18 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		}
 		case '%':
 		{
-			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_MOUSE);
-			mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
+			setMouse(mouse, position);
 			return;
 		}
 		case '*':
 		{
-
 			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_CHEESE);
 			m_staticObjects.push_back(std::make_unique<Cheese>(*icon, position, m_tileSize));
 			return;
 		}
 		case '$':
 		{
-
-			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_GIFT);
-			pushGift(*icon, position);
+			pushGift(position);
 			return;
 		}
 		case 'F':
@@ -175,32 +171,48 @@ void Board::pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
 	if (Cat::getCount() % 2 == 0)
 	{
 		cats.push_back(std::make_unique<SmartCat>(icon, position, m_tileSize));
+		//cats[Cat::getCount()]->setOrigin();
 	}
 	else
 	{
 		cats.push_back(std::make_unique<StupidCat>(icon, position, m_tileSize));
+		//cats[Cat::getCount()]->setOrigin();
 	}
 }
 //------------------------------------------------------------------------
-void Board::pushGift(const sf::Texture& icon, sf::Vector2f& position)
+
+void Board::setMouse(std::unique_ptr<MovingObjects >& mouse,
+	                 const sf::Vector2f& position)
+{
+	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_MOUSE);
+	mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
+	mouse->setOrigin();
+
+}
+//------------------------------------------------------------------------
+void Board::pushGift(const sf::Vector2f& position)
 {
 	int gift = Gift::getCount();
 
 	if (gift % 4 == 0)
 	{
-		m_staticObjects.push_back(std::make_unique<AddLifeGift>(icon, position, m_tileSize));
+		const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_ADDLIFEGIFT);
+		m_staticObjects.push_back(std::make_unique<AddLifeGift>(*icon, position, m_tileSize));
 	}
 	else if (gift % 4 == 1)
 	{
-		m_staticObjects.push_back(std::make_unique<AddTimeGift>(icon, position, m_tileSize));
+		const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_ADDTIMEGIFT);
+		m_staticObjects.push_back(std::make_unique<AddTimeGift>(*icon, position, m_tileSize));
 	}
 	else if (gift % 4 == 2)
 	{
-		m_staticObjects.push_back(std::make_unique<FreezeCatGift>(icon, position, m_tileSize));
+		const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_FREEZECATGIFT);
+		m_staticObjects.push_back(std::make_unique<FreezeCatGift>(*icon, position, m_tileSize));
 	}
 	else if (gift % 4 == 3)
 	{
-		m_staticObjects.push_back(std::make_unique<KillCatGift>(icon, position, m_tileSize));
+		const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_KILLCATGIFT);
+		m_staticObjects.push_back(std::make_unique<KillCatGift>(*icon, position, m_tileSize));
 	}	
 }
 

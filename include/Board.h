@@ -45,6 +45,8 @@ private:
 	void updateBoradSize();
 	void pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
 		         const sf::Texture& icon, sf::Vector2f& position);
-	void pushGift(const sf::Texture& icon, sf::Vector2f& position);
-};
+	void pushGift(const sf::Vector2f& position);
+	void setMouse(std::unique_ptr<MovingObjects >& mouse,
+	              const sf::Vector2f& position);
+};          
 

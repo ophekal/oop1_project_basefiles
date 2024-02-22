@@ -89,6 +89,7 @@ void Controller::startGame(sf::RenderWindow& window)
 //-----------------------------------------------------------------
 void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object)
 {
+	//checking if collided with cats
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
 		if (object->checkCollision(*m_cats[index]))

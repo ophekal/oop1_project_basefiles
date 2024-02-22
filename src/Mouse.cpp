@@ -6,6 +6,7 @@
 #include "GameObjects.h"
 #include "Key.h"
 #include "Cheese.h"
+#include "Door.h"
 
 //------------------------------------------------------------------------
 
@@ -118,7 +119,7 @@ void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
 	key.setOffBoard(true);  // m_offBoard = true;
-	m_position = m_object.getPosition();
+	//m_position = m_object.getPosition();
 	std::cout << "num of keys:" << m_keys << std::endl;
 	//m_object.setPosition(m_position);
 }
@@ -131,6 +132,11 @@ void Mouse::collisionHandling(Cheese& cheese)
 //----------------------------------------------------------------------
 void Mouse::collisionHandling(Door& door)
 {
+	if (m_keys > 0)
+	{
+		m_keys--;
+		door.setOffBoard(true);
+	}
 
 }
 //----------------------------------------------------------------------

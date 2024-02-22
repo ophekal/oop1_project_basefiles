@@ -233,7 +233,7 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
 			object->collisionHandling(*m_staticObjects[i]);
-			std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
+			//std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
 			break;
 		}
 	}

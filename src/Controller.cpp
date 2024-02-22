@@ -77,7 +77,7 @@ void Controller::startGame(sf::RenderWindow& window)
 
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
-		std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
+		//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 		if (Cheese::getCount() == 0)
 		{
 			m_board.clear();
@@ -97,6 +97,10 @@ void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>
 			break;
 		}
 	}
+
+	std::erase_if(m_cats, [](const auto& object) {
+		return object->offBoard();
+		});
 
 	if (object->checkCollision(*m_mouse))
 	{

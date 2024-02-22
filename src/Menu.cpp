@@ -102,11 +102,11 @@ void Menu::pressedHelp()
 	help.setTexture(*backgroundTexture);
 	sf::Vector2u textureSize = (*backgroundTexture).getSize();
 
-	// Scale the background sprite to fit the window
-	help.setScale((float)(m_window.getSize().x) / textureSize.x,
-		(float)(m_window.getSize().y) / textureSize.y);
+	sf::RenderWindow helpWindow(sf::VideoMode(1280, 720), "Game Information");
 
-	sf::RenderWindow helpWindow(sf::VideoMode(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), "Game Information");
+	// Scale the background sprite to fit the window
+	help.setScale((float)(helpWindow.getSize().x) / textureSize.x,
+		(float)(helpWindow.getSize().y) / textureSize.y);
 
 	while (helpWindow.isOpen())
 	{

@@ -271,6 +271,14 @@ void Board::clear()
 	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
 	m_board.setFillColor(sf::Color::White);
 }
+//------------------------------------------------------------------------
+const std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()const
+{
+	return m_staticObjects;
+
+}
+
+
 
 //
 //

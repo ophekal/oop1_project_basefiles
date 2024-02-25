@@ -18,9 +18,9 @@ Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Ve
 
 //------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
-					 std::vector<std::unique_ptr<MovingObjects>> cats,
-					 std::unique_ptr<MovingObjects> mouse,
-	                 std::vector<std::unique_ptr<StaticObjects>> staticObjects) 
+					const std::vector<std::unique_ptr<MovingObjects>>& cats,
+					const std::unique_ptr<MovingObjects>& mouse,
+					const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))

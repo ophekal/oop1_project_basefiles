@@ -11,3 +11,9 @@ StaticObjects::StaticObjects(const sf::Texture& picture, const sf::Vector2f& pos
 {
    // m_currOnBoard = true;
 }
+
+//------------------------------------------------------------------------
+const sf::Vector2f& StaticObjects:: getPosition () const
+{
+    return m_object.getPosition();
+}

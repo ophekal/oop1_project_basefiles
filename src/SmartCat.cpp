@@ -2,13 +2,14 @@
 #include "Cat.h"
 #include "SmartCat.h"
 #include "GameObjects.h"
+#include "Wall.h"
+#include "Door.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
 
 //------------------------------------------------------------------------
 void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
-                        const std::vector<std::unique_ptr<MovingObjects>>& cats,
                         const std::unique_ptr<MovingObjects>& mouse,
                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
@@ -27,32 +28,25 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
    //function that checks if mouse in one of the four directions of the cat
    if (nextStepIsMouse(up, down, left, right, mouse))
    {
-       
+       return;  //we found a mouse in one of the four directions
    }
 
+   updateTheNextStep(up, down,left,right,board,mouse,staticObjects);
 
-
- //   //function that checks all four possible directions, and finds the shortest distance
- //   updateTheNextStep(cats, mouseLocation, up, down, left, right, nextLocation, upChar,
- //       downChar, leftChar, rightChar, onTop, catIndex);
-
- //   m_location = nextLocation;
- //   m_standOnTop = onTop;
- //   return (*this);
 }
 //------------------------------------------------------------------------
-//Function that checks if in the cell the cat is moving to there's a mouse
+//Function that checks if in one of the possible four directions the cat
+//can move in the mouse is
 
 bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, sf::RectangleShape left,
-                               sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse) const
+                               sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse)
 {
     if (up.getPosition() == mouse->getPosition())
     {
-        sf::Vector2f position = up.getPosition();
-        m_object.setPosition(position.x, position.y);
+        m_object.setPosition(up.getPosition());
         return true;
     }
-   /* else if (down.getPosition() == mouse->getPosition())
+   else if (down.getPosition() == mouse->getPosition())
     {
         m_object.setPosition(down.getPosition());
         return true;
@@ -66,107 +60,96 @@ bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, s
     {
         m_object.setPosition(right.getPosition());
         return true;
-    }*/
+    }
     return false;
 }
 
-////--------------------------------------------------------------------------
-////This function finds which one of the four directions we can walk in has
-////the shortest distance from cat, and is valid.
-////Then, it sets the movement to that cell.
-//
-//void Cat::updateTheNextStep(std::vector<Cat>& cats, const Location& mouseLocation, const Location& up, const Location& down, const Location& left,
-//    const Location& right, Location& nextLocation,
-//    char upChar, char downChar, char leftChar, char rightChar, char& onTop, int catIndex)
-//{
-//    double shortestDistance = 10000,    //a big distance we will never recieve, will change when the first currDistance is calculated
-//        currDistance;
-//
-//    if (validStep(upChar))
-//    {
-//        currDistance = distance(mouseLocation, up);
-//        if (currDistance < shortestDistance)
-//        {
-//            shortestDistance = currDistance;
-//            nextLocation = up;
-//            onTop = upChar;
-//        }
-//    }
-//    if (validStep(downChar))
-//    {
-//        currDistance = distance(mouseLocation, down);
-//        if (currDistance < shortestDistance)
-//        {
-//            shortestDistance = currDistance;
-//            nextLocation = down;
-//            onTop = downChar;
-//        }
-//    }
-//    if (validStep(leftChar))
-//    {
-//        currDistance = distance(mouseLocation, left);
-//        if (currDistance < shortestDistance)
-//        {
-//            shortestDistance = currDistance;
-//            nextLocation = left;
-//            onTop = leftChar;
-//        }
-//    }
-//    if (validStep(rightChar))
-//    {
-//        currDistance = distance(mouseLocation, right);
-//        if (currDistance < shortestDistance)
-//        {
-//            shortestDistance = currDistance;
-//            nextLocation = right;
-//            onTop = rightChar;
-//        }
-//    }
-//
-//    if (onTop == '^')
-//    {
-//        updateOnTop(cats, nextLocation, catIndex, onTop);
-//    }
-//}
-////------------------------------------------------------------------------
-////This function deals with a case where we have more than one cat in the
-////same cell. It updates the member onTop of the cat we're currently at
-////to be the same as the onTop of the different cat that's in the same cell.
-//
-//void Cat::updateOnTop(std::vector<Cat>& cats, const Location& nextLocation, int catIndex, char& onTop)
-//{
-//
-//    for (int index = 0; index < cats.size(); index++)
-//    {
-//        Location currCat = cats[index].getLocation();
-//        if (index != catIndex && (currCat.col == nextLocation.col) && (currCat.row == nextLocation.row))
-//        {
-//            Cat kitten = cats[index];
-//            onTop = kitten.getStandOnTop();
-//            cats[index].setStandOnTop('^');
-//        }
-//    }
-//
-//
-//}
-//
-////------------------------------------------------------------------------
-////Function that checks if the character in the cell we won't to move to is
-////one that the cat can stand on
-//
-//bool Cat::validStep(char character) const
-//{
-//    if (character == '#' ||
-//        character == '-' ||
-//        character == 'D')
-//    {
-//        return false;
-//    }
-//
-//    return true;
-//}
-////-------------------------------------------------------------
-//void Cat::print()const
-//{
-//    std::cout << "^";
-//}
+//--------------------------------------------------------------------------
+//This function finds which one of the four directions we can walk in has
+//the shortest distance from cat, and is valid.
+//Then, it sets the movement to that cell.
+
+void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down,
+                                  sf::RectangleShape left, sf::RectangleShape right, 
+                                  const sf::RectangleShape& board, 
+                                  const std::unique_ptr<MovingObjects>& mouse,
+                                  const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
+
+{
+    float currDistance,
+          shortestDistance = 10000;    //a big distance we will never recieve,
+                                       //will change when the first currDistance is calculated
+          
+    if (validStep(up, board, staticObjects))
+    {
+        currDistance = distance(mouse->getPosition(), up.getPosition());
+        if (currDistance < shortestDistance)
+        {
+            shortestDistance = currDistance;
+            m_object.setPosition(up.getPosition());
+        }
+    }
+    if (validStep(down, board, staticObjects))
+    {
+        currDistance = distance(mouse->getPosition(), down.getPosition());
+        if (currDistance < shortestDistance)
+        {
+            shortestDistance = currDistance;
+            m_object.setPosition(down.getPosition());
+        }
+    }
+    if (validStep(left, board, staticObjects))
+    {
+        currDistance = distance(mouse->getPosition(), left.getPosition());
+        if (currDistance < shortestDistance)
+        {
+            shortestDistance = currDistance;
+            m_object.setPosition(left.getPosition());
+        }
+    }
+    if (validStep(right, board, staticObjects))
+    {
+        currDistance = distance(mouse->getPosition(), right.getPosition());
+        if (currDistance < shortestDistance)
+        {
+            shortestDistance = currDistance;
+            m_object.setPosition(right.getPosition());
+        }
+    }
+}
+
+//------------------------------------------------------------------------
+//Function that checks if the cell the cat wants to move to is valid
+
+bool SmartCat::validStep(sf::RectangleShape direction, const sf::RectangleShape &board,
+                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
+{
+    //checking if inside board
+    if (!isMovementValid(board, direction))
+    {
+        return false;
+    }
+
+    //checking if the cat's trying the move towards a wall or door
+    for (int i = 0; i < staticObjects.size(); i++)
+    {
+        if (staticObjects[i]->getPosition() == m_object.getPosition())
+        {
+            //checking if in the wanted position there's a wall
+            Wall* wallPtr = dynamic_cast<Wall*>(staticObjects[i].get());
+            if (wallPtr != nullptr)
+            {
+                return false;
+            }
+
+            //checking if in the wanted position there's a door
+            Door* doorPtr = dynamic_cast<Door*>(staticObjects[i].get());
+            if (doorPtr != nullptr)
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}

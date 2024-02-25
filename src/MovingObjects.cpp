@@ -69,3 +69,11 @@ void MovingObjects::setOrigin()
 {
     m_object.setOrigin(m_object.getSize() / 2.f);
 }
+
+//------------------------------------------------------------------------
+//Function that checks the distance between two locations on board
+
+float MovingObjects::distance(const sf::Vector2f& v1, const sf::Vector2f& v2)
+{
+    return(sqrt(((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y))));
+}

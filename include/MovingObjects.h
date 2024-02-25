@@ -20,7 +20,6 @@ public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board,
-						  const std::vector<std::unique_ptr<MovingObjects>>& cats,
 						  const std::unique_ptr<MovingObjects>& mouse, 
 						  const std::vector<std::unique_ptr<StaticObjects>> &staticObjects) = 0;
 	void move(sf::Time deltaTime);
@@ -28,6 +27,7 @@ public:
 	bool positionChange()const;
 	sf::Vector2f getPosition()const;
 	void setDirection(const sf::Vector2f& direction);
+	float distance(const sf::Vector2f& v1, const sf::Vector2f& v2);
 	void setObjectSpeed(float speed);
 	void setOrigin();
 	virtual void collisionHandling(GameObjects&)=0;

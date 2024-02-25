@@ -8,6 +8,10 @@ class Mouse: public MovingObjects
 public:
 	Mouse (const sf::Texture& icon,const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~Mouse() = default;
+	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board,
+						  std::vector<std::unique_ptr<MovingObjects>> cats,
+						  std::unique_ptr<MovingObjects> mouse,
+						  std::vector<std::unique_ptr<StaticObjects>> staticObjects) = 0;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board);
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Wall&);
@@ -25,7 +29,6 @@ public:
 protected:
 	int m_lives = 3;
 	int m_keys = 0;
-	bool m_eaten;
 	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
 	void checkMovement(sf::Time deltaTime, const sf::RectangleShape& board);
 };

@@ -76,6 +76,7 @@ void Controller::startGame(sf::RenderWindow& window)
 		const auto deltaTime = clock.restart();
 
 		moveMouse(deltaTime);
+
 		moveCats(deltaTime);
 		//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 		if (Cheese::getCount() == 0)
@@ -170,6 +171,7 @@ void Controller::moveMouse(sf::Time deltaTime)
 	{
 		checkMovingObjectCollision(m_mouse);
 		m_board.checkStaticObjectCollision(m_mouse);
+
 		m_mouse->move(deltaTime);
 	}
 }

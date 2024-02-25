@@ -25,6 +25,7 @@ public:
 protected:
 	int m_lives = 3;
 	int m_keys = 0;
+	bool m_eaten;
 	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
 	void checkMovement(sf::Time deltaTime, const sf::RectangleShape& board);
 };

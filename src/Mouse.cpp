@@ -11,7 +11,7 @@
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
-	  : MovingObjects(icon, position, size)
+	: MovingObjects(icon, position, size), m_eaten(false)
 {
 	MovingObjects::setObjectSpeed(100.f);
 }
@@ -92,7 +92,8 @@ void Mouse::collisionHandling(Mouse& mouse)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(Cat& cat)
 {
-
+	m_eaten = true;
+	setOffBoard(true);  
 }
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(KillCatGift& gift)

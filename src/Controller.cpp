@@ -133,8 +133,7 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 		if (!(m_cats[index]->isCovered()))
 		{
 			m_cats[index]->draw(window);
-		}
-		
+		}	
 	}
 
 	m_mouse->draw(window);
@@ -155,7 +154,7 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 void Controller::moveMouse(sf::Time deltaTime)
 {
 	const sf::RectangleShape& boardRectangle = m_board.getRectangle();
-	m_mouse->movement(deltaTime, boardRectangle);
+	m_mouse->movement(deltaTime, boardRectangle,m_cats,m_mouse,m_board.getStaticObjects());
 	if (m_mouse->positionChange())
 	{
 		checkMovingObjectCollision(m_mouse);
@@ -169,7 +168,7 @@ void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
-		m_cats[i]->movement(deltaTime,m_board.getRectangle());
+		m_cats[i]->movement(deltaTime,m_board.getRectangle(), m_cats, m_mouse, m_board.getStaticObjects());
 		if (m_cats[i]->positionChange())
 		{
 			checkMovingObjectCollision(m_cats[i]);

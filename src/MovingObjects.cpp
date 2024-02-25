@@ -48,6 +48,11 @@ void MovingObjects::setObjectSpeed(float speed)
 {
     m_objectSpeed = speed;
 }
+//------------------------------------------------------------------------
+sf::Vector2f MovingObjects::getPosition() const
+{
+    return m_position;
+}
 //-------------------------------------------------------------------------
 void MovingObjects::setDirection(const sf::Vector2f& direction)
 {

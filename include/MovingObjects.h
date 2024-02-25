@@ -26,6 +26,7 @@ public:
 	void move(sf::Time deltaTime);
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	bool positionChange()const;
+	sf::Vector2f getPosition()const;
 	void setDirection(const sf::Vector2f& direction);
 	void setObjectSpeed(float speed);
 	void setOrigin();

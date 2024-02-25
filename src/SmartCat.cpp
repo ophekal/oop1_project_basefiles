@@ -1,6 +1,7 @@
 #include "StaticObjects.h"
 #include "Cat.h"
 #include "SmartCat.h"
+#include "GameObjects.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
@@ -11,30 +12,25 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                         const std::unique_ptr<MovingObjects>& mouse,
                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
-	//MovingObjects::setObjectSpeed(40.f);
+	MovingObjects::setObjectSpeed(40.f);
 
- //   sf::RectangleShape newPosition = m_object;
- //   newPosition.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
+   sf::RectangleShape up = m_object;
+   sf::RectangleShape down = m_object;
+   sf::RectangleShape left = m_object;
+   sf::RectangleShape right = m_object;
 
- //   Location up(m_position.x - 1, m_position.y),
- //       down(m_location.row + 1, m_location.col),
- //       left(m_location.row, m_location.col - 1),
- //       right(m_location.row, m_location.col + 1),
- //       nextLocation(-1, -1);
+   up.move(Directions[D_UP] * m_objectSpeed * deltaTime.asSeconds());
+   down.move(Directions[D_DOWN] * m_objectSpeed * deltaTime.asSeconds());
+   left.move(Directions[D_LEFT] * m_objectSpeed * deltaTime.asSeconds());
+   right.move(Directions[D_RIGHT] * m_objectSpeed * deltaTime.asSeconds());
+    
+   //function that checks if mouse in one of the four directions of the cat
+   if (nextStepIsMouse(up, down, left, right, mouse))
+   {
+       
+   }
 
- //   char upChar = board.readChar(up),
- //       downChar = board.readChar(down),
- //       leftChar = board.readChar(left),
- //       rightChar = board.readChar(right);
 
- //   if (nextCharMouse(upChar, downChar, leftChar, rightChar, nextLocation))
- //   {
- //       m_location = nextLocation;
- //       m_standOnTop = '%';
- //       return (*this);
- //   }
-
- //   char onTop;
 
  //   //function that checks all four possible directions, and finds the shortest distance
  //   updateTheNextStep(cats, mouseLocation, up, down, left, right, nextLocation, upChar,
@@ -44,35 +40,36 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
  //   m_standOnTop = onTop;
  //   return (*this);
 }
+//------------------------------------------------------------------------
+//Function that checks if in the cell the cat is moving to there's a mouse
 
-////------------------------------------------------------------------------
-////Function that checks if in the cell the cat is moving to there's a mouse
-//
-//bool Cat::nextCharMouse(char upChar, char downChar, char leftChar, char rightChar, Location& nextMovement) const
-//{
-//    if (upChar == '%')
-//    {
-//        nextMovement = Location(m_location.row - 1, m_location.col);
-//        return true;
-//    }
-//    else if (downChar == '%')
-//    {
-//        nextMovement = Location(m_location.row + 1, m_location.col);
-//        return true;
-//    }
-//    else if (leftChar == '%')
-//    {
-//        nextMovement = Location(m_location.row, m_location.col - 1);
-//        return true;
-//    }
-//    else if (rightChar == '%')
-//    {
-//        nextMovement = Location(m_location.row, m_location.col + 1);
-//        return true;
-//    }
-//    return false;
-//}
-//
+bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, sf::RectangleShape left,
+                               sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse) const
+{
+    if (up.getPosition() == mouse->getPosition())
+    {
+        sf::Vector2f position = up.getPosition();
+        m_object.setPosition(position.x, position.y);
+        return true;
+    }
+   /* else if (down.getPosition() == mouse->getPosition())
+    {
+        m_object.setPosition(down.getPosition());
+        return true;
+    }
+    else if (left.getPosition() == mouse->getPosition())
+    {
+        m_object.setPosition(left.getPosition());
+        return true;
+    }
+    else if (right.getPosition() == mouse->getPosition())
+    {
+        m_object.setPosition(right.getPosition());
+        return true;
+    }*/
+    return false;
+}
+
 ////--------------------------------------------------------------------------
 ////This function finds which one of the four directions we can walk in has
 ////the shortest distance from cat, and is valid.

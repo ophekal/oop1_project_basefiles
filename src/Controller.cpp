@@ -141,7 +141,11 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
 	for (size_t index = 0; index < m_cats.size(); index++)
 	{
-		m_cats[index]->draw(window);
+		if (!(m_cats[index]->isCovered()))
+		{
+			m_cats[index]->draw(window);
+		}
+		
 	}
 
 	m_mouse->draw(window);

@@ -223,7 +223,11 @@ void Board::printBoard(sf::RenderWindow& window) const
 
 	for (size_t index = 0; index < m_staticObjects.size(); index++)
 	{
-		m_staticObjects[index]->draw(window);
+		if (!(m_staticObjects[index]->isCovered()))
+		{
+			m_staticObjects[index]->draw(window);
+		}
+		
 	}
 }
 //--------------------------------------------------------------------------

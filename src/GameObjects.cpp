@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    : m_object(size),m_offBoard(false)
+    : m_object(size),m_offBoard(false),m_covered(false)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);
@@ -36,6 +36,17 @@ bool GameObjects::offBoard()const
 void GameObjects::setOffBoard(bool off)
 {
     m_offBoard = off;
+}
+//--------------------------------------------------------------------------
+
+void GameObjects::setCovered(bool covered)
+{
+    m_covered = covered;
+}
+//--------------------------------------------------------------------------
+bool GameObjects::isCovered()const
+{
+    return m_covered;
 }
 ////------------------------------------------------------------------------
 //void GameObjects::setPosition(const sf::Vector2f& newPosition)

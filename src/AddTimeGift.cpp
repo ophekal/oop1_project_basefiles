@@ -24,3 +24,8 @@ void AddTimeGift::collisionHandling(Cat& cat)
 {
 	cat.collisionHandling(*this);
 }
+//------------------------------------------------------------------------
+void AddTimeGift::handleGift(Controller& controller)
+{
+
+}

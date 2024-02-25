@@ -14,6 +14,7 @@ public:
 	void collisionHandling(Mouse& mouse);
 	void collisionHandling(Cat& cat);
 
+	virtual void handleGift(Controller& controller);
 private:
 
 };

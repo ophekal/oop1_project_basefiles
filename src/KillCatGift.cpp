@@ -23,3 +23,8 @@ void KillCatGift::collisionHandling(Cat& cat)
 {
 	cat.collisionHandling(*this);
 }
+//------------------------------------------------------------------------
+void KillCatGift::handleGift(Controller& controller)
+{
+
+}

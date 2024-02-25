@@ -12,6 +12,7 @@ class AddLifeGift;
 class Key;
 class Cheese;
 class Door;
+class Gift;
 
 class StaticObjects:public GameObjects
 {

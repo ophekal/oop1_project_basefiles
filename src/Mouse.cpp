@@ -7,7 +7,12 @@
 #include "Key.h"
 #include "Cheese.h"
 #include "Door.h"
-
+#include "HandleResources.h"
+#include "Macros.h"
+#include "AddLifeGift.h"
+#include "AddTimeGift.h"
+#include "FreezeCatGift.h"
+#include "KillCatGift.h"
 //------------------------------------------------------------------------
 
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
@@ -27,24 +32,28 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 	{
 		//we need to do scale if turns left since picture is to the right
 		setDirection(Directions[D_LEFT]);
+		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSELEFT));
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		setDirection(Directions[D_RIGHT]);
+		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSERIGHT));
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		setDirection(Directions[D_UP]);
+		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSEUP));
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		setDirection(Directions[D_DOWN]);
+		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSEDOWN));
 		checkMovement(deltaTime, board);
 		return;
 	}
@@ -100,36 +109,40 @@ void Mouse::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(KillCatGift& gift)
 {
+	gift.setOffBoard(true);
+	gift.setActive(true);
 
 }
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(AddLifeGift& gift)
 {
-
+	gift.setOffBoard(true);
+	gift.setActive(true);
+	m_lives++;
 }
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(AddTimeGift& gift)
 {
-
+	gift.setOffBoard(true);
+	gift.setActive(true);
 }
 //----------------------------------------------------------------------
 void Mouse::collisionHandling(FreezeCatGift& gift)
 {
-
+	gift.setOffBoard(true);
+	gift.setActive(true);
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
 	key.setOffBoard(true);  // m_offBoard = true;
-	//m_position = m_object.getPosition();
-	std::cout << "num of keys:" << m_keys << std::endl;
-	//m_object.setPosition(m_position);
+	//std::cout << "num of keys:" << m_keys << std::endl;
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)
 {
-	//m_offBoard = true;
+	//change score
 	cheese.setOffBoard(true);
 }
 //----------------------------------------------------------------------

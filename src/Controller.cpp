@@ -158,7 +158,7 @@ void Controller::moveMouse(sf::Time deltaTime)
 	if (m_mouse->positionChange())
 	{
 		checkMovingObjectCollision(m_mouse);
-		m_board.checkStaticObjectCollision(m_mouse);
+		m_board.checkStaticObjectCollision(m_mouse, *this);
 		m_mouse->move(deltaTime);
 	}
 }

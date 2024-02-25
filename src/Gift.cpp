@@ -36,3 +36,13 @@ void Gift::collisionHandling(Cat& cat)
 {
 	cat.collisionHandling(*this);
 }
+//------------------------------------------------------------------------
+void Gift::setActive(bool activate)
+{
+	m_giftActive = activate;
+}
+//------------------------------------------------------------------------
+bool Gift::isActive()const
+{
+	return m_giftActive;
+}

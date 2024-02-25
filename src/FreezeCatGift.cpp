@@ -26,3 +26,8 @@ void FreezeCatGift::collisionHandling(Cat& cat)
 {
 	cat.collisionHandling(*this);
 }
+//------------------------------------------------------------------------
+void FreezeCatGift::handleGift(Controller& controller)
+{
+
+}

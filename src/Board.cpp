@@ -14,6 +14,7 @@
 #include "FreezeCatGift.h"
 #include "KillCatGift.h"
 #include "Key.h"
+#include "Gift.h"
 #include "Door.h"
 #include "Wall.h"
 #include <memory>
@@ -241,14 +242,20 @@ const sf::RectangleShape& Board::getRectangle() const
 	return m_board;
 }
 //--------------------------------------------------------------------------
-void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object)
+void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
+	                                   Controller& controller)
 {
 	for (auto i = 0; i < m_staticObjects.size(); i++)
 	{
 
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
+			Gift* giftPtr = nullptr;
 			object->collisionHandling(*m_staticObjects[i]);
+			if (giftPtr = dynamic_cast<Gift*>(m_staticObjects[i]))
+			{
+				m_staticObjects[i]->handleGift(controller);
+			}
 			//std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
 			break;
 		}

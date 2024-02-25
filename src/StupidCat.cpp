@@ -9,7 +9,6 @@
 
 //------------------------------------------------------------------------
 void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
-                         const std::vector<std::unique_ptr<MovingObjects>>& cats,
                          const std::unique_ptr<MovingObjects>& mouse,
                          const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {

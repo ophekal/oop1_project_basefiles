@@ -12,6 +12,7 @@ public:
 						 const  std::vector<std::unique_ptr<MovingObjects>> &cats,
 						 const std::unique_ptr<MovingObjects>& mouse,
 						 const std::vector<std::unique_ptr<StaticObjects>>& staticObjects);
-
+	bool nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, sf::RectangleShape left,
+						 sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse) const;
 private:
 };

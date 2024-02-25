@@ -5,7 +5,7 @@
 #include "AddTimeGift.h"
 #include "Mouse.h"
 #include "Cat.h"
-
+#include "Controller.h"
 
 //-------------------------------------------------------------------------
 void AddTimeGift::collisionHandling(GameObjects& object)
@@ -27,5 +27,6 @@ void AddTimeGift::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void AddTimeGift::handleGift(Controller& controller)
 {
+	controller.incTime();
 
 }

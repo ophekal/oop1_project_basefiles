@@ -5,6 +5,7 @@
 #include "KillCatGift.h"
 #include "Mouse.h"
 #include "Cat.h"
+#include "Controller.h"
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
@@ -26,5 +27,5 @@ void KillCatGift::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void KillCatGift::handleGift(Controller& controller)
 {
-
+	controller.killCat();
 }

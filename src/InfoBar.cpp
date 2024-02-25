@@ -36,3 +36,13 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 
 	//m_clock.printClock();//pass the curr time
 }
+//------------------------------------------------------------------------
+void InfoBar::incTime()
+{
+
+}
+//------------------------------------------------------------------------
+void InfoBar::incLife()
+{
+
+}

@@ -154,7 +154,7 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 void Controller::moveMouse(sf::Time deltaTime)
 {
 	const sf::RectangleShape& boardRectangle = m_board.getRectangle();
-	m_mouse->movement(deltaTime, boardRectangle,m_cats,m_mouse,m_board.getStaticObjects());
+	m_mouse->movement(deltaTime, boardRectangle,m_mouse,m_board.getStaticObjects());
 	if (m_mouse->positionChange())
 	{
 		checkMovingObjectCollision(m_mouse);
@@ -168,7 +168,7 @@ void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
-		m_cats[i]->movement(deltaTime,m_board.getRectangle(), m_cats, m_mouse, m_board.getStaticObjects());
+		m_cats[i]->movement(deltaTime,m_board.getRectangle(), m_mouse, m_board.getStaticObjects());
 		if (m_cats[i]->positionChange())
 		{
 			checkMovingObjectCollision(m_cats[i]);
@@ -177,3 +177,19 @@ void Controller::moveCats (sf::Time deltaTime)
 		}
 	}
 }
+//------------------------------------------------------------------------
+void Controller::incTime()
+{
+	m_infoBar.incTime();
+}
+//------------------------------------------------------------------------
+void Controller::incLife()
+{
+	m_infoBar.incLife();
+}
+//-----------------------------------------------------------------------
+void Controller::freezeCat()
+{
+
+}
+//-----------------------------------------------------------------------

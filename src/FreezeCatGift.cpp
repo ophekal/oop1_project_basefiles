@@ -7,7 +7,7 @@
 #include "FreezeCatGift.h"
 #include "Mouse.h"
 #include "Cat.h"
-
+#include "Controller.h"
 
 //-------------------------------------------------------------------------
 void FreezeCatGift::collisionHandling(GameObjects& object)
@@ -29,5 +29,5 @@ void FreezeCatGift::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void FreezeCatGift::handleGift(Controller& controller)
 {
-
+	controller.freezeCat();
 }

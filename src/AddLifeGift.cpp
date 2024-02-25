@@ -5,6 +5,7 @@
 #include "AddLifeGift.h"
 #include "Mouse.h"
 #include "Cat.h"
+#include "Controller.h"
 
 //-------------------------------------------------------------------------
 void AddLifeGift::collisionHandling(GameObjects& object)
@@ -26,5 +27,5 @@ void AddLifeGift::collisionHandling(Cat& cat)
 //-------------------------------------------------------------------------
 void AddLifeGift::handleGift(Controller& controller)
 {
-
+	controller.incLife();
 }

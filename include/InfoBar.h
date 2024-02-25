@@ -9,6 +9,8 @@ class InfoBar
 public:
 	InfoBar();
 	void printInfoBar(sf::RenderWindow& window);
+	void incTime();
+	void incLife();
 
 private:
 	sf::Text m_numOfKeys;

@@ -14,6 +14,9 @@ class Controller
 public:
 	Controller() = default;
 	void run(sf::RenderWindow& window);
+	void incTime();
+	void incLife();
+	void freezeCat();
 
 private:
 	

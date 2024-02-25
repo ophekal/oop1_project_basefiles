@@ -1,6 +1,7 @@
 #include "StaticObjects.h"
 #include "Cat.h"
 #include "SmartCat.h"
+#include "GameObjects.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
@@ -45,26 +46,27 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, sf::RectangleShape left,
                                sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse) const
 {
-    if (up.getPosition() == mouse->m_position)
+    if (up.getPosition() == mouse->getPosition())
     {
-        nextMovement = Location(m_location.row - 1, m_location.col);
+        sf::Vector2f position = up.getPosition();
+        m_object.setPosition(position.x, position.y);
         return true;
     }
-    else if (downChar == '%')
+   /* else if (down.getPosition() == mouse->getPosition())
     {
-        nextMovement = Location(m_location.row + 1, m_location.col);
+        m_object.setPosition(down.getPosition());
         return true;
     }
-    else if (leftChar == '%')
+    else if (left.getPosition() == mouse->getPosition())
     {
-        nextMovement = Location(m_location.row, m_location.col - 1);
+        m_object.setPosition(left.getPosition());
         return true;
     }
-    else if (rightChar == '%')
+    else if (right.getPosition() == mouse->getPosition())
     {
-        nextMovement = Location(m_location.row, m_location.col + 1);
+        m_object.setPosition(right.getPosition());
         return true;
-    }
+    }*/
     return false;
 }
 

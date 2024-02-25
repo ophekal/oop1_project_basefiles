@@ -49,7 +49,7 @@ void MovingObjects::setObjectSpeed(float speed)
     m_objectSpeed = speed;
 }
 //------------------------------------------------------------------------
-void MovingObjects::getPosition()
+sf::Vector2f MovingObjects::getPosition() const
 {
     return m_position;
 }

@@ -24,8 +24,9 @@ public:
 						  const std::unique_ptr<MovingObjects>& mouse, 
 						  const std::vector<std::unique_ptr<StaticObjects>> &staticObjects) = 0;
 	void move(sf::Time deltaTime);
-	bool isMovementValid(consmfljndt sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
+	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	bool positionChange()const;
+	sf::Vector2f getPosition()const;
 	void setDirection(const sf::Vector2f& direction);
 	void setObjectSpeed(float speed);
 	void setOrigin();

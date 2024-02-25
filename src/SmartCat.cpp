@@ -6,7 +6,10 @@
 
 
 //------------------------------------------------------------------------
-void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board)
+void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
+                        std::vector<std::unique_ptr<MovingObjects>> cats,
+                        std::unique_ptr<MovingObjects> mouse,
+                        std::vector<std::unique_ptr<StaticObjects>> staticObjects)
 {
 	MovingObjects::setObjectSpeed(40.f);
 

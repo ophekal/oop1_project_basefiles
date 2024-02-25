@@ -250,12 +250,9 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
-			Gift* giftPtr = nullptr;
 			object->collisionHandling(*m_staticObjects[i]);
-			if (giftPtr = dynamic_cast<Gift*>(m_staticObjects[i]))
-			{
-				m_staticObjects[i]->handleGift(controller);
-			}
+			checkGift(m_staticObjects[i], controller);
+
 			//std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
 			break;
 		}
@@ -284,7 +281,20 @@ const std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()cons
 	return m_staticObjects;
 
 }
+//------------------------------------------------------------------------
+void Board::checkGift(const std::unique_ptr<StaticObjects>& object,
+					  Controller& controller)
+{
+	Gift* giftPtr = dynamic_cast<Gift*>(object.get());
 
+	if (giftPtr != nullptr)
+	{
+		if (giftPtr->isActive())
+		{
+			giftPtr->handleGift(controller);
+		}
+	}
+}
 
 
 //

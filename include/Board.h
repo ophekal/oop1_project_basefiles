@@ -51,5 +51,7 @@ private:
 	void pushGift(const sf::Vector2f& position);
 	void setMouse(std::unique_ptr<MovingObjects >& mouse,
 	              const sf::Vector2f& position);
+	void checkGift(const std::unique_ptr<StaticObjects>& object,
+	 	           Controller& controller);
 };          
 

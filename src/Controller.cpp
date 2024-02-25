@@ -172,7 +172,7 @@ void Controller::moveCats (sf::Time deltaTime)
 		if (m_cats[i]->positionChange())
 		{
 			checkMovingObjectCollision(m_cats[i]);
-			m_board.checkStaticObjectCollision(m_cats[i]);
+			m_board.checkStaticObjectCollision(m_cats[i],*this);
 			m_cats[i]->move(deltaTime);
 		}
 	}

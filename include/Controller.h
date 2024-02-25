@@ -17,6 +17,7 @@ public:
 	void incTime();
 	void incLife();
 	void freezeCat();
+	void killCat();
 
 private:
 	

@@ -6,7 +6,7 @@
 #include "Mouse.h"
 #include "Cheese.h"
 #include "HandleResources.h"
-
+#include "MovingObjects.h"
 //------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
@@ -191,5 +191,22 @@ void Controller::incLife()
 void Controller::freezeCat()
 {
 
+
 }
 //-----------------------------------------------------------------------
+void Controller::killCat()
+{
+	float maxDistance = 0,
+		  currDistance;
+	
+	for (auto index = 0; index < m_cats.size(); index++)
+	{
+		currDistance = m_mouse->distance(m_mouse->getPosition(), m_cats[index]->getPosition());
+		if (currDistance > maxDistance)
+		{
+			maxDistance = currDistance;
+		}
+
+	}
+
+}

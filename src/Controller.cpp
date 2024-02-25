@@ -57,7 +57,7 @@ void Controller::startGame(sf::RenderWindow& window)
 
 	sf::Clock clock;
 
-	while (Cheese::getCount != 0) // and if the time of the level end 
+	while (Cheese::getCount != 0 && !m_levelOver) // and if the time of the level end 
 	{
 		print(window, background);
 
@@ -76,8 +76,8 @@ void Controller::startGame(sf::RenderWindow& window)
 		const auto deltaTime = clock.restart();
 
 		moveMouse(deltaTime);
-
 		moveCats(deltaTime);
+		
 		//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 		if (Cheese::getCount() == 0)
 		{
@@ -86,6 +86,15 @@ void Controller::startGame(sf::RenderWindow& window)
 			break;
 		}
 	}
+
+
+	if (m_levelOver)
+	{
+
+	}
+
+
+
 }
 //-----------------------------------------------------------------
 void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object)
@@ -109,32 +118,11 @@ void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>
 		object->collisionHandling(*m_mouse);
 	}
 
+	if (m_mouse->offBoard())
+	{
+		m_levelOver = true;
+	}
 }
-
-
-
-
-//-----------------------------------------------------------------------
-	//if (auto event = sf::Event{}; window.pollEvent(event))
-	//{
-	//	switch (event.type)
-	//	{
-	//	case sf::Event::Closed:
-	//		m_window.close();
-	//		break;
-	//	case sf::Event::MouseButtonReleased:
-	//		if (m_reloadButton.contain(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
-	//			controller.newLevel();
-	//		else if (m_musicButton.contain(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
-	//		{
-	//			if (m_gameSound.getStatus() == m_gameSound.Playing)
-	//				m_gameSound.stop();
-	//			else
-	//				m_gameSound.play();
-	//		}
-	//		break;
-	//	}
-	//}
 
 //------------------------------------------------------------------------
 
@@ -150,6 +138,7 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 	}
 
 	m_mouse->draw(window);
+		
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
@@ -171,7 +160,6 @@ void Controller::moveMouse(sf::Time deltaTime)
 	{
 		checkMovingObjectCollision(m_mouse);
 		m_board.checkStaticObjectCollision(m_mouse);
-
 		m_mouse->move(deltaTime);
 	}
 }

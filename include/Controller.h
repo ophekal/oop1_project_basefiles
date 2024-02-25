@@ -25,7 +25,7 @@ private:
 	std::vector<std::unique_ptr<MovingObjects>> m_cats;
 	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;
-
+	bool m_levelOver = false;
 	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window);

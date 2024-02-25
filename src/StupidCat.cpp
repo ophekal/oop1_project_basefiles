@@ -16,13 +16,13 @@ void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board)
 
     // Define possible directions
 
-    Direction direction = static_cast<Direction>(rand() % 4); // Generate a random direction
+   Direction direction = static_cast<Direction>(rand() % 4); // Generate a random direction
 
     // Calculate movement vector based on direction and speed
     sf::Vector2f movement(0.f, 0.f);
     switch (direction)
     {
-        case D_LEFT:
+        case (D_LEFT):
             movement.x -= m_objectSpeed * deltaTime.asSeconds();
             break;
         case D_RIGHT:

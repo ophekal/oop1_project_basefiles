@@ -38,6 +38,6 @@ private:
 	void moveMouse(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
-
+	void findCat(int& indexToChange)const;
 
 };

@@ -190,14 +190,25 @@ void Controller::incLife()
 //-----------------------------------------------------------------------
 void Controller::freezeCat()
 {
-
+	int indexToFreeze = 0;
+	findCat(indexToFreeze);
+	// freeze for 3 sec the cat in the index that update
 
 }
 //-----------------------------------------------------------------------
 void Controller::killCat()
 {
+	int indexToDelete = 0;
+	findCat(indexToDelete);
+	m_cats[indexToDelete]->setOffBoard(true);
+}
+
+//------------------------------------------------------------------------
+
+void Controller::findCat(int& indexToChange)const
+{
 	float maxDistance = 0,
-		  currDistance;
+		currDistance;
 	
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
@@ -205,8 +216,8 @@ void Controller::killCat()
 		if (currDistance > maxDistance)
 		{
 			maxDistance = currDistance;
+			indexToChange = index;
 		}
-
 	}
 
 }

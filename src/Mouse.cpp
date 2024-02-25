@@ -95,7 +95,6 @@ void Mouse::collisionHandling(Mouse& mouse)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(Cat& cat)
 {
-	m_eaten = true;
 	setOffBoard(true);  
 }
 //------------------------------------------------------------------------

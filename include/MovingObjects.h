@@ -20,9 +20,9 @@ public:
 	MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size);
 	virtual ~MovingObjects() = default;
 	virtual void movement(sf::Time deltaTime, const sf::RectangleShape& board,
-						  std::vector<std::unique_ptr<MovingObjects>> cats,
-						  std::unique_ptr<MovingObjects> mouse, 
-						  std::vector<std::unique_ptr<StaticObjects>> staticObjects) = 0;
+						  const std::vector<std::unique_ptr<MovingObjects>>& cats,
+						  const std::unique_ptr<MovingObjects>& mouse, 
+						  const std::vector<std::unique_ptr<StaticObjects>> &staticObjects) = 0;
 	void move(sf::Time deltaTime);
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	bool positionChange()const;

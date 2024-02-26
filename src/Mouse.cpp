@@ -165,3 +165,8 @@ int Mouse::getLives()const
 {
 	return m_lives;
 }
+//---------------------------------------------------------------------
+void Mouse::setLives()
+{
+	m_lives--;
+}

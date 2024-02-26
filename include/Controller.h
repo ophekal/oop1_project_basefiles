@@ -31,6 +31,7 @@ private:
 	std::vector<std::string> m_playlist;
 	bool m_levelOver = false;
 	bool m_mouseDead = false;
+	bool m_gameOver = false;
 	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window);
@@ -45,4 +46,5 @@ private:
 	void handleDeadMouse();
 	void handleLevelOver();
 	bool checkGameStatus(int numOfCheese);
+	void handleExit();
 };

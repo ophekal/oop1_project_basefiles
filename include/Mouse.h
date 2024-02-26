@@ -24,6 +24,7 @@ public:
 	virtual void collisionHandling(Door&);
 	int getKeys()const;
 	int getLives()const;
+	void setLives();
 
 protected:
 	int m_lives = 3;

@@ -87,4 +87,5 @@ float MovingObjects::distance(const sf::Vector2f& v1, const sf::Vector2f& v2)
 void MovingObjects::setPosition(const sf::Vector2f& position)
 {
     m_object.setPosition(position);
+    m_position = position;
 }

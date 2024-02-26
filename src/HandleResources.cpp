@@ -57,7 +57,7 @@ void HandleResources::updateBackgroundVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateInfoBarVector()
 {
-	m_backgroundsTextures.resize(6);
+	m_infoBarTextures.resize(6);
 	m_infoBarTextures[B_INFO].loadFromFile("information.png");
 	m_infoBarTextures[B_LEVEL].loadFromFile("level.png");
 	m_infoBarTextures[B_LIVES].loadFromFile("lives.png");

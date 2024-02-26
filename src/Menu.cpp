@@ -8,6 +8,7 @@
 #include <vector>
 #include "Controller.h"
 #include "HandleResources.h"
+#include <iostream>
 
 //------------------------------------------------------------------------
 Menu::Menu()
@@ -49,13 +50,6 @@ void Menu::run()
 //-------------------------------------------------------------------------
 void Menu::updateButton()
 {
-	//const sf::Font* font = HandleResources::instance().getFont();
-	/*const sf::Texture* start = HandleResources::instance().getBackgroundTexture(B_START);
-	const sf::Texture* exit = HandleResources::instance().getBackgroundTexture(B_EXIT);
-	const sf::Texture* settings = HandleResources::instance().getBackgroundTexture(B_SETTINGS);
-	const sf::Texture* soundOn = HandleResources::instance().getBackgroundTexture(B_SOUND);*/
-	//const sf::Texture* mute = HandleResources::instance().getBackgroundTexture(B_MUTE);
-
 	m_buttons[M_START].updateButton(*HandleResources::instance().getBackgroundTexture(B_START), START_X, START_Y,BUTTON_SIZE);
 	m_buttons[M_SETTINGS].updateButton(*HandleResources::instance().getBackgroundTexture(B_SETTINGS),SETTINGS_X, SETTINGS_Y,BUTTON_SIZE);
 	m_buttons[M_EXIT].updateButton(*HandleResources::instance().getBackgroundTexture(B_EXIT), EXIT_X, EXIT_Y,BUTTON_SIZE);
@@ -95,6 +89,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	}
 	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
 	{
+		//std::cout << "in game" << std::endl;
 		startGame();	//calls on controller and starts the game
 	}
 	else if (m_buttons[M_SOUND].getRectangleButton().getGlobalBounds().contains(location))
@@ -139,7 +134,9 @@ void Menu::pressedHelp()
 //----------------------------------------------------------------------
 void Menu::startGame()
 {
+	std::cout << "in game" << std::endl;
 	Controller controller;
+	std::cout << "in game" << std::endl;
 	controller.run(m_window); //also sound!
 }
 //----------------------------------------------------------------------

@@ -197,7 +197,7 @@ void Board::setMouse(std::unique_ptr<MovingObjects >& mouse,
 {
 	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_L_MOUSE);
 	mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
-	mouse->setOrigin();
+	//mouse->setOrigin();
 
 }
 //------------------------------------------------------------------------
@@ -234,11 +234,7 @@ void Board::printBoard(sf::RenderWindow& window) const
 
 	for (size_t index = 0; index < m_staticObjects.size(); index++)
 	{
-		//if (!(m_staticObjects[index]->isCovered()))
-		//{
-			m_staticObjects[index]->draw(window);
-		//}
-		
+		m_staticObjects[index]->draw(window);	
 	}
 }
 //--------------------------------------------------------------------------

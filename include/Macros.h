@@ -55,6 +55,14 @@ enum MenuButton
 	M_SOUND
 };
 
+enum Screen
+{
+	S_WIN,
+	S_GAMEOVER,
+	S_TRYAGAIN,
+	S_GOODJOB
+};
+
 //-------keyboard-movement-----
 const sf::Vector2f Directions[] = { {-1,0},{1,0},{0,-1},{0,1} };
 
@@ -98,7 +106,8 @@ enum Bar
 	B_TIME,
 	B_LIVES,
 	B_KEYS,
-	B_HOME
+	B_HOME,
+	B_SCORE
 };
 
 const sf::Vector2f INFO_SIZE = { 300,110 };
@@ -109,11 +118,13 @@ const float CLOCK_Y = 190;
 const float LEVEL_Y = 330;
 const float LIVES_Y = 470;
 const float KEYS_Y = 610;
+const float SCORE_Y = 750;
 
-const float I_SOUND_X = 50;
-const float I_SOUND_Y = 720;
-const float HOME_X = 285;
-const float HOME_Y = 720;
+
+const float I_SOUND_X = 100;
+const float I_SOUND_Y = 900;
+const float HOME_X = 235;
+const float HOME_Y = 900;
 
 
 const double LONG_LEVEL = 3;

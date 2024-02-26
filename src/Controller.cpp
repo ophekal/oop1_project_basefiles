@@ -169,7 +169,6 @@ void Controller::moveCats (sf::Time deltaTime)
 				{
 					checkMovingObjectCollision(m_cats[i]);
 					m_board.checkStaticObjectCollision(m_cats[i], *this);
-					std::cout << deltaTime.asSeconds()<< std::endl;
 					m_cats[i]->move(deltaTime);
 				}
 			}

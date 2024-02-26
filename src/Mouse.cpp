@@ -31,14 +31,14 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 	{
 		//we need to do scale if turns left since picture is to the right
 		setDirection(Directions[D_LEFT]);
-		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSELEFT));
+		m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_MOUSE));
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		setDirection(Directions[D_RIGHT]);
-		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSERIGHT));
+		m_object.setTexture(HandleResources::instance().getObjectTexture(I_R_MOUSE));
 		checkMovement(deltaTime, board);
 		return;
 	}
@@ -152,6 +152,10 @@ void Mouse::collisionHandling(Door& door)
 	{
 		m_keys--;
 		door.setOffBoard(true);
+	}
+	else
+	{
+		m_object.setPosition(m_position);
 	}
 
 }

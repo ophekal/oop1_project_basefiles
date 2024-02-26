@@ -8,11 +8,7 @@ Button::Button()
     :m_rectangle(sf::Vector2f(400.f, 100.f))
 {
 }
-//---------------------------------------------------------------------------------------
-void Button::updateSize(float width, float hight)
-{
-    m_rectangle.setSize({ width, hight });
-}
+
 //---------------------------------------------------------------------------------------
 
 void Button::updateButton(const sf::Texture& background, float x, float y, const sf::Vector2f size)

@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 #include <iostream>
-
+#include "HandleResources.h"
 //------------------------------------------------------------------------
 void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                         const std::unique_ptr<MovingObjects>& mouse,
@@ -53,11 +53,13 @@ bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, s
     }
     else if (left.getPosition() == mouse->getPosition())
     {
+        m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_CAT));
         m_object.setPosition(left.getPosition());
         return true;
     }
     else if (right.getPosition() == mouse->getPosition())
     {
+        m_object.setTexture(HandleResources::instance().getObjectTexture(I_R_CAT));
         m_object.setPosition(right.getPosition());
         return true;
     }
@@ -111,6 +113,7 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
             shortestDistance = currDistance;
            // nextPosition = left.getPosition();
             //checkCatCovered(left.getPosition(), staticObjects);
+            m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_CAT));
             m_object.setPosition(left.getPosition());
         }
     }
@@ -122,6 +125,7 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
             shortestDistance = currDistance;
             //nextPosition = right.getPosition();
             //checkCatCovered(right.getPosition(), staticObjects);
+            m_object.setTexture(HandleResources::instance().getObjectTexture(I_R_CAT));
             m_object.setPosition(right.getPosition());
         }
     }

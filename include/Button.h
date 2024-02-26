@@ -6,7 +6,6 @@ class Button
 {
 public:
 	Button();
-	void updateSize(float width, float hight);
 	void updateButton(const sf::Texture& background, float x, float y, const sf::Vector2f size);
 
 	/*void updateButton(const sf::Font& font,const sf::Texture& background,

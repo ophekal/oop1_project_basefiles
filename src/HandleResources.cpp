@@ -12,6 +12,7 @@ HandleResources::HandleResources()
 	updateObjectVector();
 	updateBackgroundVector();
 	updateInfoBarVector();
+	updateScreenVector();
 	m_font.loadFromFile("font.ttf");
 }
 
@@ -57,13 +58,24 @@ void HandleResources::updateBackgroundVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateInfoBarVector()
 {
-	m_infoBarTextures.resize(6);
+	m_infoBarTextures.resize(7);
 	m_infoBarTextures[B_INFO].loadFromFile("information.png");
 	m_infoBarTextures[B_LEVEL].loadFromFile("level.png");
 	m_infoBarTextures[B_LIVES].loadFromFile("lives.png");
 	m_infoBarTextures[B_KEYS].loadFromFile("keys.png");
 	m_infoBarTextures[B_TIME].loadFromFile("time.png");
 	m_infoBarTextures[B_HOME].loadFromFile("home.png");
+	m_infoBarTextures[B_SCORE].loadFromFile("score.png");
+}
+
+//-------------------------------------------------------------------------
+void HandleResources::updateScreenVector()
+{
+	m_screenTextures.resize(4);
+	m_screenTextures[S_WIN].loadFromFile("youWin.png");
+	m_screenTextures[S_GAMEOVER].loadFromFile("gameOver.png");
+	m_screenTextures[S_TRYAGAIN].loadFromFile("tryAgain.png");
+	m_screenTextures[S_GOODJOB].loadFromFile("goodJob.png");
 }
 
 //--------------------------------------------------------------------------
@@ -71,6 +83,13 @@ void HandleResources::updateInfoBarVector()
 const sf::Texture* HandleResources::getInfoBarTexture(Bar icon)
 {
 	return &(m_infoBarTextures[icon]);
+}
+
+//--------------------------------------------------------------------------
+
+const sf::Texture* HandleResources::getScreenTexture(Screen icon)
+{
+	return &(m_screenTextures[icon]);
 }
 
 

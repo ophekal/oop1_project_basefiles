@@ -70,11 +70,11 @@ void MovingObjects::move(sf::Time deltaTime)
     m_position = m_object.getPosition();
     m_object.move(m_direction * m_objectSpeed * deltaTime.asSeconds());
 }
-//------------------------------------------------------------------------
-void MovingObjects::setOrigin()
-{
-    m_object.setOrigin(m_object.getSize() / 2.f);
-}
+////------------------------------------------------------------------------
+//void MovingObjects::setOrigin()
+//{
+//    m_object.setOrigin(m_object.getSize() / 2.f);
+//}
 
 //------------------------------------------------------------------------
 //Function that checks the distance between two locations on board

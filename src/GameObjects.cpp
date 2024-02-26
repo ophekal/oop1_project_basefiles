@@ -19,8 +19,23 @@ bool GameObjects::checkCollision(GameObjects& other)
         return false;
     }
     // check all 4 corners
+    auto overLapping = 0.1f;
+    auto sizeDecrese = 1.1;
+    
+    sf::FloatRect object = m_object.getGlobalBounds(),
+                  otherObject = other.getGlobalBounds();
 
-    return m_object.getGlobalBounds().intersects(other.m_object.getGlobalBounds());
+    object.left += object.width * overLapping;
+    object.top += object.height * overLapping;
+    object.width /= (sizeDecrese);
+    object.height /= (sizeDecrese);
+
+    otherObject.left += otherObject.width * overLapping;
+    otherObject.top += otherObject.height * overLapping;
+    otherObject.width /= (sizeDecrese);
+    otherObject.height /= (sizeDecrese);
+
+    return object.intersects(otherObject);
 }
 //-------------------------------------------------------------------------
 void GameObjects::draw(sf::RenderWindow& window)
@@ -38,7 +53,10 @@ void GameObjects::setOffBoard(bool off)
     m_offBoard = off;
 }
 //--------------------------------------------------------------------------
-
+const sf::FloatRect& GameObjects::getGlobalBounds()const
+{
+    return m_object.getGlobalBounds();
+}
 //void GameObjects::setCovered(bool covered)
 //{
 //    m_covered = covered;

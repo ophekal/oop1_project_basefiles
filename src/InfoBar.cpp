@@ -9,21 +9,14 @@ InfoBar::InfoBar()// pass the time of the game
 {
 	const sf::Font* font = HandleResources::instance().getFont();
 
-	m_infoBar.resize(6);
-	//m_infoBar[0].updateSize(300,110);
+	m_infoBar.resize(7);
 	m_infoBar[0].updateButton(*HandleResources::instance().getInfoBarTexture(B_INFO),INFO_X, INFO_Y,INFO_SIZE);
-	
-	//m_infoBar[1].updateSize(300, 110);
 	m_infoBar[1].updateButton(*HandleResources::instance().getInfoBarTexture(B_LEVEL),INFO_X, LEVEL_Y, INFO_SIZE);
-
-	//m_infoBar[2].updateSize(300, 110);
 	m_infoBar[2].updateButton(*HandleResources::instance().getInfoBarTexture(B_LIVES),INFO_X, LIVES_Y, INFO_SIZE);
-
-	//m_infoBar[3].updateSize(300, 110);
 	m_infoBar[3].updateButton(*HandleResources::instance().getInfoBarTexture(B_KEYS),INFO_X, KEYS_Y, INFO_SIZE);
-
 	m_infoBar[4].updateButton(*HandleResources::instance().getInfoBarTexture(B_HOME), HOME_X, HOME_Y, SOUND_SIZE);
 	m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
+	m_infoBar[6].updateButton(*HandleResources::instance().getInfoBarTexture(B_SCORE), INFO_X, SCORE_Y, INFO_SIZE);
     //handle clock	Clock m_clock	
 }
 //------------------------------------------------------------------------

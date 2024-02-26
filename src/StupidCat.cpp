@@ -6,7 +6,7 @@
 #include "Macros.h"
 #include <cstdlib> // For rand() function
 #include <ctime>   // For seeding rand()
-
+#include "HandleResources.h"
 //------------------------------------------------------------------------
 void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                          const std::unique_ptr<MovingObjects>& mouse,
@@ -25,9 +25,11 @@ void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
     switch (direction)
     {
         case (D_LEFT):
+            m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_CAT));
             movement.x -= m_objectSpeed * deltaTime.asSeconds();
             break;
         case D_RIGHT:
+            m_object.setTexture(HandleResources::instance().getObjectTexture(I_R_CAT));
             movement.x += m_objectSpeed * deltaTime.asSeconds();
             break;
         case D_UP:

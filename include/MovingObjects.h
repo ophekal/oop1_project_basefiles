@@ -31,7 +31,7 @@ public:
 	void setDirection(const sf::Vector2f& direction);
 	float distance(const sf::Vector2f& v1, const sf::Vector2f& v2);
 	void setObjectSpeed(float speed);
-	void setOrigin();
+	//void setOrigin();
 	virtual void collisionHandling(GameObjects&)=0;
 	virtual void collisionHandling(Mouse&) = 0;
 	virtual void collisionHandling(Cat&) = 0;

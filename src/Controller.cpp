@@ -35,7 +35,7 @@ void Controller::run(sf::RenderWindow& window)
 			}
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_cats,m_mouse); //function that also updates the moving objects                  
+			m_board.updateBoard(m_cats,m_mouse,m_levelTime); //function that also updates the moving objects                  
 			m_levelNum++;
 			startGame(window);
 			if (m_gameOver)
@@ -73,22 +73,16 @@ void Controller::startGame(sf::RenderWindow& window)
 			case sf::Event::Closed:
 				window.close();
 				break;
-				//case sf::Event::MouseButtonReleased:
-					//handleClick(event.mouseButton);
-				//	break;
+			case sf::Event::MouseButtonReleased:
+				handleClick(event.mouseButton,window);
+				break;
 			}
 		}
 		const auto deltaTime = clock.restart();
-		std::cout << "before move " << std::endl;
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
 		
 		numOfCheese = Cheese::getCount();
-
-		//if (checkLevelStatus(numOfCheese))
-		//{
-		//	break;
-		//}
 		if (checkGameStatus(numOfCheese))
 		{
 			break;
@@ -155,7 +149,6 @@ void Controller::moveMouse(sf::Time deltaTime)
 	{
 		checkMovingObjectCollision(m_mouse);
 		m_board.checkStaticObjectCollision(m_mouse, *this);
-		std::cout << "before mouse move" << std::endl;
 		m_mouse->move(deltaTime);
 	}
 }
@@ -176,7 +169,6 @@ void Controller::moveCats (sf::Time deltaTime)
 				{
 					checkMovingObjectCollision(m_cats[i]);
 					m_board.checkStaticObjectCollision(m_cats[i], *this);
-					std::cout << "before cat move: " << std::endl;
 					std::cout << deltaTime.asSeconds()<< std::endl;
 					m_cats[i]->move(deltaTime);
 				}
@@ -302,13 +294,10 @@ void Controller::handleDeadMouse()
 	//function that return the mouse and cat to their first location
 	initMovingObjects();
 	m_mouseDead = false;
-	std::cout << "in dead mouse " << std::endl;
-
 }
 //-----------------------------------------------------------------------
 void Controller::handleLevelOver()
 {
-	std::cout << "the level end" << std::endl;
 	// print sprite that tell that the level end because the time end,
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 
@@ -317,7 +306,7 @@ void Controller::handleLevelOver()
 		mousePtr->setLives();
 	}
 	// load the same level again with all the objects
-	m_board.updateBoard(m_cats, m_mouse);
+	m_board.updateBoard(m_cats, m_mouse,m_levelTime);
 }
 //----------------------------------------------------------------------
 
@@ -325,4 +314,13 @@ void Controller::handleExit()
 {
 	m_gameOver = true;
 	// print sprite 
+}
+//----------------------------------------------------------------------
+
+void Controller::handleClick(const sf::Event::MouseButtonEvent& event,const sf::RenderWindow& window)
+{
+	auto location = window.mapPixelToCoords({ event.x,event.y });
+
+	m_infoBar.handleClick(location,m_gameOver);
+
 }

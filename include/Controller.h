@@ -13,7 +13,7 @@ class Controller
 {
 public:
 	Controller() = default;
-	void run(sf::RenderWindow& window);
+	void run(sf::RenderWindow& window); // move the music
 	void incTime();
 	void incLife();
 	void freezeCat();
@@ -25,7 +25,7 @@ private:
 	InfoBar m_infoBar;
 	
 	int m_levelNum = 0;	//saves the level number
-
+	double m_levelTime=0;
 	std::vector<std::unique_ptr<MovingObjects>> m_cats;
 	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;
@@ -47,4 +47,5 @@ private:
 	void handleLevelOver();
 	bool checkGameStatus(int numOfCheese);
 	void handleExit();
+	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
 };

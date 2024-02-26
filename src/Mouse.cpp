@@ -109,13 +109,14 @@ void Mouse::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(KillCatGift& gift)
 {
+	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
-
 }
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(AddLifeGift& gift)
 {
+	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
 	m_lives++;
@@ -123,12 +124,14 @@ void Mouse::collisionHandling(AddLifeGift& gift)
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(AddTimeGift& gift)
 {
+	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
 //----------------------------------------------------------------------
 void Mouse::collisionHandling(FreezeCatGift& gift)
 {
+	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
@@ -143,6 +146,7 @@ void Mouse::collisionHandling(Key& key)
 void Mouse::collisionHandling(Cheese& cheese)
 {
 	//change score
+	m_score += 10;
 	cheese.setOffBoard(true);
 }
 //----------------------------------------------------------------------
@@ -151,6 +155,7 @@ void Mouse::collisionHandling(Door& door)
 	if (m_keys > 0)
 	{
 		m_keys--;
+		m_score += 2;
 		door.setOffBoard(true);
 	}
 	else
@@ -173,4 +178,14 @@ int Mouse::getLives()const
 void Mouse::setLives()
 {
 	m_lives--;
+}
+//---------------------------------------------------------------------
+int Mouse::getScore()const
+{
+	return m_score;
+}
+//---------------------------------------------------------------------
+void Mouse::setScore(int addScore)
+{
+	m_score += addScore;
 }

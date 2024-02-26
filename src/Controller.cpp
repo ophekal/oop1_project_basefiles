@@ -80,6 +80,10 @@ void Controller::startGame(sf::RenderWindow& window)
 				break;
 			case sf::Event::MouseButtonReleased:
 				handleClick(event.mouseButton,window);
+				if (m_gameOver)
+				{
+					return;
+				}
 				break;
 			}
 		}
@@ -198,7 +202,14 @@ void Controller::incTime()
 //------------------------------------------------------------------------
 void Controller::incLife()
 {
-	m_infoBar.incLife();
+	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+
+	if (mousePtr != nullptr)
+	{
+		mousePtr->setLives();
+		m_infoBar.updateLife(mousePtr->getLives());
+	}
+	
 }
 //-----------------------------------------------------------------------
 void Controller::freezeCat()
@@ -212,9 +223,6 @@ void Controller::freezeCat()
 		catPtr->setCatFreeze(true);
 		catPtr->setFreezeStartTime(m_clock.getClock().getElapsedTime());
 	}
-	
-
-	// freeze for 3 sec the cat in the index that update
 
 }
 //-----------------------------------------------------------------------

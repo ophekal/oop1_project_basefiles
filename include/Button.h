@@ -12,6 +12,7 @@ public:
 		              std::string type, float x, float y, int textSize);*/
 	void printButton(sf::RenderWindow& window) const;
 	sf::RectangleShape getRectangleButton()const;
+	void setText(const std::string& text);
 
 private:
 	sf::Text m_text;

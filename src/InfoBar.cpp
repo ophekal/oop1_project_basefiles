@@ -17,13 +17,13 @@ InfoBar::InfoBar()// pass the time of the game
 	m_infoBar[4].updateButton(*HandleResources::instance().getInfoBarTexture(B_HOME), HOME_X, HOME_Y, SOUND_SIZE);
 	m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
 	m_infoBar[6].updateButton(*HandleResources::instance().getInfoBarTexture(B_SCORE), INFO_X, SCORE_Y, INFO_SIZE);
-    //handle clock	Clock m_clock	
+    
 }
 //------------------------------------------------------------------------
 void InfoBar::setInfoBar(int levelNum, int levelTime)
 {
 	// set in the levl rectangle the level number
-	// set the time in the clock
+	
 }
 //------------------------------------------------------------------------
 void InfoBar::printInfoBar(sf::RenderWindow& window)
@@ -35,13 +35,35 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 }
 
 //------------------------------------------------------------------------
-void InfoBar::incLife()
+void InfoBar::updateLife(int lives)
 {
-
+	m_numOfLives = std::to_string(lives);
+	m_infoBar[3].setText(m_numOfLives);
 }
 
 //------------------------------------------------------------------------
 void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver)
 {
 
+	if (m_infoBar[4].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		//the player press on home
+		gameOver = true;
+		return;
+	}
+	else if (m_infoBar[5].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		if (m_musicOn)
+		{
+			m_musicOn = false;
+			m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
+			// mute the music;
+		}
+		else
+		{
+			m_musicOn = true;
+			m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
+			// set the music on
+		}
+	}
 }

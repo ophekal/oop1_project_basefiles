@@ -25,10 +25,13 @@ public:
 	int getKeys()const;
 	int getLives()const;
 	void setLives();
+	int getScore()const;
+	void setScore(int addScore);
 
 protected:
 	int m_lives = 3;
 	int m_keys = 0;
+	int m_score = 0;
 	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in hndelresources
 	void checkMovement(sf::Time deltaTime, const sf::RectangleShape& board);
 };

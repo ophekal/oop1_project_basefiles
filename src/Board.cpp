@@ -133,7 +133,7 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 	{
 		case '^':
 		{
-			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_CAT);
+			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_L_CAT);
 			pushCat(cats, *icon, position);
 			return;
 		}
@@ -195,7 +195,7 @@ void Board::pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
 void Board::setMouse(std::unique_ptr<MovingObjects >& mouse,
 	                 const sf::Vector2f& position)
 {
-	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_MOUSE);
+	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_L_MOUSE);
 	mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
 	mouse->setOrigin();
 

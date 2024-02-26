@@ -26,9 +26,9 @@ void HandleResources::updateObjectVector()
 {
 	m_objectsTextures.resize(12);
 	m_objectsTextures[I_L_CAT].loadFromFile("leftCat.png");
-	m_objectsTextures[I_R_CAT].loadFromFile("rightcat.png");
-	m_objectsTextures[I_L_MOUSE].loadFromFile("mouse.png");
-	m_objectsTextures[I_R_MOUSE].loadFromFile("mouse.png");
+	m_objectsTextures[I_R_CAT].loadFromFile("rightCat.png");
+	m_objectsTextures[I_L_MOUSE].loadFromFile("leftMouse.png");
+	m_objectsTextures[I_R_MOUSE].loadFromFile("rightMouse.png");
 	m_objectsTextures[I_KEY].loadFromFile("key.png");
 	m_objectsTextures[I_ADDLIFEGIFT].loadFromFile("addLifeGift.png");
 	m_objectsTextures[I_ADDTIMEGIFT].loadFromFile("addTimeGift.png");

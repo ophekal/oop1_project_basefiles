@@ -149,13 +149,13 @@ void Menu::handleMusic()
 	if (m_musicOn)
 	{
 		m_musicOn = false;
-		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE),START_X, START_Y);
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE),SOUND_X, SOUND_Y,SOUND_SIZE);
 		// mute the music;
 	}
 	else
 	{
 		m_musicOn = true;
-		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), START_X, START_Y);
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), SOUND_X, SOUND_Y,SOUND_SIZE);
 		// set the music on
 	}
 

@@ -21,8 +21,10 @@ enum TileType : char
 
 enum IconType
 {
-	I_CAT,
-	I_MOUSE,
+	I_L_CAT,
+	I_R_CAT,
+	I_L_MOUSE,
+	I_R_MOUSE,
 	I_KEY,
 	I_ADDLIFEGIFT,
 	I_ADDTIMEGIFT,

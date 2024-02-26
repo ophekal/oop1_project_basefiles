@@ -11,6 +11,7 @@ HandleResources::HandleResources()
 {
 	updateObjectVector();
 	updateBackgroundVector();
+	updateInfoBarVector();
 	m_font.loadFromFile("font.ttf");
 }
 
@@ -23,9 +24,11 @@ HandleResources& HandleResources::instance()
 //------------------------------------------------------------------------
 void HandleResources::updateObjectVector()
 {
-	m_objectsTextures.resize(10);
-	m_objectsTextures[I_CAT].loadFromFile("cat.png");
-	m_objectsTextures[I_MOUSE].loadFromFile("mouse.png");
+	m_objectsTextures.resize(12);
+	m_objectsTextures[I_L_CAT].loadFromFile("leftCat.png");
+	m_objectsTextures[I_R_CAT].loadFromFile("rightcat.png");
+	m_objectsTextures[I_L_MOUSE].loadFromFile("mouse.png");
+	m_objectsTextures[I_R_MOUSE].loadFromFile("mouse.png");
 	m_objectsTextures[I_KEY].loadFromFile("key.png");
 	m_objectsTextures[I_ADDLIFEGIFT].loadFromFile("addLifeGift.png");
 	m_objectsTextures[I_ADDTIMEGIFT].loadFromFile("addTimeGift.png");

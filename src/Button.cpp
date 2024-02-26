@@ -15,10 +15,9 @@ void Button::updateSize(float width, float hight)
 }
 //---------------------------------------------------------------------------------------
 
-void Button::updateButton(/*const sf::Font& font, */const sf::Texture& background,
-                          /*std::string type, */float x, float y, sf::Vector2f size)
+void Button::updateButton(const sf::Texture& background, float x, float y, const sf::Vector2f size)
 {
-    m_rectangle.setSize()
+    m_rectangle.setSize(size);
     //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
    // m_rectangle.setFillColor(sf::Color::White);

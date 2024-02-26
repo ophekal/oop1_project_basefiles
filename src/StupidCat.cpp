@@ -45,7 +45,7 @@ void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
     if (MovingObjects::isMovementValid(board, newPosition))
     {
         //std::cout << "movement is valid";
-
+        //checkCatCovered(newPosition.getPosition(), staticObjects);
         m_object.setPosition(newPosition.getPosition());
     }
     else

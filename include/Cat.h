@@ -23,8 +23,13 @@ public:
 	virtual void collisionHandling(Cheese&);
 	virtual void collisionHandling(Door&);
 	static int getCount();
+	void setCatFreeze(bool freeze);
+	bool isFreeze()const;
+	//void checkCatCovered(const sf::Vector2f& nextPosition,
+	//	                 std::vector<std::unique_ptr<StaticObjects>>& staticObjects);
 
 private:
 	static int m_count;
+	bool m_catFreeze = false;
 	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in handelresources
 };

@@ -26,6 +26,8 @@ public:
 	bool isMovementValid(const sf::RectangleShape& board,const sf::RectangleShape& newPosition)const;
 	bool positionChange()const;
 	sf::Vector2f getPosition()const;
+	sf::Vector2f getInitPosition()const;
+	void setPosition(const sf::Vector2f& position);
 	void setDirection(const sf::Vector2f& direction);
 	float distance(const sf::Vector2f& v1, const sf::Vector2f& v2);
 	void setObjectSpeed(float speed);
@@ -44,6 +46,7 @@ public:
 
 protected:
 	sf::Vector2f m_position;
+	sf::Vector2f m_initPosition;
 	sf::Vector2f m_direction ={ 0,0 };
 	float m_objectSpeed = 50.f;		//each object will update according to the speed we will set it to
 	//sf::Clock m_MovementTime;		//hold the previous time the object moved

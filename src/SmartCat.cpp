@@ -6,14 +6,14 @@
 #include "Door.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
-
+#include <iostream>
 
 //------------------------------------------------------------------------
 void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                         const std::unique_ptr<MovingObjects>& mouse,
                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
-	MovingObjects::setObjectSpeed(40.f);
+   MovingObjects::setObjectSpeed(40.f);
 
    sf::RectangleShape up = m_object;
    sf::RectangleShape down = m_object;
@@ -79,13 +79,16 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
     float currDistance,
           shortestDistance = 10000;    //a big distance we will never recieve,
                                        //will change when the first currDistance is calculated
-          
+    //sf::Vector2f nextPosition = { 0,0 };
+
     if (validStep(up, board, staticObjects))
     {
         currDistance = distance(mouse->getPosition(), up.getPosition());
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
+           // nextPosition = up.getPosition();
+           // checkCatCovered(up.getPosition(), staticObjects);
             m_object.setPosition(up.getPosition());
         }
     }
@@ -95,6 +98,8 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
+            //nextPosition = down.getPosition();
+            //checkCatCovered(down.getPosition(), staticObjects);
             m_object.setPosition(down.getPosition());
         }
     }
@@ -104,6 +109,8 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
+           // nextPosition = left.getPosition();
+            //checkCatCovered(left.getPosition(), staticObjects);
             m_object.setPosition(left.getPosition());
         }
     }
@@ -113,9 +120,14 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
+            //nextPosition = right.getPosition();
+            //checkCatCovered(right.getPosition(), staticObjects);
             m_object.setPosition(right.getPosition());
         }
     }
+    //std::cout << "check if the cat coveres static object" << std::endl;
+    //checkCatCovered(nextPosition, staticObjects);
+    //m_object.setPosition(nextPosition);
 }
 
 //------------------------------------------------------------------------
@@ -153,3 +165,4 @@ bool SmartCat::validStep(sf::RectangleShape direction, const sf::RectangleShape 
 
     return true;
 }
+//------------------------------------------------------------------------

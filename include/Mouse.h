@@ -23,6 +23,7 @@ public:
 	virtual void collisionHandling(Cheese&);
 	virtual void collisionHandling(Door&);
 	int getKeys()const;
+	int getLives()const;
 
 protected:
 	int m_lives = 3;

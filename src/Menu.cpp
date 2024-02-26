@@ -92,6 +92,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	{
 		startGame();	//calls on controller and starts the game
 	}
+
 }
 
 //---------------------------------------------------------------------------------------

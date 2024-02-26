@@ -30,6 +30,7 @@ private:
 	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;
 	bool m_levelOver = false;
+	bool m_mouseDead = false;
 	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window);
@@ -39,5 +40,9 @@ private:
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
-
+	void initMovingObjects();
+	bool checkLevelStatus(int numOfCheese);
+	void handleDeadMouse();
+	void handleLevelOver();
+	bool checkGameStatus(int numOfCheese);
 };

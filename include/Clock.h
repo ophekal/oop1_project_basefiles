@@ -6,12 +6,14 @@ class Clock
 {
 public:
 	Clock() = default;
-//	Clock();//pass the time of the game
+   //Clock();//pass the time of the game
 	void printClock(sf::RenderWindow& window);
+	void incTime();
 	// setTimer();
 
 private:
 	sf::Clock m_clock;
+	sf::Time m_setTime;
 	float m_timer;
 	sf::Text m_showTimer;
 	sf::RectangleShape m_rectangle;

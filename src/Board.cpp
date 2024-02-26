@@ -224,10 +224,10 @@ void Board::printBoard(sf::RenderWindow& window) const
 
 	for (size_t index = 0; index < m_staticObjects.size(); index++)
 	{
-		if (!(m_staticObjects[index]->isCovered()))
-		{
+		//if (!(m_staticObjects[index]->isCovered()))
+		//{
 			m_staticObjects[index]->draw(window);
-		}
+		//}
 		
 	}
 }
@@ -276,7 +276,7 @@ void Board::clear()
 	m_board.setFillColor(sf::Color::White);
 }
 //------------------------------------------------------------------------
-const std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()const
+std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()
 {
 	return m_staticObjects;
 

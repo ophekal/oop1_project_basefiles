@@ -103,6 +103,7 @@ void Mouse::collisionHandling(Mouse& mouse)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(Cat& cat)
 {
+	m_lives--;
 	setOffBoard(true);  
 }
 //------------------------------------------------------------------------
@@ -158,4 +159,9 @@ void Mouse::collisionHandling(Door& door)
 int Mouse::getKeys()const
 {
 	return m_keys;
+}
+//---------------------------------------------------------------------
+int Mouse::getLives()const
+{
+	return m_lives;
 }

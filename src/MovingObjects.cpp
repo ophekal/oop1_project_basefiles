@@ -8,7 +8,7 @@
 
 //------------------------------------------------------------------------
 MovingObjects::MovingObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    :GameObjects(picture,position,size), m_position (position)
+    :GameObjects(picture,position,size), m_position (position), m_initPosition(position)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);
@@ -53,12 +53,18 @@ sf::Vector2f MovingObjects::getPosition() const
 {
     return m_position;
 }
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+sf::Vector2f MovingObjects::getInitPosition()const
+{
+    return m_initPosition;
+}
+//------------------------------------------------------------------------
 void MovingObjects::setDirection(const sf::Vector2f& direction)
 {
     m_direction = direction;
 }
-//----------------------------------------------------------------------
+//------------------------------------------------------------------------
 void MovingObjects::move(sf::Time deltaTime)
 {
     m_position = m_object.getPosition();
@@ -76,4 +82,9 @@ void MovingObjects::setOrigin()
 float MovingObjects::distance(const sf::Vector2f& v1, const sf::Vector2f& v2)
 {
     return(sqrt(((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y))));
+}
+//------------------------------------------------------------------------
+void MovingObjects::setPosition(const sf::Vector2f& position)
+{
+    m_object.setPosition(position);
 }

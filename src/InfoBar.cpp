@@ -25,7 +25,12 @@ InfoBar::InfoBar()// pass the time of the game
 
     //handle clock	Clock m_clock	
 }
-
+//------------------------------------------------------------------------
+void InfoBar::setInfoBar(int levelNum, int levelTime)
+{
+	// set in the levl rectangle the level number
+	// set the time in the clock
+}
 //------------------------------------------------------------------------
 void InfoBar::printInfoBar(sf::RenderWindow& window)
 {
@@ -39,6 +44,7 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 //------------------------------------------------------------------------
 void InfoBar::incTime()
 {
+	m_clock.incTime();
 
 }
 //------------------------------------------------------------------------

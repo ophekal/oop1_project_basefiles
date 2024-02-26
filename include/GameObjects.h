@@ -22,8 +22,8 @@ public:
 	//void setPosition(const sf::Vector2f& newPosition);
 	bool offBoard()const;
 	void setOffBoard(bool off);
-	void setCovered(bool covered);
-	bool isCovered()const;
+	//void setCovered(bool covered);
+	//bool isCovered()const;
 	bool checkCollision(GameObjects& objcet);
 	virtual void collisionHandling(GameObjects&) = 0;
 	virtual void collisionHandling(Mouse&) = 0;
@@ -41,5 +41,5 @@ public:
 protected:
 	sf::RectangleShape m_object;
 	bool m_offBoard;
-	bool m_covered;
+	//bool m_covered;
 };

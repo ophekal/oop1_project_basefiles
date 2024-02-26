@@ -11,6 +11,7 @@ public:
 	void printInfoBar(sf::RenderWindow& window);
 	void incTime();
 	void incLife();
+	void setInfoBar(int levelNum, int levelTime);
 
 private:
 	sf::Text m_numOfKeys;

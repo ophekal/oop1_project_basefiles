@@ -56,8 +56,9 @@ void Controller::startGame(sf::RenderWindow& window)
 		                (float)(window.getSize().y) / textureSize.y);
 
 	sf::Clock clock;
-
-	while (Cheese::getCount != 0 && !m_levelOver) // and if the time of the level end 
+	int numOfCheese = Cheese::getCount();
+	//m_infoBar.setInfoBar(m_levelNum,m_levelTime);
+	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 
 	{
 		print(window, background);
 
@@ -78,22 +79,17 @@ void Controller::startGame(sf::RenderWindow& window)
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
 		
-		//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
-		if (Cheese::getCount() == 0)
+		numOfCheese = Cheese::getCount();
+
+		//if (checkLevelStatus(numOfCheese))
+		//{
+		//	break;
+		//}
+		if (checkGameStatus(numOfCheese))
 		{
-			m_board.clear();
-			m_cats.clear();
 			break;
 		}
 	}
-
-
-	if (m_levelOver)
-	{
-
-	}
-
-
 
 }
 //-----------------------------------------------------------------
@@ -120,7 +116,7 @@ void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>
 
 	if (m_mouse->offBoard())
 	{
-		m_levelOver = true;
+		m_mouseDead = true;
 	}
 }
 
@@ -130,14 +126,10 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
 	for (size_t index = 0; index < m_cats.size(); index++)
 	{
-		if (!(m_cats[index]->isCovered()))
-		{
-			m_cats[index]->draw(window);
-		}	
+		m_cats[index]->draw(window);
 	}
 
-	m_mouse->draw(window);
-		
+	m_mouse->draw(window);		
 }
 //------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
@@ -168,13 +160,22 @@ void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
-		m_cats[i]->movement(deltaTime,m_board.getRectangle(), m_mouse, m_board.getStaticObjects());
-		if (m_cats[i]->positionChange())
+		Cat* catPtr = dynamic_cast<Cat*>(m_cats[i].get());
+
+		if (catPtr != nullptr)
 		{
-			checkMovingObjectCollision(m_cats[i]);
-			m_board.checkStaticObjectCollision(m_cats[i],*this);
-			m_cats[i]->move(deltaTime);
+			if (!(catPtr->isFreeze()))
+			{
+				m_cats[i]->movement(deltaTime, m_board.getRectangle(), m_mouse, m_board.getStaticObjects());
+				if (m_cats[i]->positionChange())
+				{
+					checkMovingObjectCollision(m_cats[i]);
+					m_board.checkStaticObjectCollision(m_cats[i], *this);
+					m_cats[i]->move(deltaTime);
+				}
+			}
 		}
+
 	}
 }
 //------------------------------------------------------------------------
@@ -192,6 +193,13 @@ void Controller::freezeCat()
 {
 	int indexToFreeze = 0;
 	findCat(indexToFreeze);
+	Cat* catPtr = dynamic_cast<Cat*>(m_cats[indexToFreeze].get());
+
+	if (catPtr != nullptr)
+	{
+		catPtr->setCatFreeze(true);
+	}
+	
 	// freeze for 3 sec the cat in the index that update
 
 }
@@ -220,4 +228,79 @@ void Controller::findCat(int& indexToChange)const
 		}
 	}
 
+}
+//------------------------------------------------------------------------
+
+void Controller::initMovingObjects()
+{
+	m_mouse->setPosition(m_mouse->getInitPosition());
+	for (auto index = 0; index < m_cats.size(); index++)
+	{
+		m_cats[index]->setPosition(m_cats[index]->getInitPosition());
+	}
+
+}
+//-----------------------------------------------------------------------
+bool Controller::checkGameStatus(int numOfCheese)
+{
+	if (m_mouseDead)
+	{
+		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+
+		if (mousePtr != nullptr)
+		{
+			if ((mousePtr->getLives()) == 0)
+			{
+				handleExit();
+				return true;
+			}
+		}
+
+		//return to the init postion of the moving objects
+		handleDeadMouse();
+		return true;
+	}
+	if(checkLevelStatus(numOfCheese))
+	{
+		return true;
+	}
+}
+//-----------------------------------------------------------------------
+bool Controller::checkLevelStatus(int numOfCheese)
+{
+	//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
+	if (numOfCheese == 0) //to the next level
+	{
+		m_board.clear();
+		m_cats.clear();
+		// calc the score to the next level and print sprite that tell that the level end 
+		return true;
+	}
+
+	if (m_levelOver)
+	{
+		// start the level again
+		handleLevelOver();
+		return true;
+	}
+
+	return false;
+}
+//-----------------------------------------------------------------------
+void Controller::handleDeadMouse()
+{
+	// print sprite that tell that the player lost because the cat eat him 
+	// m_lives --
+	//function that return the mouse and cat to their first location
+	initMovingObjects();
+
+}
+//-----------------------------------------------------------------------
+void Controller::handleLevelOver()
+{
+	std::cout << "the level end" << std::endl;
+	// print sprite that tell that the level end because the time end,
+	// m_lives--
+	// load the same level again with all the objects
+	m_board.updateBoard(m_cats, m_mouse);
 }

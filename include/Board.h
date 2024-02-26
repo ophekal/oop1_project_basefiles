@@ -26,7 +26,7 @@ public:
 	sf::Vector2f getTileSize() const;
 	const sf::RectangleShape& getRectangle() const;
 	void clear();
-	const std::vector<std::unique_ptr<StaticObjects>>& getStaticObjects()const;
+	std::vector<std::unique_ptr<StaticObjects>>& getStaticObjects();
 
 private:
 	

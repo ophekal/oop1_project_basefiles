@@ -15,23 +15,23 @@ void Button::updateSize(float width, float hight)
 }
 //---------------------------------------------------------------------------------------
 
-void Button::updateButton(const sf::Font& font, const sf::Texture& background,
-                          std::string type, float x, float y, int textSize)
+void Button::updateButton(/*const sf::Font& font, */const sf::Texture& background,
+                          /*std::string type, */float x, float y/*, int textSize)*/)
 {
     //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
    // m_rectangle.setFillColor(sf::Color::White);
     m_rectangle.setTexture(&background);
-    m_text.setFont(font);
-    m_text.setString(type);
-    m_text.setCharacterSize(textSize);
-    m_text.setFillColor(sf::Color::Black);
+    //m_text.setFont(font);
+    //m_text.setString(type);
+    //m_text.setCharacterSize(textSize);
+    //m_text.setFillColor(sf::Color::Black);
 
-    // Set the position of the text to be centered within the rectangle
-    sf::FloatRect textBounds = m_text.getLocalBounds();
-    float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
-    float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
-    m_text.setPosition(textX, textY);
+    //// Set the position of the text to be centered within the rectangle
+    //sf::FloatRect textBounds = m_text.getLocalBounds();
+    //float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
+    //float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
+    //m_text.setPosition(textX, textY);
 
 }
 
@@ -43,7 +43,7 @@ void Button::printButton(sf::RenderWindow& window) const
     //m_rectangle.setOutlineColor(sf::Color::Red);
     window.draw(m_rectangle);
     //window.draw(m_sprite);
-    window.draw(m_text);
+   // window.draw(m_text);
 }
 
 //-------------------------------------------------------------

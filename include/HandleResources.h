@@ -12,6 +12,7 @@ public:
 
 	const sf::Texture* getObjectTexture(IconType icon);
 	const sf::Texture* getBackgroundTexture(Background icon);
+	const sf::Texture* getInfoBarTextures(Bar icon);
 	const sf::Font* getFont();
 	//static HandleResources& getSounds();
 	
@@ -24,6 +25,7 @@ private:
 
 	std::vector<sf::Texture> m_objectsTextures;
 	std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window
+	std::vector<sf::Texture> m_infoBarTextures;	//menu, infobar, window
 
 	sf::Font m_font;				//holds the font
 	//sf::Sound m_sounds[numOfSounds];	//hold the different sounds of the game

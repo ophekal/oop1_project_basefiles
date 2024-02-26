@@ -39,12 +39,36 @@ void HandleResources::updateObjectVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateBackgroundVector()
 {
-	m_backgroundsTextures.resize(4);
+	m_backgroundsTextures.resize(6);
 	m_backgroundsTextures[B_MENU].loadFromFile("menuLandscape.jpg");
 	m_backgroundsTextures[B_GAME].loadFromFile("landscape.png");
-	m_backgroundsTextures[B_BUTTON].loadFromFile("button.png");
+	m_backgroundsTextures[B_SETTINGS].loadFromFile("settings.png");
+	m_backgroundsTextures[B_EXIT].loadFromFile("exit.png");
+	m_backgroundsTextures[B_START].loadFromFile("startgame.png");
 	m_backgroundsTextures[B_HELP].loadFromFile("helpWindow.png");
+	m_backgroundsTextures[B_SOUND].loadFromFile("music.png");
+	m_backgroundsTextures[B_MUTE].loadFromFile("mute.png");
 }
+
+
+//-------------------------------------------------------------------------
+void HandleResources::updateBackgroundVector()
+{
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+}
+
+//--------------------------------------------------------------------------
+
+const sf::Texture* HandleResources::getInfoBarTextures(Bar icon)
+{
+	return &(m_infoBarTextures[icon]);
+}
+
 
 //-------------------------------------------------------------------------
 const sf::Texture* HandleResources::getObjectTexture(IconType icon)

@@ -23,7 +23,7 @@ private:
 	//a member that saves the text of help windpw
 
 	sf::RenderWindow m_window;
-	Button m_buttons[3];
+	Button m_buttons[4];
 	//sf::RenderWindow m_helpButtonPressed;	//will show the rules of the game
 
 	//sf::Music m_gameMusic;	//maybe needs to be in controller?

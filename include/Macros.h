@@ -37,15 +37,20 @@ enum Background
 {
 	B_MENU,
 	B_GAME,
-	B_BUTTON,
-	B_HELP
+	B_SETTINGS,
+	B_EXIT,
+	B_START,
+	B_HELP,
+	B_SOUND,
+	B_MUTE
 };
 
 enum MenuButton
 {
+	M_START,
+	M_SETTINGS,
 	M_EXIT,
-	M_HELP,
-	M_START
+	M_SOUND
 };
 
 //-------keyboard-movement-----
@@ -61,12 +66,16 @@ enum Direction {
 //------------menu------------
 const int WINDOW_HEIGHT = 1070;
 const int WINDOW_WIDTH = 1500;
-const float EXIT_X = 50;
-const float EXIT_Y = 150;
-const float HELP_X = 550;
-const float HELP_Y = 150;
-const float START_X = 1050;
+const float START_X = 550;
 const float START_Y = 150;
+const float SETTINGS_X = 550;
+const float SETTINGS_Y = 300;
+const float EXIT_X = 550;
+const float EXIT_Y = 450;
+const float SOUND_X = 1385;
+const float SOUND_Y = 42;
+
+
 const int HELP_HEIGHT = 720;
 const int HELP_WIDTH = 1280;
 
@@ -78,9 +87,21 @@ const float BOARD_START_Y = 50;
 
 //----------infoBar-------------
 
+enum Bar
+{
+	B_INFO,
+	B_LEVEL,
+	B_TIME,
+	B_LIVES,
+	B_KEYS
+};
+
+
 const float INFO_X = 50;
 const float INFO_Y = 50;
 const float CLOCK_Y = 190;
 const float LEVEL_Y = 330;
 const float LIVES_Y = 470;
 const float KEYS_Y = 610;
+const double LONG_LEVEL = 3;
+const double SHORT_LEVEL = 1.5;

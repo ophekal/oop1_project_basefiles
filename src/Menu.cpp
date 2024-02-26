@@ -49,12 +49,17 @@ void Menu::run()
 //-------------------------------------------------------------------------
 void Menu::updateButton()
 {
-	const sf::Font* font = HandleResources::instance().getFont();
-	const sf::Texture* background = HandleResources::instance().getBackgroundTexture(B_BUTTON);
+	//const sf::Font* font = HandleResources::instance().getFont();
+	/*const sf::Texture* start = HandleResources::instance().getBackgroundTexture(B_START);
+	const sf::Texture* exit = HandleResources::instance().getBackgroundTexture(B_EXIT);
+	const sf::Texture* settings = HandleResources::instance().getBackgroundTexture(B_SETTINGS);
+	const sf::Texture* soundOn = HandleResources::instance().getBackgroundTexture(B_SOUND);*/
+	//const sf::Texture* mute = HandleResources::instance().getBackgroundTexture(B_MUTE);
 
-	m_buttons[M_EXIT].updateButton(*font, *background, "EXIT", EXIT_X, EXIT_Y,48);
-	m_buttons[M_HELP].updateButton(*font, *background, "HELP", HELP_X, HELP_Y, 48);
-	m_buttons[M_START].updateButton(*font, *background, "START", START_X, START_Y,48);
+	m_buttons[M_START].updateButton(*HandleResources::instance().getBackgroundTexture(B_START), START_X, START_Y);
+	m_buttons[M_SETTINGS].updateButton(*HandleResources::instance().getBackgroundTexture(B_SETTINGS),SETTINGS_X, SETTINGS_Y);
+	m_buttons[M_EXIT].updateButton(*HandleResources::instance().getBackgroundTexture(B_EXIT), EXIT_X, EXIT_Y);
+	m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND),START_X, START_Y);
 }
 
 //------------------------------------------------------------------
@@ -69,7 +74,7 @@ void Menu::print(sf::Sprite& background)
 //------------------------------------------------------------------
 void Menu::printButtons()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		m_buttons[i].printButton(m_window);
 	}
@@ -84,7 +89,7 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 		m_window.close();
 		return;
 	}
-	else if (m_buttons[M_HELP].getRectangleButton().getGlobalBounds().contains(location))
+	else if (m_buttons[M_SETTINGS].getRectangleButton().getGlobalBounds().contains(location))
 	{
 		pressedHelp();	//creates a window that explains the game
 	}
@@ -103,7 +108,7 @@ void Menu::pressedHelp()
 	help.setTexture(*backgroundTexture);
 	sf::Vector2u textureSize = (*backgroundTexture).getSize();
 
-	sf::RenderWindow helpWindow(sf::VideoMode(1280, 720), "Game Information");
+	sf::RenderWindow helpWindow(sf::VideoMode(626, 626), "Game Information");
 
 	// Scale the background sprite to fit the window
 	help.setScale((float)(helpWindow.getSize().x) / textureSize.x,

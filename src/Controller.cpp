@@ -264,6 +264,7 @@ bool Controller::checkGameStatus(int numOfCheese)
 	{
 		return true;
 	}
+	return false;
 }
 //-----------------------------------------------------------------------
 bool Controller::checkLevelStatus(int numOfCheese)

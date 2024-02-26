@@ -63,7 +63,7 @@ void Controller::startGame(sf::RenderWindow& window)
 
 	sf::Clock clock = m_clock.getClock();
 	int numOfCheese = Cheese::getCount();
-	//m_infoBar.setInfoBar(m_levelNum,m_levelTime);
+	updateInfoBar();
 	m_clock.setClock();
 
 
@@ -90,6 +90,7 @@ void Controller::startGame(sf::RenderWindow& window)
 		const auto deltaTime = clock.restart();
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
+		updateInfoBar();
 		
 		numOfCheese = Cheese::getCount();
 		if (checkGameStatus(numOfCheese))
@@ -347,4 +348,19 @@ void Controller::handleClick(const sf::Event::MouseButtonEvent& event,const sf::
 
 	m_infoBar.handleClick(location,m_gameOver);
 
+}
+//------------------------------------------------------------------------
+void Controller::updateInfoBar()
+{
+	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+	int keys = 0;
+	int lives = 0;
+
+	if (mousePtr != nullptr)
+	{
+		keys = mousePtr->getKeys();
+		m_totalScore = mousePtr->getScore();
+		lives = mousePtr->getLives();
+	}
+	m_infoBar.setInfoBar(m_levelNum, m_totalScore, keys, lives);
 }

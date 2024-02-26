@@ -11,7 +11,10 @@ public:
 	InfoBar();
 	void printInfoBar(sf::RenderWindow& window);
 	void updateLife(int lives);
-	void setInfoBar(int levelNum, int levelTime);
+	void updateScore(int score);
+	void updateKey(int keys);
+	void updateLevel(int level);
+	void setInfoBar(int levelNum, int score, int key, int lives);
 	void handleClick(const sf::Vector2f& location, bool& gameOver);
 
 private:

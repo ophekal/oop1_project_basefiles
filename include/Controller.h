@@ -34,6 +34,7 @@ private:
 	bool m_levelOver = false;
 	bool m_mouseDead = false;
 	bool m_gameOver = false;
+	int m_totalScore = 0;
 
 	//int m_numOfCheese = 0;
 	
@@ -51,4 +52,5 @@ private:
 	bool checkGameStatus(int numOfCheese);
 	void handleExit();
 	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
+	void updateInfoBar();
 };

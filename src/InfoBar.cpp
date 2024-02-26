@@ -20,10 +20,12 @@ InfoBar::InfoBar()// pass the time of the game
     
 }
 //------------------------------------------------------------------------
-void InfoBar::setInfoBar(int levelNum, int levelTime)
+void InfoBar::setInfoBar(int levelNum, int score, int key,int lives)
 {
-	// set in the levl rectangle the level number
-	
+	updateLife(lives);
+	updateScore(score);
+	updateKey(key);
+	updateLevel(levelNum);	
 }
 //------------------------------------------------------------------------
 void InfoBar::printInfoBar(sf::RenderWindow& window)
@@ -38,7 +40,25 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 void InfoBar::updateLife(int lives)
 {
 	m_numOfLives = std::to_string(lives);
-	m_infoBar[3].setText(m_numOfLives);
+	m_infoBar[2].setText(m_numOfLives);
+}
+//------------------------------------------------------------------------
+void InfoBar::updateScore(int score)
+{
+	m_score = std::to_string(score);
+	m_infoBar[6].setText(m_score);
+}
+//------------------------------------------------------------------------
+void InfoBar::updateKey(int keys)
+{
+	m_numOfKeys = std::to_string(keys);
+	m_infoBar[3].setText(m_numOfKeys);
+}
+//------------------------------------------------------------------------
+void InfoBar::updateLevel(int level)
+{
+	m_numOfLevel = std::to_string(level);
+	m_infoBar[1].setText(m_numOfLevel);
 }
 
 //------------------------------------------------------------------------

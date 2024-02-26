@@ -41,6 +41,7 @@ void Button::updateButton(const sf::Texture& background, float x, float y, const
 void Button::printButton(sf::RenderWindow& window) const
 {
     window.draw(m_rectangle);
+    window.draw(m_text);
 }
 
 //-------------------------------------------------------------

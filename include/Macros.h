@@ -74,6 +74,8 @@ const float EXIT_X = 550;
 const float EXIT_Y = 450;
 const float SOUND_X = 1385;
 const float SOUND_Y = 42;
+const sf::Vector2f BUTTON_SIZE = { 400,100 };
+const sf::Vector2f SOUND_SIZE = { 65,65 };
 
 
 const int HELP_HEIGHT = 720;
@@ -93,7 +95,8 @@ enum Bar
 	B_LEVEL,
 	B_TIME,
 	B_LIVES,
-	B_KEYS
+	B_KEYS,
+	B_HOME
 };
 
 

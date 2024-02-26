@@ -12,7 +12,7 @@ public:
 
 	const sf::Texture* getObjectTexture(IconType icon);
 	const sf::Texture* getBackgroundTexture(Background icon);
-	const sf::Texture* getInfoBarTextures(Bar icon);
+	const sf::Texture* getInfoBarTexture(Bar icon);
 	const sf::Font* getFont();
 	//static HandleResources& getSounds();
 	
@@ -22,6 +22,7 @@ private:
 	//~HandleResources() = delete;   
 	void updateObjectVector();
 	void updateBackgroundVector();
+	void updateInfoBarVector();
 
 	std::vector<sf::Texture> m_objectsTextures;
 	std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window

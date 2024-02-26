@@ -12,6 +12,7 @@ public:
 	void incTime();
 	void incLife();
 	void setInfoBar(int levelNum, int levelTime);
+	void handleClick(const sf::Vector2f& location, bool& gameOver);
 
 private:
 	sf::Text m_numOfKeys;

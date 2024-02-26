@@ -3,24 +3,24 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 # include "HandleResources.h"
+
 //-----------------------------------------------------------
 InfoBar::InfoBar()// pass the time of the game
 {
 	const sf::Font* font = HandleResources::instance().getFont();
-	const sf::Texture* background = HandleResources::instance().getBackgroundTexture(B_BUTTON);
 
 	m_infoBar.resize(4);
 	m_infoBar[0].updateSize(300,110);
-	m_infoBar[0].updateButton(*HandleResources::instance().getBackgroundTexture(B_INFO),INFO_X, INFO_Y);
+	m_infoBar[0].updateButton(*HandleResources::instance().getInfoBarTexture(B_INFO),INFO_X, INFO_Y);
 	
 	m_infoBar[1].updateSize(300, 110);
-	m_infoBar[1].updateButton(*HandleResources::instance().getBackgroundTexture(B_LEVEL),INFO_X, LEVEL_Y);
+	m_infoBar[1].updateButton(*HandleResources::instance().getInfoBarTexture(B_LEVEL),INFO_X, LEVEL_Y);
 
 	m_infoBar[2].updateSize(300, 110);
-	m_infoBar[2].updateButton(*HandleResources::instance().getBackgroundTexture(B_LIVES),INFO_X, LIVES_Y);
+	m_infoBar[2].updateButton(*HandleResources::instance().getInfoBarTexture(B_LIVES),INFO_X, LIVES_Y);
 
 	m_infoBar[3].updateSize(300, 110);
-	m_infoBar[3].updateButton(*HandleResources::instance().getBackgroundTexture(B_KEYS),INFO_X, KEYS_Y);
+	m_infoBar[3].updateButton(*HandleResources::instance().getInfoBarTexture(B_KEYS),INFO_X, KEYS_Y);
 
 
     //handle clock	Clock m_clock	
@@ -49,6 +49,12 @@ void InfoBar::incTime()
 }
 //------------------------------------------------------------------------
 void InfoBar::incLife()
+{
+
+}
+
+//------------------------------------------------------------------------
+void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver)
 {
 
 }

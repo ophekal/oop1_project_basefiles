@@ -56,10 +56,10 @@ void Menu::updateButton()
 	const sf::Texture* soundOn = HandleResources::instance().getBackgroundTexture(B_SOUND);*/
 	//const sf::Texture* mute = HandleResources::instance().getBackgroundTexture(B_MUTE);
 
-	m_buttons[M_START].updateButton(*HandleResources::instance().getBackgroundTexture(B_START), START_X, START_Y);
-	m_buttons[M_SETTINGS].updateButton(*HandleResources::instance().getBackgroundTexture(B_SETTINGS),SETTINGS_X, SETTINGS_Y);
-	m_buttons[M_EXIT].updateButton(*HandleResources::instance().getBackgroundTexture(B_EXIT), EXIT_X, EXIT_Y);
-	m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND),START_X, START_Y);
+	m_buttons[M_START].updateButton(*HandleResources::instance().getBackgroundTexture(B_START), START_X, START_Y,BUTTON_SIZE);
+	m_buttons[M_SETTINGS].updateButton(*HandleResources::instance().getBackgroundTexture(B_SETTINGS),SETTINGS_X, SETTINGS_Y,BUTTON_SIZE);
+	m_buttons[M_EXIT].updateButton(*HandleResources::instance().getBackgroundTexture(B_EXIT), EXIT_X, EXIT_Y,BUTTON_SIZE);
+	m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND),SOUND_X, SOUND_Y, SOUND_SIZE);
 }
 
 //------------------------------------------------------------------

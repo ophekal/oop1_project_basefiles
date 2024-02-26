@@ -39,7 +39,7 @@ void HandleResources::updateObjectVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateBackgroundVector()
 {
-	m_backgroundsTextures.resize(6);
+	m_backgroundsTextures.resize(8);
 	m_backgroundsTextures[B_MENU].loadFromFile("menuLandscape.jpg");
 	m_backgroundsTextures[B_GAME].loadFromFile("landscape.png");
 	m_backgroundsTextures[B_SETTINGS].loadFromFile("settings.png");
@@ -52,19 +52,20 @@ void HandleResources::updateBackgroundVector()
 
 
 //-------------------------------------------------------------------------
-void HandleResources::updateBackgroundVector()
+void HandleResources::updateInfoBarVector()
 {
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
-	m_infoBarTextures[B_START].loadFromFile("startgame.png");
+	m_backgroundsTextures.resize(6);
+	m_infoBarTextures[B_INFO].loadFromFile("information.png");
+	m_infoBarTextures[B_LEVEL].loadFromFile("level.png");
+	m_infoBarTextures[B_LIVES].loadFromFile("lives.png");
+	m_infoBarTextures[B_KEYS].loadFromFile("keys.png");
+	m_infoBarTextures[B_TIME].loadFromFile("time.png");
+	m_infoBarTextures[B_HOME].loadFromFile("home.png");
 }
 
 //--------------------------------------------------------------------------
 
-const sf::Texture* HandleResources::getInfoBarTextures(Bar icon)
+const sf::Texture* HandleResources::getInfoBarTexture(Bar icon)
 {
 	return &(m_infoBarTextures[icon]);
 }

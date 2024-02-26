@@ -19,6 +19,7 @@ private:
 	void handleClick(sf::Event::MouseButtonEvent& event);
 	void pressedHelp();
 	void startGame();
+	void handleMusic();
 
 	//a member that saves the text of help windpw
 
@@ -27,7 +28,7 @@ private:
 	//sf::RenderWindow m_helpButtonPressed;	//will show the rules of the game
 
 	//sf::Music m_gameMusic;	//maybe needs to be in controller?
-
+	bool m_musicOn = true;
 	//std::vector<sf::Texture> m_objectsTextures;
 	//std::vector<sf::Texture> m_backgroundsTextures;	//menu, infobar, window
 

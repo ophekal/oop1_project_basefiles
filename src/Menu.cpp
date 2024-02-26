@@ -97,6 +97,10 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	{
 		startGame();	//calls on controller and starts the game
 	}
+	else if (m_buttons[M_SOUND].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		handleMusic();
+	}
 
 }
 
@@ -137,4 +141,22 @@ void Menu::startGame()
 {
 	Controller controller;
 	controller.run(m_window); //also sound!
+}
+//----------------------------------------------------------------------
+
+void Menu::handleMusic()
+{
+	if (m_musicOn)
+	{
+		m_musicOn = false;
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE),START_X, START_Y);
+		// mute the music;
+	}
+	else
+	{
+		m_musicOn = true;
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), START_X, START_Y);
+		// set the music on
+	}
+
 }

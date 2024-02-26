@@ -22,10 +22,10 @@ private:
 	//sf::Text m_numOfLives;
 	//sf::Text m_numOfLevel;
 	//sf::Text m_score;
-	std::string m_numOfKeys = "0";
-	std::string m_numOfLives = "3";
-	std::string m_numOfLevel = " ";
-	std::string m_score = "0";
+	std::string m_numOfKeys;// = "0";
+	std::string m_numOfLives;// = "3";
+	std::string m_numOfLevel;// = " ";
+	std::string m_score;// =// "0";
 	bool m_musicOn = true;
 
 	std::vector< Button> m_infoBar; // for the information

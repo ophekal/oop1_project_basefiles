@@ -24,7 +24,7 @@ public:
 	virtual void collisionHandling(Door&);
 	int getKeys()const;
 	int getLives()const;
-	void setLives();
+	void setLives(int setLive);
 	int getScore()const;
 	void setScore(int addScore);
 

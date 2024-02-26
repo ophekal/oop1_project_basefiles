@@ -64,9 +64,9 @@ void Controller::startGame(sf::RenderWindow& window)
 	sf::Clock clock = m_clock.getClock();
 	int numOfCheese = Cheese::getCount();
 	updateInfoBar();
-	m_clock.setClock();
+	m_clock.setClock(m_levelTime);
 
-
+	int numOfCats = Cat::getCount();
 	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 
 	{
 		print(window, background);
@@ -93,7 +93,7 @@ void Controller::startGame(sf::RenderWindow& window)
 		updateInfoBar();
 		
 		numOfCheese = Cheese::getCount();
-		if (checkGameStatus(numOfCheese))
+		if (checkGameStatus(numOfCheese, numOfCats))
 		{
 			break;
 		}
@@ -207,8 +207,8 @@ void Controller::incLife()
 
 	if (mousePtr != nullptr)
 	{
-		mousePtr->setLives();
-		m_infoBar.updateLife(mousePtr->getLives());
+		mousePtr->setLives(1);
+		//m_infoBar.updateLife(mousePtr->getLives());
 	}
 	
 }
@@ -265,7 +265,7 @@ void Controller::initMovingObjects()
 
 }
 //-----------------------------------------------------------------------
-bool Controller::checkGameStatus(int numOfCheese)
+bool Controller::checkGameStatus(int numOfCheese, int numOfCats)
 {
 	if (m_mouseDead)
 	{
@@ -284,20 +284,28 @@ bool Controller::checkGameStatus(int numOfCheese)
 		handleDeadMouse();
 		return false;
 	}
-	if(checkLevelStatus(numOfCheese))
+	if(checkLevelStatus(numOfCheese, numOfCats))
 	{
 		return true;
 	}
 	return false;
 }
 //-----------------------------------------------------------------------
-bool Controller::checkLevelStatus(int numOfCheese)
+bool Controller::checkLevelStatus(int numOfCheese, int numOfCats)
 {
 	//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 	if (numOfCheese == 0) //to the next level
 	{
 		m_board.clear();
 		m_cats.clear();
+		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+		if (mousePtr != nullptr)
+		{
+			m_totalScore = mousePtr->getScore();
+			m_totalScore += 25;  
+			m_totalScore += (5 * numOfCats);
+			mousePtr->setScore(m_totalScore);
+		}
 		// calc the score to the next level and print sprite that tell that the level end 
 		return true;
 	}
@@ -328,7 +336,7 @@ void Controller::handleLevelOver()
 
 	if (mousePtr != nullptr)
 	{
-		mousePtr->setLives();
+		mousePtr->setLives(-1);
 	}
 	// load the same level again with all the objects
 	m_board.updateBoard(m_cats, m_mouse,m_levelTime);

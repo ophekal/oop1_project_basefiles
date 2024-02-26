@@ -35,8 +35,6 @@ private:
 	bool m_mouseDead = false;
 	bool m_gameOver = false;
 	int m_totalScore = 0;
-
-	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window);
 	void printMovingObjects(sf::RenderWindow& window)const;
@@ -46,10 +44,10 @@ private:
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
 	void initMovingObjects();
-	bool checkLevelStatus(int numOfCheese);
+	bool checkLevelStatus(int numOfCheese, int numOfCats);
 	void handleDeadMouse();
 	void handleLevelOver();
-	bool checkGameStatus(int numOfCheese);
+	bool checkGameStatus(int numOfCheese, int numOfCats);
 	void handleExit();
 	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
 	void updateInfoBar();

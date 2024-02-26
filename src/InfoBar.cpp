@@ -7,7 +7,7 @@
 //-----------------------------------------------------------
 InfoBar::InfoBar()// pass the time of the game
 {
-	const sf::Font* font = HandleResources::instance().getFont();
+	//const sf::Font* font = HandleResources::instance().getFont();
 
 	m_infoBar.resize(7);
 	m_infoBar[0].updateButton(*HandleResources::instance().getInfoBarTexture(B_INFO),INFO_X, INFO_Y,INFO_SIZE);

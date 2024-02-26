@@ -21,7 +21,7 @@ void Controller::run(sf::RenderWindow& window)
 		exit(EXIT_FAILURE);
 	}
 
-	while (window.isOpen() && !m_gameOver)
+	while (window.isOpen())
 	{
 
 		// going through all the level files
@@ -38,6 +38,10 @@ void Controller::run(sf::RenderWindow& window)
 			m_board.updateBoard(m_cats,m_mouse); //function that also updates the moving objects                  
 			m_levelNum++;
 			startGame(window);
+			if (m_gameOver)
+			{
+				return;
+			}
 		}
 	}
 
@@ -236,10 +240,11 @@ void Controller::findCat(int& indexToChange)const
 
 void Controller::initMovingObjects()
 {
-	m_mouse->setPosition(m_mouse->getInitPosition());
+	m_mouse->updatePosition(m_mouse->getInitPosition());
+	m_mouse->setOffBoard(false);
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
-		m_cats[index]->setPosition(m_cats[index]->getInitPosition());
+		m_cats[index]->updatePosition(m_cats[index]->getInitPosition());
 	}
 
 }

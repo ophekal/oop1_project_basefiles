@@ -27,7 +27,7 @@ public:
 	bool positionChange()const;
 	sf::Vector2f getPosition()const;
 	sf::Vector2f getInitPosition()const;
-	void setPosition(const sf::Vector2f& position);
+	void updatePosition(const sf::Vector2f& position);
 	void setDirection(const sf::Vector2f& direction);
 	float distance(const sf::Vector2f& v1, const sf::Vector2f& v2);
 	void setObjectSpeed(float speed);

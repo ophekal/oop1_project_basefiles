@@ -135,6 +135,7 @@ void Controller::print(sf::RenderWindow& window,sf::Sprite& background)
 	window.clear();
 	window.draw(background);
 	m_infoBar.printInfoBar(window);
+	m_clock.printClock(window);//pass the curr time
 	m_board.printBoard(window);
 	printMovingObjects(window);
 	window.display();

@@ -32,15 +32,8 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 	{
 		m_infoBar[index].printButton(window);
 	}
-
-	//m_clock.printClock();//pass the curr time
 }
-//------------------------------------------------------------------------
-//void InfoBar::incTime()
-//{
-//	//m_clock.incTime();
-//
-//}
+
 //------------------------------------------------------------------------
 void InfoBar::incLife()
 {

@@ -97,6 +97,16 @@ bool Cat::isFreeze()const
 {
 	return m_catFreeze;
 }
+//---------------------------------------------------------------------
+const sf::Time& Cat::getFreezeStartTime() const
+{ 
+	return m_freezeStartTime; 
+}
+//---------------------------------------------------------------------
+void Cat::setFreezeStartTime(sf::Time time)
+{
+	m_freezeStartTime = time;
+}
 //----------------------------------------------------------------------
 //void Cat::checkCatCovered(const sf::Vector2f& nextPosition,
 //	                      std::vector<std::unique_ptr<StaticObjects>>& staticObjects)

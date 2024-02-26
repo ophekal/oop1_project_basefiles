@@ -21,3 +21,8 @@ void Clock::printClock(sf::RenderWindow& window)
 {
 
 }
+//-----------------------------------------------------------------------
+const sf::Clock& Clock::getClock()const
+{
+	return m_clock;
+}

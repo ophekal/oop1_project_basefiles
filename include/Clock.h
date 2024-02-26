@@ -9,6 +9,7 @@ public:
    //Clock();//pass the time of the game
 	void printClock(sf::RenderWindow& window);
 	void incTime();
+	const sf::Clock& getClock()const;
 	// setTimer();
 
 private:

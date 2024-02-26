@@ -5,6 +5,7 @@
 #include "Board.h"
 #include "InfoBar.h"
 #include "Mouse.h"
+#include "Clock.h"
 
 class Cat;
 class Mouse;
@@ -23,6 +24,7 @@ private:
 	
 	Board m_board;
 	InfoBar m_infoBar;
+	Clock m_clock;
 	
 	int m_levelNum = 0;	//saves the level number
 	double m_levelTime=0;
@@ -32,6 +34,7 @@ private:
 	bool m_levelOver = false;
 	bool m_mouseDead = false;
 	bool m_gameOver = false;
+
 	//int m_numOfCheese = 0;
 	
 	void startGame(sf::RenderWindow& window);

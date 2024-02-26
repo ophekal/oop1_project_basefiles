@@ -44,7 +44,8 @@ enum Background
 	B_START,
 	B_HELP,
 	B_SOUND,
-	B_MUTE
+	B_MUTE,
+	B_BOARD
 };
 
 enum MenuButton

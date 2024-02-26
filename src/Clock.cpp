@@ -7,10 +7,12 @@
 
 //------------------------------------------------------------------------
 
-Clock::Clock()
+void Clock::setClock()
 {
 	m_rectangle.setPosition({ INFO_X,CLOCK_Y });
-	m_rectangle.setTextrue(HandleResources::instance().getInfoBarTexture(B_TIME);
+	m_rectangle.setSize(INFO_SIZE);
+
+	m_rectangle.setTexture(HandleResources::instance().getInfoBarTexture(B_TIME));
 }
 //------------------------------------------------------------------------
 void Clock::incTime()

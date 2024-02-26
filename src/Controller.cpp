@@ -7,7 +7,9 @@
 #include "Cheese.h"
 #include "HandleResources.h"
 #include "MovingObjects.h"
-//------------------------------------------------------------------------
+#include "Clock.h"
+
+
 //-------------------------------------------------------------------------
 
 void Controller::run(sf::RenderWindow& window)
@@ -62,6 +64,9 @@ void Controller::startGame(sf::RenderWindow& window)
 	sf::Clock clock = m_clock.getClock();
 	int numOfCheese = Cheese::getCount();
 	//m_infoBar.setInfoBar(m_levelNum,m_levelTime);
+	m_clock.setClock();
+
+
 	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 
 	{
 		print(window, background);

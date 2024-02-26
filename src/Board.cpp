@@ -20,12 +20,13 @@
 #include <memory>
 #include "HandleResources.h"
 #include <iostream>
+
 //-----------------------------------------------------------------------------
 Board::Board()
 	: m_board(sf::Vector2f(BOARD_HIG, BOARD_WID))
 {
 	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
-	m_board.setFillColor(sf::Color::White);
+	m_board.setTexture(HandleResources::instance().getBackgroundTexture(B_BOARD));
 }
 
 //-----------------------------------------------------------------------------
@@ -237,6 +238,7 @@ void Board::printBoard(sf::RenderWindow& window) const
 		m_staticObjects[index]->draw(window);	
 	}
 }
+
 //--------------------------------------------------------------------------
 sf::Vector2f Board::getTileSize() const
 {
@@ -247,6 +249,7 @@ const sf::RectangleShape& Board::getRectangle() const
 {
 	return m_board;
 }
+
 //--------------------------------------------------------------------------
 void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 	                                   Controller& controller)
@@ -269,8 +272,8 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 		});
 
 }
-//------------------------------------------------------------------------
 
+//------------------------------------------------------------------------
 void Board::clear()
 {
 	m_staticObjects.clear();
@@ -287,6 +290,7 @@ std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()
 	return m_staticObjects;
 
 }
+
 //------------------------------------------------------------------------
 void Board::checkGift(const std::unique_ptr<StaticObjects>& object,
 					  Controller& controller)
@@ -301,112 +305,3 @@ void Board::checkGift(const std::unique_ptr<StaticObjects>& object,
 		}
 	}
 }
-
-
-//
-//
-//
-//	//copying from the file the rows into a string
-//	for (int row = 0; row < m_row; row++)
-//	{
-//		std::string currString = level[row];
-//		m_col = (m_col < currString.size()) ? (int)currString.size() : m_col;
-//		Row currRow = Row();
-//
-//		for (int col = 0; col < currString.size(); col++)
-//		{
-//			TileType tileChar = (TileType)(currString[col]);
-//			Tile currTile(row, col, tileChar);
-//			currRow.push_back(currTile);
-//		}
-//		m_board.push_back(currRow);
-//	}
-//
-//	addBlankTiles();
-//}
-//
-////------------------------------------------------------------------------
-////This constructor is used when there's no existing level, and we read
-////the board size from the user
-//
-//Board::Board(int row, int col)
-//	:m_row(row), m_col(col)
-//{
-//	//updating the m_board row vector
-//	for (int i = 0; i < m_row; i++)
-//	{
-//		Row currRow(col);
-//		m_board.push_back(currRow);
-//		updateTileCoord(i, m_col);
-//	}
-//
-//}
-//
-////-------------------------------------------------------------------------
-//
-////-------------------------------------------------------------------------
-//
-//void Board::printBoard(sf::RenderWindow& window, const std::vector<sf::Texture>& icons) const
-//{
-//	for (int row = 0; row < m_row; row++)
-//	{
-//		m_board[row].printRow(window, icons);
-//	}
-//}
-//
-////------------------------------------------------------------------------
-//
-//int Board::getCol()const
-//{
-//	return m_col;
-//}
-//
-////-------------------------------------------------------------------------
-//
-//int Board::getRow() const
-//{
-//	return m_row;
-//}
-//
-////--------------------------------------------------------------------------
-////This function sends to the tile that's in col place in row the buttontype
-////we pressed on in the toolbar
-//
-//void Board::setTileIcon(int row, int col, ButtonType pressed)
-//{
-//	m_board[row].at(col).setTileIcon(pressed);
-//}
-//
-////--------------------------------------------------------------------------
-////This function finds the mouse in the board and updates the x and y values.
-//
-//void Board::findMouseCoords(int& x, int& y) const
-//{
-//	for (int row = 0; row < m_row; row++)
-//	{
-//		for (int col = 0; col < m_col; col++)
-//		{
-//			if (m_board[row].at(col).getChar() == T_MOUSE)
-//			{
-//				y = row;
-//				x = col;
-//				return;
-//			}
-//		}
-//	}
-//}
-//
-////------------------------------------------------------------------------
-//
-//void Board::saveBoardAndCopyToText(std::ofstream& board) const
-//{
-//	for (int row = 0; row < m_row; row++)
-//	{
-//		for (int col = 0; col < m_col; col++)
-//		{
-//			TileType currChar = m_board[row].at(col).getChar();
-//			board << (char)currChar;
-//		}
-//		board << "\n";
-//	}
-//}

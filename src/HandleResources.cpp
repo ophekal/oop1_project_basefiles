@@ -43,7 +43,7 @@ void HandleResources::updateObjectVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateBackgroundVector()
 {
-	m_backgroundsTextures.resize(8);
+	m_backgroundsTextures.resize(9);
 	m_backgroundsTextures[B_MENU].loadFromFile("menuLandscape.jpg");
 	m_backgroundsTextures[B_GAME].loadFromFile("landscape.png");
 	m_backgroundsTextures[B_SETTINGS].loadFromFile("settings.png");
@@ -52,6 +52,7 @@ void HandleResources::updateBackgroundVector()
 	m_backgroundsTextures[B_HELP].loadFromFile("helpWindow.png");
 	m_backgroundsTextures[B_SOUND].loadFromFile("music.png");
 	m_backgroundsTextures[B_MUTE].loadFromFile("mute.png");
+	m_backgroundsTextures[B_BOARD].loadFromFile("grass.png");
 }
 
 

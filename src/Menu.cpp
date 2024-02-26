@@ -134,9 +134,7 @@ void Menu::pressedHelp()
 //----------------------------------------------------------------------
 void Menu::startGame()
 {
-	std::cout << "in game" << std::endl;
 	Controller controller;
-	std::cout << "in game" << std::endl;
 	controller.run(m_window); //also sound!
 }
 //----------------------------------------------------------------------

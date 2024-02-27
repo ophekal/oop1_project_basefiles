@@ -41,6 +41,7 @@ private:
 	void print(sf::RenderWindow& window, const sf::Sprite& background);
 	void updateGameBackground(const sf::RenderWindow& window, sf::Sprite& background);
 	void moveMouse(sf::Time deltaTime);
+	//void moveCats(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;

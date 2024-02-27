@@ -69,9 +69,13 @@ void Controller::updateGameBackground(const sf::RenderWindow& window,sf::Sprite&
 //------------------------------------------------------------------------
 void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& background)
 {
-	sf::Clock clock = m_clock.getClock();
+	//clock for handeling movements
+	sf::Clock clock= m_clock.getClock();
+
 	int numOfCheese = Cheese::getCount();
 	updateInfoBar();
+
+	//tracks time of the level
 	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
@@ -99,7 +103,6 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
 		updateInfoBar();
-		//m_clock.updateTime(m_clock.getClock().getElapsedTime().asSeconds(), m_levelOver);
 		
 		numOfCheese = Cheese::getCount();
 		if (checkGameStatus(numOfCheese, numOfCats,window,background))
@@ -185,6 +188,8 @@ void Controller::moveCats (sf::Time deltaTime)
 			if (catPtr->isFreeze())
 			{
 				sf::Time elapsedTime = m_clock.getClock().getElapsedTime() - catPtr->getFreezeStartTime();
+
+				//sf::Time elapsedTime = clock.getElapsedTime() - catPtr->getFreezeStartTime();
 				if (elapsedTime >= sf::seconds(4.0f))
 				{
 					catPtr->setCatFreeze(false);
@@ -230,6 +235,7 @@ void Controller::freezeCat()
 	{
 		catPtr->setCatFreeze(true);
 		catPtr->setFreezeStartTime(m_clock.getClock().getElapsedTime());
+		//catPtr->setFreezeStartTime(clock.getClock().getElapsedTime());
 	}
 
 }

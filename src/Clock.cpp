@@ -22,33 +22,29 @@ void Clock::setClock(float levelTime, bool& levelOver)
 //------------------------------------------------------------------------
 void Clock::incTime()
 {
-
+	m_timer += TIMEGIFT;
 }
 //-----------------------------------------------------------------------
 void Clock::printClock(sf::RenderWindow& window, bool& levelOver)
 {
-	updateTime(0, levelOver);
+	updateTime(levelOver);
 	m_rectangle.setText(m_timeString);
 	m_rectangle.printButton(window);
 }
 //-----------------------------------------------------------------------
-const sf::Clock& Clock::getClock()const
+sf::Clock Clock::getClock()const
 {
 	return m_clock;
 }
 //-----------------------------------------------------------------------
-void Clock::updateTime(float time, bool& levelOver)
+void Clock::updateTime(bool& levelOver)
 {
-	//m_timer += time;
-	std::cout << m_timer << std::endl;
 	m_timer -= m_clock.getElapsedTime().asSeconds();
 	m_clock.restart();
-	std::cout << m_timer << std::endl;
-
 
 	if (m_timer <= -1)
 	{
-		//levelOver = true;
+		levelOver = true;
 	}
 	int leftMinutes = m_timer/60;
 	std::cout << leftMinutes << std::endl;
@@ -60,5 +56,4 @@ void Clock::updateTime(float time, bool& levelOver)
 	std::string secString = leftSeconds < 10 ? "0" + std::to_string(leftSeconds) : std::to_string(leftSeconds);
 	std::cout << secString << std::endl;
 	m_timeString = minString + ":" + secString;
-	//m_clock.restart();
 }

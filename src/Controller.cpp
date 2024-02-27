@@ -79,7 +79,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
-	while (1)///*numOfCheese != 0 &&*/ !m_levelOver) // m_levelOver =if the time of the level end 
+	while ( !m_levelOver) // m_levelOver =if the time of the level end 
 	{
 		print(window, background);
 
@@ -345,12 +345,15 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
 	
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
-	int prevLives=0, prevScore=0;
+	int prevLives=0;
 
 	if (mousePtr != nullptr)
 	{
 		prevLives = mousePtr->getLives() -1;
-		prevScore = mousePtr->getScore();
+		if (prevLives == 0)
+		{
+			handleExit(window, background);
+		}
 	}
 	
 	// load the same level again with all the objects
@@ -362,7 +365,7 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 	if (newMousePtr != nullptr)
 	{
 		newMousePtr->setLives(prevLives);
-		newMousePtr->setScore(prevScore);
+		newMousePtr->setScore(m_prevLevelsScore);
 	}
 	updateInfoBar();
 	m_clock.setClock(m_levelTime, m_levelOver);
@@ -407,6 +410,7 @@ void Controller::updateMouseScore()
 	if (mousePtr != nullptr)
 	{
 		mousePtr->setScore(m_totalScore);
+		m_prevLevelsScore = m_totalScore;
 	}
 }
 //------------------------------------------------------------------------

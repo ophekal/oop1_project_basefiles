@@ -35,6 +35,7 @@ private:
 	bool m_mouseDead = false;
 	bool m_gameOver = false;
 	int m_totalScore = 0;
+	int m_prevLevelsScore = 0;
 	
 	void startGame(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;

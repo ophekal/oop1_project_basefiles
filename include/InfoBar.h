@@ -5,6 +5,8 @@
 #include "Button.h"
 #include <string.h>
 
+class MovingObjects;
+
 class InfoBar
 {
 public:
@@ -15,7 +17,8 @@ public:
 	void updateKey(int keys);
 	void updateLevel(int level);
 	void setInfoBar(int levelNum, int score, int key, int lives);
-	void handleClick(const sf::Vector2f& location, bool& gameOver);
+	void handleClick(const sf::Vector2f& location, bool& gameOver, bool& levelOver, std::unique_ptr<MovingObjects>& mouse);
+
 
 private:
 	std::string m_numOfKeys;

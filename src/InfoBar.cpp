@@ -2,12 +2,14 @@
 #include "InfoBar.h"
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
-# include "HandleResources.h"
+#include "HandleResources.h"
+#include "MovingObjects.h"
+#include "Mouse.h"
 
 //-----------------------------------------------------------
-InfoBar::InfoBar()// pass the time of the game
+InfoBar::InfoBar()
 {
-	m_infoBar.resize(7);
+	m_infoBar.resize(8);
 	m_infoBar[0].updateButton(*HandleResources::instance().getInfoBarTexture(B_INFO),INFO_X, INFO_Y,INFO_SIZE);
 	m_infoBar[1].updateButton(*HandleResources::instance().getInfoBarTexture(B_LEVEL),INFO_X, LEVEL_Y, INFO_SIZE);
 	m_infoBar[2].updateButton(*HandleResources::instance().getInfoBarTexture(B_LIVES),INFO_X, LIVES_Y, INFO_SIZE);
@@ -15,6 +17,7 @@ InfoBar::InfoBar()// pass the time of the game
 	m_infoBar[4].updateButton(*HandleResources::instance().getInfoBarTexture(B_HOME), HOME_X, HOME_Y, SOUND_SIZE);
 	m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
 	m_infoBar[6].updateButton(*HandleResources::instance().getInfoBarTexture(B_SCORE), INFO_X, SCORE_Y, INFO_SIZE);
+	m_infoBar[7].updateButton(*HandleResources::instance().getInfoBarTexture(B_RESTART), RESTART_X, RESTART_Y, SOUND_SIZE);
     
 }
 //------------------------------------------------------------------------
@@ -60,7 +63,7 @@ void InfoBar::updateLevel(int level)
 }
 
 //------------------------------------------------------------------------
-void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver)
+void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& levelOver, std::unique_ptr<MovingObjects>& mouse)
 {
 
 	if (m_infoBar[4].getRectangleButton().getGlobalBounds().contains(location))
@@ -83,5 +86,17 @@ void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver)
 			m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
 			// set the music on
 		}
+	}
+	else if (m_infoBar[7].getRectangleButton().getGlobalBounds().contains(location))
+	{
+		levelOver = true;
+		Mouse* mousePtr = dynamic_cast<Mouse*>(mouse.get());
+		int prevLives = 0;
+
+		if (mousePtr != nullptr)
+		{
+			mousePtr->setLives(mousePtr->getLives() + 1);	//in order for life not to change when restarting level
+		}
+		return;
 	}
 }

@@ -353,6 +353,7 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 		if (prevLives == 0)
 		{
 			handleExit(window, background);
+			return;
 		}
 	}
 	
@@ -385,7 +386,7 @@ void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
 {
 	auto location = window.mapPixelToCoords({ event.x,event.y });
 
-	m_infoBar.handleClick(location,m_gameOver);
+	m_infoBar.handleClick(location,m_gameOver,m_levelOver,m_mouse);
 
 }
 //------------------------------------------------------------------------

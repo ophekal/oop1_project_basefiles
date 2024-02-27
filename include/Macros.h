@@ -108,7 +108,8 @@ enum Bar
 	B_LIVES,
 	B_KEYS,
 	B_HOME,
-	B_SCORE
+	B_SCORE,
+	B_RESTART
 };
 
 const sf::Vector2f INFO_SIZE = { 300,110 };
@@ -122,10 +123,12 @@ const float KEYS_Y = 610;
 const float SCORE_Y = 750;
 
 
-const float I_SOUND_X = 100;
+const float I_SOUND_X = 50;
 const float I_SOUND_Y = 900;
-const float HOME_X = 235;
+const float HOME_X = 167.5;
 const float HOME_Y = 900;
+const float RESTART_X = 285;
+const float RESTART_Y = 900;
 
 
 const float LONG_LEVEL = (3*60)+1;

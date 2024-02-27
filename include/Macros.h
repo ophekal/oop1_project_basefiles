@@ -128,5 +128,5 @@ const float HOME_X = 235;
 const float HOME_Y = 900;
 
 
-const double LONG_LEVEL = 3;
-const double SHORT_LEVEL = 1.5;
+const float LONG_LEVEL = 3;
+const float SHORT_LEVEL = 1.5;

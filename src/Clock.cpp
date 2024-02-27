@@ -8,14 +8,13 @@
 
 //------------------------------------------------------------------------
 
-void Clock::setClock(double levelTime)
+void Clock::setClock(float levelTime, bool& levelOver)
 {
 	m_rectangle.updateButton(*HandleResources::instance().getInfoBarTexture(B_TIME), INFO_X, CLOCK_Y, INFO_SIZE);
-	//m_rectangle.setText
-	//m_rectangle.setPosition({ INFO_X,CLOCK_Y });
-	//m_rectangle.setSize(INFO_SIZE);
-
-	//m_rectangle.setTexture(HandleResources::instance().getInfoBarTexture(B_TIME));
+	
+    levelOver = false;
+	m_timer = levelTime;
+	updateTime(levelTime);
 }
 //------------------------------------------------------------------------
 void Clock::incTime()
@@ -25,6 +24,7 @@ void Clock::incTime()
 //-----------------------------------------------------------------------
 void Clock::printClock(sf::RenderWindow& window)
 {
+	m_rectangle.setText(m_timeString);
 	m_rectangle.printButton(window);
 }
 //-----------------------------------------------------------------------
@@ -43,5 +43,5 @@ void Clock::updateTime(float time)
 
 	std::string minString = leftMinutes < 10 ? "0" + std::to_string(leftMinutes) : std::to_string(leftMinutes);
 	std::string secString = leftSeconds < 10 ? "0" + std::to_string(leftSeconds) : std::to_string(leftSeconds);
-	std::string timeString = minString + ":" + secString;
+	m_timeString = minString + ":" + secString;
 }

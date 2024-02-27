@@ -50,6 +50,7 @@ void Controller::run(sf::RenderWindow& window)
 			}
 		}
 		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window, background);
+		return;
 	}
 
 }
@@ -71,7 +72,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 	sf::Clock clock = m_clock.getClock();
 	int numOfCheese = Cheese::getCount();
 	updateInfoBar();
-	m_clock.setClock(m_levelTime);
+	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
 	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 
@@ -98,6 +99,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
 		updateInfoBar();
+		m_clock.updateTime(m_clock.getClock().getElapsedTime().asSeconds());
 		
 		numOfCheese = Cheese::getCount();
 		if (checkGameStatus(numOfCheese, numOfCats,window,background))
@@ -300,7 +302,6 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindo
 bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
 	                              const sf::Sprite& background)
 {
-	//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 	if (numOfCheese == 0) //to the next level
 	{
 		printFeedback(*HandleResources::instance().getScreenTexture(S_GOODJOB),window, background);
@@ -313,7 +314,6 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 		}
 		m_board.clear();
 		m_cats.clear();
-		// calc the score to the next level and print sprite that tell that the level end 
 		return true;
 	}
 
@@ -355,7 +355,6 @@ void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& backgrou
 {
 	m_gameOver = true;
 	printFeedback(*HandleResources::instance().getScreenTexture(S_GAMEOVER),window, background);
-	// print sprite 
 }
 //----------------------------------------------------------------------
 
@@ -399,14 +398,6 @@ void Controller::printFeedback(const sf::Texture& feedback,
 {
 	// Create a sprite using the feedback texture
 	sf::Sprite sprite(feedback);
-
-	////background.setTexture(*gameBackground);
-	//sf::Vector2u textureSize = (feedback).getSize();
-
-	//// Scale the background sprite to fit the window
-	//sprite.setScale((float)(window.getSize().x) / textureSize.x,
-	//	(float)(window.getSize().y) / textureSize.y);
-	// Set the position of the sprite to the center of the window
 	sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
 		window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
 

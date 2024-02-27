@@ -27,7 +27,7 @@ private:
 	Clock m_clock;
 	
 	int m_levelNum = 0;	//saves the level number
-	double m_levelTime=0;
+	float m_levelTime=0;
 	std::vector<std::unique_ptr<MovingObjects>> m_cats;
 	std::unique_ptr<MovingObjects> m_mouse;
 	std::vector<std::string> m_playlist;

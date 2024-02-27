@@ -48,7 +48,7 @@ std::vector<std::string> Board::getBoard() const
 //-------------------------------------------------------------------------
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats,
 						std::unique_ptr<MovingObjects >& mouse,
-						double& levelTime)
+						float & levelTime)
 {
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();

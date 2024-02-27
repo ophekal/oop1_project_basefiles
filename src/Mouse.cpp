@@ -70,8 +70,6 @@ void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 
 	if (MovingObjects::isMovementValid(board, newPosition))
 	{
-		//std::cout << "movement is valid";
-
 		m_object.setPosition(newPosition.getPosition());
 	}
 	else
@@ -119,7 +117,6 @@ void Mouse::collisionHandling(AddLifeGift& gift)
 	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
-	m_lives++;
 }
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(AddTimeGift& gift)
@@ -145,7 +142,6 @@ void Mouse::collisionHandling(Key& key)
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)
 {
-	//change score
 	m_score += 10;
 	cheese.setOffBoard(true);
 }

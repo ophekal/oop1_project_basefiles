@@ -14,7 +14,7 @@ void Clock::setClock(float levelTime, bool& levelOver)
 	
     levelOver = false;
 	m_timer = levelTime;
-	updateTime(levelTime);
+	updateTime(levelTime, levelOver);
 }
 //------------------------------------------------------------------------
 void Clock::incTime()
@@ -33,11 +33,15 @@ const sf::Clock& Clock::getClock()const
 	return m_clock;
 }
 //-----------------------------------------------------------------------
-void Clock::updateTime(float time)
+void Clock::updateTime(float time, bool& levelOver)
 {
 	m_timer += time;
 	m_timer -= m_clock.getElapsedTime().asSeconds();
 
+	if (m_timer <= -1)
+	{
+		levelOver = true;
+	}
 	int leftMinutes = ((int)m_timer) / 60;
 	int leftSeconds = ((int)m_timer) % 60;
 

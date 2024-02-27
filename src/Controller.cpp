@@ -99,7 +99,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
 		updateInfoBar();
-		m_clock.updateTime(m_clock.getClock().getElapsedTime().asSeconds());
+		m_clock.updateTime(m_clock.getClock().getElapsedTime().asSeconds(), m_levelOver);
 		
 		numOfCheese = Cheese::getCount();
 		if (checkGameStatus(numOfCheese, numOfCats,window,background))

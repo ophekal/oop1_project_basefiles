@@ -72,7 +72,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 	sf::Clock clock = m_clock.getClock();
 	int numOfCheese = Cheese::getCount();
 	updateInfoBar();
-	//m_clock.setClock(m_levelTime, m_levelOver);
+	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
 	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 

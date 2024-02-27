@@ -40,7 +40,7 @@ void Clock::updateTime(float time, bool& levelOver)
 
 	if (m_timer <= -1)
 	{
-		levelOver = true;
+		//levelOver = true;
 	}
 	int leftMinutes = ((int)m_timer) / 60;
 	int leftSeconds = ((int)m_timer) % 60;

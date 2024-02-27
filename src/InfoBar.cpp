@@ -78,13 +78,13 @@ void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& l
 		{
 			m_musicOn = false;
 			m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
-			// mute the music;
+			HandleResources::instance().stopMusic();
 		}
 		else
 		{
 			m_musicOn = true;
 			m_infoBar[5].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), I_SOUND_X, I_SOUND_Y, SOUND_SIZE);
-			// set the music on
+			HandleResources::instance().playMusic();
 		}
 	}
 	else if (m_infoBar[7].getRectangleButton().getGlobalBounds().contains(location))

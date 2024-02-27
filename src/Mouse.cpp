@@ -165,6 +165,7 @@ int Mouse::getKeys()const
 {
 	return m_keys;
 }
+
 //---------------------------------------------------------------------
 int Mouse::getLives()const
 {
@@ -173,7 +174,7 @@ int Mouse::getLives()const
 //---------------------------------------------------------------------
 void Mouse::setLives(int setLive)
 {
-	m_lives+= setLive;
+	m_lives= setLive;
 }
 //---------------------------------------------------------------------
 int Mouse::getScore()const

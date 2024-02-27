@@ -79,7 +79,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
-	while (numOfCheese != 0/* && !m_levelOver*/) // m_levelOver =if the time of the level end 
+	while (1)///*numOfCheese != 0 &&*/ !m_levelOver) // m_levelOver =if the time of the level end 
 	{
 		print(window, background);
 
@@ -221,7 +221,7 @@ void Controller::incLife()
 
 	if (mousePtr != nullptr)
 	{
-		mousePtr->setLives(1);
+		mousePtr->setLives(mousePtr->getLives() + 1);
 	}	
 }
 //-----------------------------------------------------------------------
@@ -298,11 +298,9 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindo
 		handleDeadMouse(window, background);
 		return false;
 	}
-	if(checkLevelStatus(numOfCheese, numOfCats,window, background))
-	{
-		return true;
-	}
-	return false;
+	
+	return checkLevelStatus(numOfCheese, numOfCats, window, background);
+	
 }
 //-----------------------------------------------------------------------
 bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
@@ -327,7 +325,7 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 	{
 		// start the level again
 		handleLevelOver(window, background);
-		return true;
+		return false;
 	}
 
 	return false;
@@ -341,28 +339,35 @@ void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& bac
 	m_mouseDead = false;
 }
 //-----------------------------------------------------------------------
+
 void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background)
 {
-	// print sprite that tell that the level end because the time end,
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
-	std::cout << "after feedback\n";
-
+	
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+	int prevLives=0, prevScore=0;
 
 	if (mousePtr != nullptr)
 	{
-		mousePtr->setLives(-1);
+		prevLives = mousePtr->getLives() -1;
+		prevScore = mousePtr->getScore();
 	}
-	m_board.reset();
-	std::cout << "after reset\n";
-	m_cats.clear();
-	std::cout << "after clear cats\n";
-
+	
 	// load the same level again with all the objects
+	m_board.reset();
+	m_cats.clear();
 	m_board.updateBoard(m_cats, m_mouse,m_levelTime);
-	std::cout << "after update\n";
-	m_levelOver = false;
+
+	Mouse* newMousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+	if (newMousePtr != nullptr)
+	{
+		newMousePtr->setLives(prevLives);
+		newMousePtr->setScore(prevScore);
+	}
+	updateInfoBar();
+	m_clock.setClock(m_levelTime, m_levelOver);
 }
+
 //----------------------------------------------------------------------
 
 void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& background)

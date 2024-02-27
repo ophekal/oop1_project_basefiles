@@ -107,6 +107,7 @@ void Mouse::collisionHandling(Cat& cat)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(KillCatGift& gift)
 {
+	HandleResources::instance().playSound(G_GIFT);
 	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
@@ -114,6 +115,7 @@ void Mouse::collisionHandling(KillCatGift& gift)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(AddLifeGift& gift)
 {
+	HandleResources::instance().playSound(G_GIFT);
 	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
@@ -121,6 +123,7 @@ void Mouse::collisionHandling(AddLifeGift& gift)
 //-----------------------------------------------------------------------
 void Mouse::collisionHandling(AddTimeGift& gift)
 {
+	HandleResources::instance().playSound(G_GIFT);
 	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);
@@ -128,6 +131,7 @@ void Mouse::collisionHandling(AddTimeGift& gift)
 //----------------------------------------------------------------------
 void Mouse::collisionHandling(FreezeCatGift& gift)
 {
+	HandleResources::instance().playSound(G_GIFT);
 	m_score += 5;
 	gift.setOffBoard(true);
 	gift.setActive(true);

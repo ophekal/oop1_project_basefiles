@@ -140,12 +140,12 @@ const float TIMEGIFT = 31;
 
 //----------------sounds-----------
 
-enum Sound 
+enum GameSound 
 {
-	S_CHESSE,
-	S_GIFT,
-	S_MOUSE,
-	S_WIN,
-	S_LOST,
-	S_KEY
+	G_CHESSE,
+	G_GIFT,
+	G_MOUSE,
+	G_WIN,
+	G_LOST,
+	G_KEY
 };

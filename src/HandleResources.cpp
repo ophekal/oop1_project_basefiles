@@ -15,6 +15,7 @@ HandleResources::HandleResources()
 	updateScreenVector();
 	updateGameSounds();
 	m_font.loadFromFile("font.ttf");
+	m_gameMusic.openFromFile("gameMusic.wav");
 }
 
 //------------------------------------------------------------------------
@@ -84,12 +85,12 @@ void HandleResources::updateScreenVector()
 void HandleResources::updateGameSounds()
 {
 	m_gameSounds.resize(6);
-	m_gameSounds[S_CHESSE].loadFromFile("yummy.wav");
-	m_gameSounds[S_GIFT].loadFromFile("gift.wav");
-	m_gameSounds[S_MOUSE].loadFromFile("mouseEaten.wav");
-	m_gameSounds[S_WIN].loadFromFile("goodJobYouWin.wav");
-	m_gameSounds[S_LOST].loadFromFile("tryAgainGameOver.wav");
-	m_gameSounds[S_KEY].loadFromFile("keys.wav");
+	m_gameSounds[G_CHESSE].loadFromFile("yummy.wav");
+	m_gameSounds[G_GIFT].loadFromFile("gift.wav");
+	m_gameSounds[G_MOUSE].loadFromFile("mouseEaten.wav");
+	m_gameSounds[G_WIN].loadFromFile("goodJobYouWin.wav");
+	m_gameSounds[G_LOST].loadFromFile("tryAgainGameOver.wav");
+	m_gameSounds[G_KEY].loadFromFile("keys.wav");
 }
 //--------------------------------------------------------------------------
 
@@ -122,9 +123,20 @@ const sf::Font* HandleResources::getFont()
 	return & m_font;
 }
 //-------------------------------------------------------------------------
-void HandleResources::playSound(Sound sound)
+void HandleResources::playSound(GameSound sound)
 {
 	sf::Sound currSound(m_gameSounds[sound]);
-	currSound.setVolume(5);
+	currSound.setVolume(50);
 	currSound.play();
+}
+//-------------------------------------------------------------------------
+void HandleResources::playMusic()
+{
+	m_gameMusic.setLoop(true);
+	m_gameMusic.play();
+}
+//--------------------------------------------------------------------------
+void HandleResources::stopMusic()
+{
+	m_gameMusic.stop();
 }

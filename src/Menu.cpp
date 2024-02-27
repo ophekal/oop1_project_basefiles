@@ -19,6 +19,7 @@ Menu::Menu()
 //------------------------------------------------------------------------
 void Menu::run()
 {
+	HandleResources::instance().playMusic();
 	sf::Sprite background;
 	const sf::Texture* backgroundTexture = HandleResources::instance().getBackgroundTexture(B_MENU);
 	background.setTexture(*backgroundTexture);
@@ -145,13 +146,13 @@ void Menu::handleMusic()
 	{
 		m_musicOn = false;
 		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE),SOUND_X, SOUND_Y,SOUND_SIZE);
-		// mute the music;
+		HandleResources::instance().stopMusic();
 	}
 	else
 	{
 		m_musicOn = true;
 		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), SOUND_X, SOUND_Y,SOUND_SIZE);
-		// set the music on
+		HandleResources::instance().playMusic();
 	}
 
 }

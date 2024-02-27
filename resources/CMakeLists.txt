@@ -40,3 +40,8 @@ configure_file ("Playlist.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Level001.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Level002.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Level003.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+
+configure_file ("goodJobYouWin.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("keys.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("tryAgainGameOver.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("yummy.wav" ${CMAKE_BINARY_DIR} COPYONLY)

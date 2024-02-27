@@ -32,7 +32,8 @@ private:
 	std::vector<sf::Texture> m_screenTextures;
 
 	sf::Font m_font;				//holds the font
+	sf::Music m_gameMusic;
 	//sf::Sound m_sounds[numOfSounds];	//hold the different sounds of the game
-	//sf::SoundBuffer m_soundBuffer[numOfSounds];
+	sf::SoundBuffer m_soundBuffer[numOfSounds];
 
 };

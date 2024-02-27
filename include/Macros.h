@@ -136,3 +136,16 @@ const float SHORT_LEVEL = ((1.5)*60)+1;
 
 //---------------presents-----------
 const float TIMEGIFT = 31;
+
+
+//----------------sounds-----------
+
+enum Sound 
+{
+	S_CHESSE,
+	S_GIFT,
+	S_MOUSE,
+	S_WIN,
+	S_LOST,
+	S_KEY
+};

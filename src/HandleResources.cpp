@@ -13,6 +13,7 @@ HandleResources::HandleResources()
 	updateBackgroundVector();
 	updateInfoBarVector();
 	updateScreenVector();
+	updateGameSounds();
 	m_font.loadFromFile("font.ttf");
 }
 
@@ -79,7 +80,17 @@ void HandleResources::updateScreenVector()
 	m_screenTextures[S_TRYAGAIN].loadFromFile("tryAgain.png");
 	m_screenTextures[S_GOODJOB].loadFromFile("goodJob.png");
 }
-
+//-------------------------------------------------------------------------
+void HandleResources::updateGameSounds()
+{
+	m_gameSounds.resize(6);
+	m_gameSounds[S_CHESSE].loadFromFile("yummy.wav");
+	m_gameSounds[S_GIFT].loadFromFile("gift.wav");
+	m_gameSounds[S_MOUSE].loadFromFile("mouseEaten.wav");
+	m_gameSounds[S_WIN].loadFromFile("goodJobYouWin.wav");
+	m_gameSounds[S_LOST].loadFromFile("tryAgainGameOver.wav");
+	m_gameSounds[S_KEY].loadFromFile("keys.wav");
+}
 //--------------------------------------------------------------------------
 
 const sf::Texture* HandleResources::getInfoBarTexture(Bar icon)
@@ -109,4 +120,11 @@ const sf::Texture* HandleResources::getBackgroundTexture(Background icon)
 const sf::Font* HandleResources::getFont()
 {
 	return & m_font;
+}
+//-------------------------------------------------------------------------
+void HandleResources::playSound(Sound sound)
+{
+	sf::Sound currSound(m_gameSounds[sound]);
+	currSound.setVolume(5);
+	currSound.play();
 }

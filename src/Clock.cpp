@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "HandleResources.h"
 #include <string>
+#include <iostream>
 
 //------------------------------------------------------------------------
 
@@ -14,7 +15,9 @@ void Clock::setClock(float levelTime, bool& levelOver)
 	
     levelOver = false;
 	m_timer = levelTime;
-	updateTime(levelTime, levelOver);
+	//std::cout << m_timer << std::endl;
+	m_clock.restart();
+	//updateTime(levelTime, levelOver);
 }
 //------------------------------------------------------------------------
 void Clock::incTime()
@@ -22,8 +25,9 @@ void Clock::incTime()
 
 }
 //-----------------------------------------------------------------------
-void Clock::printClock(sf::RenderWindow& window)
+void Clock::printClock(sf::RenderWindow& window, bool& levelOver)
 {
+	updateTime(0, levelOver);
 	m_rectangle.setText(m_timeString);
 	m_rectangle.printButton(window);
 }
@@ -35,17 +39,26 @@ const sf::Clock& Clock::getClock()const
 //-----------------------------------------------------------------------
 void Clock::updateTime(float time, bool& levelOver)
 {
-	m_timer += time;
+	//m_timer += time;
+	std::cout << m_timer << std::endl;
 	m_timer -= m_clock.getElapsedTime().asSeconds();
+	m_clock.restart();
+	std::cout << m_timer << std::endl;
+
 
 	if (m_timer <= -1)
 	{
 		//levelOver = true;
 	}
-	int leftMinutes = ((int)m_timer) / 60;
-	int leftSeconds = ((int)m_timer) % 60;
+	int leftMinutes = m_timer/60;
+	std::cout << leftMinutes << std::endl;
+	int leftSeconds = (int)m_timer % 60;
+	std::cout << leftSeconds << std::endl;
 
 	std::string minString = leftMinutes < 10 ? "0" + std::to_string(leftMinutes) : std::to_string(leftMinutes);
+	std::cout << minString << std::endl;
 	std::string secString = leftSeconds < 10 ? "0" + std::to_string(leftSeconds) : std::to_string(leftSeconds);
+	std::cout << secString << std::endl;
 	m_timeString = minString + ":" + secString;
+	//m_clock.restart();
 }

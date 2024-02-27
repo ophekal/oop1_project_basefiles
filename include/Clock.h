@@ -10,7 +10,7 @@ public:
 	Clock() = default;
 	void setClock(float levelTime, bool& levelOver);
 	void updateTime(float time, bool& levelOver);
-	void printClock(sf::RenderWindow& window);
+	void printClock(sf::RenderWindow& window, bool& levelOver);
 	void incTime();
 	const sf::Clock& getClock()const;
 

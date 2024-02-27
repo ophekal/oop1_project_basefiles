@@ -26,7 +26,7 @@ public:
 	int getLives()const;
 	void setLives(int setLive);
 	int getScore()const;
-	void setScore(int addScore);
+	void setScore(int score);
 
 protected:
 	int m_lives = 3;

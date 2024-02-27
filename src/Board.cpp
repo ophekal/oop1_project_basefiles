@@ -198,7 +198,6 @@ void Board::setMouse(std::unique_ptr<MovingObjects >& mouse,
 {
 	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_L_MOUSE);
 	mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
-	//mouse->setOrigin();
 
 }
 //------------------------------------------------------------------------

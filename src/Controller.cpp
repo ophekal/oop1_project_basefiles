@@ -38,6 +38,7 @@ void Controller::run(sf::RenderWindow& window)
 
 			m_board.readTheLevel(levelFile);    //the board game is ready
 			m_board.updateBoard(m_cats,m_mouse,m_levelTime); //function that also updates the moving objects                  
+			updateMouseScore();
 			m_levelNum++;
 			startGame(window);
 			if (m_gameOver)
@@ -45,6 +46,7 @@ void Controller::run(sf::RenderWindow& window)
 				return;
 			}
 		}
+		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window);
 	}
 
 }
@@ -93,7 +95,7 @@ void Controller::startGame(sf::RenderWindow& window)
 		updateInfoBar();
 		
 		numOfCheese = Cheese::getCount();
-		if (checkGameStatus(numOfCheese, numOfCats))
+		if (checkGameStatus(numOfCheese, numOfCats,window))
 		{
 			break;
 		}
@@ -208,9 +210,7 @@ void Controller::incLife()
 	if (mousePtr != nullptr)
 	{
 		mousePtr->setLives(1);
-		//m_infoBar.updateLife(mousePtr->getLives());
-	}
-	
+	}	
 }
 //-----------------------------------------------------------------------
 void Controller::freezeCat()
@@ -265,7 +265,7 @@ void Controller::initMovingObjects()
 
 }
 //-----------------------------------------------------------------------
-bool Controller::checkGameStatus(int numOfCheese, int numOfCats)
+bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window)
 {
 	if (m_mouseDead)
 	{
@@ -275,37 +275,37 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats)
 		{
 			if ((mousePtr->getLives()) == 0)
 			{
-				handleExit();
+				handleExit(window);
 				return true;
 			}
 		}
 
 		//return to the init postion of the moving objects
-		handleDeadMouse();
+		handleDeadMouse(window);
 		return false;
 	}
-	if(checkLevelStatus(numOfCheese, numOfCats))
+	if(checkLevelStatus(numOfCheese, numOfCats,window))
 	{
 		return true;
 	}
 	return false;
 }
 //-----------------------------------------------------------------------
-bool Controller::checkLevelStatus(int numOfCheese, int numOfCats)
+bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window)
 {
 	//std::cout << "num of cheese that stay? " << Cheese::getCount() << std::endl;
 	if (numOfCheese == 0) //to the next level
 	{
-		m_board.clear();
-		m_cats.clear();
+		printFeedback(*HandleResources::instance().getScreenTexture(S_GOODJOB),window);
 		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 		if (mousePtr != nullptr)
 		{
 			m_totalScore = mousePtr->getScore();
 			m_totalScore += 25;  
 			m_totalScore += (5 * numOfCats);
-			mousePtr->setScore(m_totalScore);
 		}
+		m_board.clear();
+		m_cats.clear();
 		// calc the score to the next level and print sprite that tell that the level end 
 		return true;
 	}
@@ -313,25 +313,26 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats)
 	if (m_levelOver)
 	{
 		// start the level again
-		handleLevelOver();
+		handleLevelOver(window);
 		return true;
 	}
 
 	return false;
 }
 //-----------------------------------------------------------------------
-void Controller::handleDeadMouse()
+void Controller::handleDeadMouse(sf::RenderWindow& window)
 {
 	// print sprite that tell that the player lost because the cat eat him 
-
+	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window);
 	//function that return the mouse and cat to their first location
 	initMovingObjects();
 	m_mouseDead = false;
 }
 //-----------------------------------------------------------------------
-void Controller::handleLevelOver()
+void Controller::handleLevelOver(sf::RenderWindow& window)
 {
 	// print sprite that tell that the level end because the time end,
+	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window);
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 
 	if (mousePtr != nullptr)
@@ -343,14 +344,16 @@ void Controller::handleLevelOver()
 }
 //----------------------------------------------------------------------
 
-void Controller::handleExit()
+void Controller::handleExit(sf::RenderWindow& window)
 {
 	m_gameOver = true;
+	printFeedback(*HandleResources::instance().getScreenTexture(S_GAMEOVER),window);
 	// print sprite 
 }
 //----------------------------------------------------------------------
 
-void Controller::handleClick(const sf::Event::MouseButtonEvent& event,const sf::RenderWindow& window)
+void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
+	                         const sf::RenderWindow& window)
 {
 	auto location = window.mapPixelToCoords({ event.x,event.y });
 
@@ -371,4 +374,35 @@ void Controller::updateInfoBar()
 		lives = mousePtr->getLives();
 	}
 	m_infoBar.setInfoBar(m_levelNum, m_totalScore, keys, lives);
+}
+//------------------------------------------------------------------------
+void Controller::updateMouseScore()
+{
+	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
+	if (mousePtr != nullptr)
+	{
+		mousePtr->setScore(m_totalScore);
+	}
+}
+//------------------------------------------------------------------------
+
+void Controller::printFeedback(const sf::Texture& feedback, 
+	                           sf::RenderWindow& window)const
+{
+	// Create a sprite using the feedback texture
+	sf::Sprite sprite(feedback);
+
+	// Set the position of the sprite to the center of the window
+	sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
+		window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
+
+	// Clear the window
+	window.clear();
+
+	// Draw the sprite onto the window
+	window.draw(sprite);
+
+	// Display the content of the window
+	window.display();
+	sf::sleep(sf::seconds(2));
 }

@@ -185,7 +185,7 @@ int Mouse::getScore()const
 	return m_score;
 }
 //---------------------------------------------------------------------
-void Mouse::setScore(int addScore)
+void Mouse::setScore(int score)
 {
-	m_score += addScore;
+	m_score = score;
 }

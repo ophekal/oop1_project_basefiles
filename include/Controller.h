@@ -44,11 +44,13 @@ private:
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
 	void initMovingObjects();
-	bool checkLevelStatus(int numOfCheese, int numOfCats);
-	void handleDeadMouse();
-	void handleLevelOver();
-	bool checkGameStatus(int numOfCheese, int numOfCats);
-	void handleExit();
+	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window);
+	void handleDeadMouse(sf::RenderWindow& window);
+	void handleLevelOver(sf::RenderWindow& window);
+	bool checkGameStatus(int numOfCheese, int numOfCats,sf::RenderWindow& window);
+	void handleExit(sf::RenderWindow& window);
 	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
 	void updateInfoBar();
+	void updateMouseScore();
+	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window)const;
 };

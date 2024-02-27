@@ -392,9 +392,15 @@ void Controller::printFeedback(const sf::Texture& feedback,
 	// Create a sprite using the feedback texture
 	sf::Sprite sprite(feedback);
 
-	// Set the position of the sprite to the center of the window
-	sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
-		window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
+	//background.setTexture(*gameBackground);
+	sf::Vector2u textureSize = (feedback).getSize();
+
+	// Scale the background sprite to fit the window
+	sprite.setScale((float)(window.getSize().x) / textureSize.x,
+		(float)(window.getSize().y) / textureSize.y);
+	//// Set the position of the sprite to the center of the window
+	//sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
+	//	window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
 
 	// Clear the window
 	window.clear();

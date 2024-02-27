@@ -126,7 +126,7 @@ const sf::Font* HandleResources::getFont()
 void HandleResources::playSound(GameSound sound)
 {
 	sf::Sound currSound(m_gameSounds[sound]);
-	currSound.setVolume(50);
+	//currSound.setVolume(50);
 	currSound.play();
 }
 //-------------------------------------------------------------------------

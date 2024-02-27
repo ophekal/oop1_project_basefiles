@@ -138,5 +138,5 @@ void HandleResources::playMusic()
 //--------------------------------------------------------------------------
 void HandleResources::stopMusic()
 {
-	m_gameMusic.stop();
+	m_gameMusic.pause();
 }

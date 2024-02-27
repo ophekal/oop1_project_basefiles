@@ -36,21 +36,25 @@ private:
 	bool m_gameOver = false;
 	int m_totalScore = 0;
 	
-	void startGame(sf::RenderWindow& window);
+	void startGame(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;
-	void print(sf::RenderWindow& window, sf::Sprite& background);
+	void print(sf::RenderWindow& window, const sf::Sprite& background);
+	void updateGameBackground(const sf::RenderWindow& window, sf::Sprite& background);
 	void moveMouse(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
 	void initMovingObjects();
-	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window);
-	void handleDeadMouse(sf::RenderWindow& window);
-	void handleLevelOver(sf::RenderWindow& window);
-	bool checkGameStatus(int numOfCheese, int numOfCats,sf::RenderWindow& window);
-	void handleExit(sf::RenderWindow& window);
+	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
+		                  const sf::Sprite& background);
+	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
+	void handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background);
+	bool checkGameStatus(int numOfCheese, int numOfCats,sf::RenderWindow& window,
+		                 const sf::Sprite& background);
+	void handleExit(sf::RenderWindow& window, const sf::Sprite& background);
 	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
 	void updateInfoBar();
 	void updateMouseScore();
-	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window)const;
+	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window,
+		               const sf::Sprite& background)const;
 };

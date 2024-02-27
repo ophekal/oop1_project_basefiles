@@ -275,8 +275,14 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 //------------------------------------------------------------------------
 void Board::clear()
 {
-	m_staticObjects.clear();
+	reset();
 	m_currLevel.clear();
+}
+
+//------------------------------------------------------------------------
+void Board::reset()
+{
+	m_staticObjects.clear();
 	m_tileSize = { 0,0 };
     m_boardHeight = 0;	//to initialize the values
 	m_boardWidth = 0;

@@ -47,13 +47,9 @@ void Clock::updateTime(bool& levelOver)
 		levelOver = true;
 	}
 	int leftMinutes = m_timer/60;
-	std::cout << leftMinutes << std::endl;
 	int leftSeconds = (int)m_timer % 60;
-	std::cout << leftSeconds << std::endl;
 
 	std::string minString = leftMinutes < 10 ? "0" + std::to_string(leftMinutes) : std::to_string(leftMinutes);
-	std::cout << minString << std::endl;
 	std::string secString = leftSeconds < 10 ? "0" + std::to_string(leftSeconds) : std::to_string(leftSeconds);
-	std::cout << secString << std::endl;
 	m_timeString = minString + ":" + secString;
 }

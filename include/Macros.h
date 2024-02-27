@@ -128,7 +128,7 @@ const float HOME_X = 235;
 const float HOME_Y = 900;
 
 
-const float LONG_LEVEL = (3*60)+1;
+const float LONG_LEVEL = (10)+1;
 const float SHORT_LEVEL = ((1.5)*60)+1;
 
 //---------------presents-----------

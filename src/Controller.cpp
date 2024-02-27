@@ -294,7 +294,7 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindo
 			}
 		}
 
-		//return to the init postion of the moving objects
+		//handle dead mouse while life isn't zero
 		handleDeadMouse(window, background);
 		return false;
 	}
@@ -335,7 +335,6 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 //-----------------------------------------------------------------------
 void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background)
 {
-	// print sprite that tell that the player lost because the cat eat him 
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
 	//function that return the mouse and cat to their first location
 	initMovingObjects();
@@ -346,14 +345,23 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 {
 	// print sprite that tell that the level end because the time end,
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
+	std::cout << "after feedback\n";
+
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 
 	if (mousePtr != nullptr)
 	{
 		mousePtr->setLives(-1);
 	}
+	m_board.reset();
+	std::cout << "after reset\n";
+	m_cats.clear();
+	std::cout << "after clear cats\n";
+
 	// load the same level again with all the objects
 	m_board.updateBoard(m_cats, m_mouse,m_levelTime);
+	std::cout << "after update\n";
+	m_levelOver = false;
 }
 //----------------------------------------------------------------------
 

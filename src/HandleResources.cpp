@@ -7,9 +7,9 @@
 
 
 //------------------------------------------------------------------------
-//update all the resources of the play
 HandleResources::HandleResources()
 {
+	//update all the resources of the game
 	updateObjectVector();
 	updateBackgroundVector();
 	updateInfoBarVector();
@@ -26,6 +26,7 @@ HandleResources& HandleResources::instance()
 	static HandleResources inst;
 	return inst;
 }
+
 //------------------------------------------------------------------------
 void HandleResources::updateObjectVector()
 {
@@ -59,7 +60,6 @@ void HandleResources::updateBackgroundVector()
 	m_backgroundsTextures[B_BOARD].loadFromFile("grass.png");
 }
 
-
 //-------------------------------------------------------------------------
 void HandleResources::updateInfoBarVector()
 {
@@ -84,6 +84,7 @@ void HandleResources::updateScreenVector()
 	m_screenTextures[S_GOODJOB].loadFromFile("goodJob.png");
 	m_screenTextures[S_FINALSCORE].loadFromFile("finalScore.png");
 }
+
 //-------------------------------------------------------------------------
 void HandleResources::updateBufferSounds()
 {
@@ -95,6 +96,7 @@ void HandleResources::updateBufferSounds()
 	m_bufferSounds[G_LOST].loadFromFile("tryAgainGameOver.wav");
 	m_bufferSounds[G_KEY].loadFromFile("keys.wav");
 }
+
 //-------------------------------------------------------------------------
 void HandleResources::updateGameSounds()
 {
@@ -106,15 +108,14 @@ void HandleResources::updateGameSounds()
 	m_gameSound[G_LOST].setBuffer(m_bufferSounds[G_LOST]);
 	m_gameSound[G_KEY].setBuffer(m_bufferSounds[G_KEY]);
 }
-//--------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------
 const sf::Texture* HandleResources::getInfoBarTexture(Bar icon)
 {
 	return &(m_infoBarTextures[icon]);
 }
 
 //--------------------------------------------------------------------------
-
 const sf::Texture* HandleResources::getScreenTexture(Screen icon)
 {
 	return &(m_screenTextures[icon]);
@@ -125,28 +126,33 @@ const sf::Texture* HandleResources::getObjectTexture(IconType icon)
 {
 	return &(m_objectsTextures[icon]);
 }
+
 //-------------------------------------------------------------------------
 const sf::Texture* HandleResources::getBackgroundTexture(Background icon)
 {
 	return &(m_backgroundsTextures[icon]);
 }
+
 //-------------------------------------------------------------------------
 const sf::Font* HandleResources::getFont()
 {
 	return & m_font;
 }
+
 //-------------------------------------------------------------------------
 void HandleResources::playSound(GameSound sound)
 {
 	m_gameSound[sound].setVolume(50);
 	m_gameSound[sound].play();
 }
+
 //-------------------------------------------------------------------------
 void HandleResources::playMusic()
 {
 	m_gameMusic.setLoop(true);
 	m_gameMusic.play();
 }
+
 //--------------------------------------------------------------------------
 void HandleResources::stopMusic()
 {

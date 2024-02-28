@@ -3,15 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
-
-//------------------------------------------------------------------------
-GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
+//----------------------------------------------------------------------------------------
+GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position,
+                         const sf::Vector2f& size)
     : m_object(size),m_offBoard(false)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 bool GameObjects::checkCollision(GameObjects& other)
 {
     if (&other == this)
@@ -19,8 +20,8 @@ bool GameObjects::checkCollision(GameObjects& other)
         return false;
     }
 
-    auto overLapping = 0.1f;
-    auto sizeDecrese = 1.3;
+    float overLapping = 0.1f;
+    float sizeDecrese = 1.3f;
     
     sf::FloatRect object = m_object.getGlobalBounds(),
                   otherObject = other.getGlobalBounds();
@@ -37,21 +38,25 @@ bool GameObjects::checkCollision(GameObjects& other)
 
     return object.intersects(otherObject);
 }
+
 //-------------------------------------------------------------------------
 void GameObjects::draw(sf::RenderWindow& window)
 {
     window.draw(m_object);
 }
+
 //--------------------------------------------------------------------------
 bool GameObjects::offBoard()const
 {
     return m_offBoard;
 }
+
 //--------------------------------------------------------------------------
 void GameObjects::setOffBoard(bool off)
 {
     m_offBoard = off;
 }
+
 //--------------------------------------------------------------------------
 const sf::FloatRect GameObjects::getGlobalBounds()const
 {

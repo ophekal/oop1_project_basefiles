@@ -6,7 +6,7 @@
 #include "MovingObjects.h"
 #include "Mouse.h"
 
-//-----------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------
 InfoBar::InfoBar()
 {
 	m_infoBar.resize(8);
@@ -20,7 +20,8 @@ InfoBar::InfoBar()
 	m_infoBar[7].updateButton(*HandleResources::instance().getInfoBarTexture(B_RESTART), RESTART_X, RESTART_Y, SOUND_SIZE);
     
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::setInfoBar(int levelNum, int score, int key,int lives,bool& musicOn)
 {
 	updateLife(lives);
@@ -29,7 +30,8 @@ void InfoBar::setInfoBar(int levelNum, int score, int key,int lives,bool& musicO
 	updateLevel(levelNum);	
 	checkMusic(musicOn);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::printInfoBar(sf::RenderWindow& window)
 {
 	for (auto index = 0; index < m_infoBar.size(); index++)
@@ -38,39 +40,41 @@ void InfoBar::printInfoBar(sf::RenderWindow& window)
 	}
 }
 
-//------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::updateLife(int lives)
 {
 	m_numOfLives = std::to_string(lives);
 	m_infoBar[2].setText(m_numOfLives);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::updateScore(int score)
 {
 	m_score = std::to_string(score);
 	m_infoBar[6].setText(m_score);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::updateKey(int keys)
 {
 	m_numOfKeys = std::to_string(keys);
 	m_infoBar[3].setText(m_numOfKeys);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::updateLevel(int level)
 {
 	m_numOfLevel = std::to_string(level);
 	m_infoBar[1].setText(m_numOfLevel);
 }
 
-//------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& levelOver,
 	                      std::unique_ptr<MovingObjects>& mouse, bool& musicOn)
 {
-
 	if (m_infoBar[4].getRectangleButton().getGlobalBounds().contains(location))
 	{
-		//the player press on home
+		//the player pressed on home
 		gameOver = true;
 		return;
 	}
@@ -82,7 +86,6 @@ void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& l
 	{
 		levelOver = true;
 		Mouse* mousePtr = dynamic_cast<Mouse*>(mouse.get());
-
 		if (mousePtr != nullptr)
 		{
 			mousePtr->setLives(mousePtr->getLives() + 1);	//in order for life not to change when restarting level
@@ -90,8 +93,8 @@ void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& l
 		return;
 	}
 }
-//------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::updateMusic(bool& musicOn)
 {
 	if (musicOn)
@@ -107,7 +110,8 @@ void InfoBar::updateMusic(bool& musicOn)
 		HandleResources::instance().playMusic();
 	}
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------
 void InfoBar::checkMusic(const bool& musicOn)
 {
 	if (musicOn)

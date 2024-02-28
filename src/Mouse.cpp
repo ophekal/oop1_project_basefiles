@@ -1,5 +1,4 @@
 
-
 #include <SFML/Graphics.hpp>
 #include "Mouse.h"
 #include <iostream>
@@ -13,23 +12,21 @@
 #include "AddTimeGift.h"
 #include "FreezeCatGift.h"
 #include "KillCatGift.h"
-//------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------------
 Mouse::Mouse(const sf::Texture& icon, const sf::Vector2f& position, const sf::Vector2f& size)
 	: MovingObjects(icon, position, size)
 {
 	MovingObjects::setObjectSpeed(100.f);
 }
 
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 					const std::unique_ptr<MovingObjects>& mouse,
 					const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
-	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		//we need to do scale if turns left since picture is to the right
 		setDirection(Directions[D_LEFT]);
 		m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_MOUSE));
 		checkMovement(deltaTime, board);
@@ -58,9 +55,9 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 	{
 		m_direction = { 0,0 };
 	}
-
 }
-//-----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 {
 	sf::RectangleShape newPosition= m_object;
@@ -74,10 +71,9 @@ void Mouse::checkMovement(sf::Time deltaTime, const sf::RectangleShape& board)
 	{
 		m_object.setPosition(m_position);
 	}
-
 }
 
-//-----------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(GameObjects& object)
 {
 	if (&object == this)
@@ -86,24 +82,28 @@ void Mouse::collisionHandling(GameObjects& object)
 	}
 	object.collisionHandling(*this);
 }
-//-----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Wall& wall)
 {
 	m_object.setPosition(m_position);
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Mouse& mouse)
 {
 
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Cat& cat)
 {
 	HandleResources::instance().playSound(G_MOUSE);
 	m_lives--;
 	setOffBoard(true);  
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(KillCatGift& gift)
 {
 	HandleResources::instance().playSound(G_GIFT);
@@ -111,7 +111,8 @@ void Mouse::collisionHandling(KillCatGift& gift)
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(AddLifeGift& gift)
 {
 	HandleResources::instance().playSound(G_GIFT);
@@ -119,7 +120,8 @@ void Mouse::collisionHandling(AddLifeGift& gift)
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
-//-----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(AddTimeGift& gift)
 {
 	HandleResources::instance().playSound(G_GIFT);
@@ -127,7 +129,8 @@ void Mouse::collisionHandling(AddTimeGift& gift)
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
-//----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(FreezeCatGift& gift)
 {
 	HandleResources::instance().playSound(G_GIFT);
@@ -135,21 +138,24 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 	gift.setOffBoard(true);
 	gift.setActive(true);
 }
-//---------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Key& key)
 {
 	HandleResources::instance().playSound(G_KEY);
 	m_keys++;
 	key.setOffBoard(true); 
 }
-//---------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)
 {
 	HandleResources::instance().playSound(G_CHEESE);
 	m_score += 10;
 	cheese.setOffBoard(true);
 }
-//----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::collisionHandling(Door& door)
 {
 	if (m_keys > 0)
@@ -162,30 +168,33 @@ void Mouse::collisionHandling(Door& door)
 	{
 		m_object.setPosition(m_position);
 	}
-
 }
-//----------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 int Mouse::getKeys()const
 {
 	return m_keys;
 }
 
-//---------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 int Mouse::getLives()const
 {
 	return m_lives;
 }
-//---------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::setLives(int setLive)
 {
 	m_lives= setLive;
 }
-//---------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 int Mouse::getScore()const
 {
 	return m_score;
 }
-//---------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void Mouse::setScore(int score)
 {
 	m_score = score;

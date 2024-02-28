@@ -1,5 +1,4 @@
 
-
 #include "StaticObjects.h"
 #include "Gift.h"
 #include <SFML/Graphics.hpp>

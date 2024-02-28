@@ -10,13 +10,14 @@
 #include "HandleResources.h"
 #include <iostream>
 
-//------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 Menu::Menu()
 	: m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT)," ")
 {
 	updateButton();
 }
-//------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
 void Menu::run()
 {
 	HandleResources::instance().playMusic();
@@ -32,7 +33,6 @@ void Menu::run()
 	while (m_window.isOpen())
 	{
 		print(background);
-
 		if (auto event = sf::Event{}; m_window.waitEvent(event))
 		{
 			switch (event.type)
@@ -48,7 +48,7 @@ void Menu::run()
 	}
 }
 
-//-------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 void Menu::updateButton()
 {
 	m_buttons[M_START].updateButton(*HandleResources::instance().getBackgroundTexture(B_START), START_X, START_Y,BUTTON_SIZE);
@@ -57,7 +57,7 @@ void Menu::updateButton()
 	m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND),SOUND_X, SOUND_Y, SOUND_SIZE);
 }
 
-//------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 void Menu::print(const sf::Sprite& background)
 {
 	m_window.clear();
@@ -66,7 +66,7 @@ void Menu::print(const sf::Sprite& background)
 	m_window.display();
 }
 
-//------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 void Menu::printButtons()
 {
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
@@ -93,7 +93,8 @@ void Menu::printButtons()
 		m_buttons[i].printButton(m_window);
 	}
 }
-//------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
 void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 {
 	auto location = m_window.mapPixelToCoords({ event.x,event.y });
@@ -115,10 +116,9 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	{
 		handleMusic();
 	}
-
 }
 
-//---------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 void Menu::pressedHelp()
 {
 	sf::Sprite help;
@@ -150,15 +150,15 @@ void Menu::pressedHelp()
 	}
 }
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 void Menu::startGame()
 {
 	Controller controller;
 	controller.run(m_window,m_musicOn); 
 	checkMusic();
 }
-//----------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------
 void Menu::handleMusic()
 {
 	if (m_musicOn)
@@ -173,15 +173,14 @@ void Menu::handleMusic()
 		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), SOUND_X, SOUND_Y,SOUND_SIZE);
 		HandleResources::instance().playMusic();
 	}
-
 }
-//------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
 void Menu::checkMusic()
 {
 	if (m_musicOn)
 	{
 		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), SOUND_X, SOUND_Y, SOUND_SIZE);
-		
 	}
 	else
 	{

@@ -168,8 +168,7 @@ void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>
 	}
 }
 
-//------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------
 void Controller::printMovingObjects(sf::RenderWindow& window)const
 {
 	for (size_t index = 0; index < m_cats.size(); index++)
@@ -179,7 +178,8 @@ void Controller::printMovingObjects(sf::RenderWindow& window)const
 
 	m_mouse->draw(window);		
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::print(sf::RenderWindow& window,const sf::Sprite& background)
 {
 	window.clear();
@@ -191,7 +191,7 @@ void Controller::print(sf::RenderWindow& window,const sf::Sprite& background)
 	window.display();
 }
 
-//--------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 void Controller::moveMouse(sf::Time deltaTime)
 {
 	const sf::RectangleShape& boardRectangle = m_board.getRectangle();
@@ -204,19 +204,17 @@ void Controller::moveMouse(sf::Time deltaTime)
 	}
 }
 
-//--------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 void Controller::moveCats (sf::Time deltaTime)
 {
 	for (int i = 0; i < (int)m_cats.size(); i++)
 	{
 		Cat* catPtr = dynamic_cast<Cat*>(m_cats[i].get());
-
 		if (catPtr != nullptr)
 		{
 			if (catPtr->isFreeze())
 			{
 				sf::Time elapsedTime = catPtr->getFreezeTime();
-
 				if (elapsedTime >= sf::seconds(4.0f))
 				{
 					catPtr->setCatFreeze(false);
@@ -233,15 +231,16 @@ void Controller::moveCats (sf::Time deltaTime)
 				}
 			}
 		}
-
 	}
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::incTime()
 {
 	m_clock.incTime();
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::incLife()
 {
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
@@ -251,7 +250,8 @@ void Controller::incLife()
 		mousePtr->setLives(mousePtr->getLives() + 1);
 	}	
 }
-//-----------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::freezeCat()
 {
 	for (auto index = 0; index < m_cats.size(); index++)
@@ -265,7 +265,8 @@ void Controller::freezeCat()
 		}
 	}
 }
-//-----------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::killCat()
 {
 	int indexToDelete = 0;
@@ -273,8 +274,7 @@ void Controller::killCat()
 	m_cats[indexToDelete]->setOffBoard(true);
 }
 
-//------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------
 void Controller::findCat(int& indexToChange)const
 {
 	float maxDistance = 0,
@@ -282,17 +282,16 @@ void Controller::findCat(int& indexToChange)const
 	
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
-		currDistance = m_mouse->distance(m_mouse->getPosition(), m_cats[index]->getPosition());
+		currDistance = m_mouse->distance(m_mouse->getObjectPosition(), m_cats[index]->getObjectPosition());
 		if (currDistance > maxDistance)
 		{
 			maxDistance = currDistance;
 			indexToChange = index;
 		}
 	}
-
 }
-//------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------
 void Controller::initMovingObjects()
 {
 	m_mouse->updatePosition(m_mouse->getInitPosition());
@@ -301,16 +300,15 @@ void Controller::initMovingObjects()
 	{
 		m_cats[index]->updatePosition(m_cats[index]->getInitPosition());
 	}
-
 }
-//-----------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
 	                             const sf::Sprite& background, bool& musicOn)
 {
 	if (m_mouseDead)
 	{
 		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
-
 		if (mousePtr != nullptr)
 		{
 			if ((mousePtr->getLives()) == 0)
@@ -324,11 +322,10 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindo
 		handleDeadMouse(window, background);
 		return false;
 	}
-	
 	return checkLevelStatus(numOfCheese, numOfCats, window, background,musicOn);
-	
 }
-//-----------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
 	                              const sf::Sprite& background, bool& musicOn)
 {
@@ -357,7 +354,8 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 
 	return false;
 }
-//-----------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background)
 {
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background,G_LOST);
@@ -365,8 +363,8 @@ void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& bac
 	initMovingObjects();
 	m_mouseDead = false;
 }
-//-----------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------
 void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn)
 {
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background,G_LOST);
@@ -399,15 +397,14 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 	m_clock.setClock(m_levelTime, m_levelOver);
 }
 
-//----------------------------------------------------------------------
-
+//----------------------------------------------------------------------------------------
 void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& background)
 {
 	m_gameOver = true;
 	printFeedback(*HandleResources::instance().getScreenTexture(S_GAMEOVER),window, background,G_LOST);
 }
-//----------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------
 void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
 	                         sf::RenderWindow& window, bool& musicOn)
 {
@@ -416,7 +413,8 @@ void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
 	m_infoBar.handleClick(location,m_gameOver,m_levelOver,m_mouse,musicOn);
 
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::updateInfoBar(bool& musicOn)
 {
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
@@ -431,7 +429,8 @@ void Controller::updateInfoBar(bool& musicOn)
 	}
 	m_infoBar.setInfoBar(m_levelNum, m_totalScore, keys, lives,musicOn);
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::updateMouseScore()
 {
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
@@ -441,37 +440,32 @@ void Controller::updateMouseScore()
 		m_prevLevelsScore = m_totalScore;
 	}
 }
-//------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------
 void Controller::printFeedback(const sf::Texture& feedback, 
 	                           sf::RenderWindow& window,
 	                           const sf::Sprite& background, GameSound sound)const
 {
 	sf::sleep(sf::seconds(1));
-	// Create a sprite using the feedback texture
 	sf::Sprite sprite(feedback);
 	sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
-		window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
+					   window.getSize().y / 2.0f - sprite.getLocalBounds().height / 2.0f);
 
-	// Clear the window
 	window.clear();
-
-	// Draw the sprite onto the window
 	window.draw(background);
 	HandleResources::instance().playSound(sound);
 	window.draw(sprite);
-
-	// Display the content of the window
 	window.display();
 	sf::sleep(sf::seconds(1));
 }
-//------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 void Controller::printFinalScore(sf::RenderWindow& window)
 {
 	sf::Sprite scorePic(*HandleResources::instance().getScreenTexture(S_FINALSCORE));
 	sf::Vector2u textureSize = (*HandleResources::instance().getScreenTexture(S_FINALSCORE)).getSize();
 
-	// Scale the background sprite to fit the window
+	//Scale the background sprite to fit the window
 	scorePic.setScale((float)(window.getSize().x) / textureSize.x,
 		              (float)(window.getSize().y) / textureSize.y);
 
@@ -488,12 +482,9 @@ void Controller::printFinalScore(sf::RenderWindow& window)
 	float textY = scorePic.getPosition().y + (scorePic.getGlobalBounds().height - textBounds.height) / 4;
 	printText.setPosition(textX, textY);
 
-	// Clear the window
 	window.clear();
-
 	window.draw(scorePic);
 	window.draw(printText);
-	// Display the content of the window
 	window.display();
 	sf::sleep(sf::seconds(2));
 }

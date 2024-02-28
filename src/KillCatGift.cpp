@@ -6,7 +6,6 @@
 #include "Mouse.h"
 #include "Cat.h"
 #include "Controller.h"
-//------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
 void KillCatGift::collisionHandling(GameObjects& object)
@@ -19,11 +18,13 @@ void KillCatGift::collisionHandling(Mouse& mouse)
 {
 	mouse.collisionHandling(*this);
 }
+
 //------------------------------------------------------------------------
 void KillCatGift::collisionHandling(Cat& cat)
 {
 	cat.collisionHandling(*this);
 }
+
 //------------------------------------------------------------------------
 void KillCatGift::handleGift(Controller& controller)
 {

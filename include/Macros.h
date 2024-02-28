@@ -90,7 +90,6 @@ const sf::Vector2f SOUND_SIZE = { 65,65 };
 
 
 const int HELP = 726;
-//const int HELP_WIDTH = 726;
 
 //------------board------------
 const float BOARD_HIG = 1000;

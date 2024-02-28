@@ -229,15 +229,17 @@ void Controller::incLife()
 void Controller::freezeCat()
 {
 	int indexToFreeze = 0;
-	findCat(indexToFreeze);
-	Cat* catPtr = dynamic_cast<Cat*>(m_cats[indexToFreeze].get());
-
-	if (catPtr != nullptr)
+	
+	for (auto index = 0; index < m_cats.size(); index++)
 	{
-		catPtr->setCatFreeze(true);
-		catPtr->setFreezeStartTime();
-	}
+		Cat* catPtr = dynamic_cast<Cat*>(m_cats[index].get());
 
+		if (catPtr != nullptr)
+		{
+			catPtr->setCatFreeze(true);
+			catPtr->setFreezeStartTime();
+		}
+	}
 }
 //-----------------------------------------------------------------------
 void Controller::killCat()

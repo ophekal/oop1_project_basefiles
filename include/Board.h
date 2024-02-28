@@ -19,8 +19,10 @@ public:
 	void updateBoard(std::vector<std::unique_ptr<MovingObjects>> & cats, 
 		             std::unique_ptr<MovingObjects > &mouse,
 					 float& levelTime);
-	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse);
-	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
+	void updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats,
+		               std::unique_ptr<MovingObjects >& mouse);
+	void updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, 
+		               std::unique_ptr<MovingObjects >& mouse,
 		               const char character, int row, int col);
 	void checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 		                            Controller& controller);
@@ -35,25 +37,18 @@ private:
 	
 	int m_boardHeight=0;	//to initialize the values
 	int m_boardWidth=0;
-
-	//int m_tilesInRow;
-	//int m_tilesInCol;
-
 	sf::Vector2f m_tileSize;
-
-	/*float m_tileHeight=0;
-	float m_tileWidth=0;*/
-
-	sf::RectangleShape m_board; //hold the level itself
+	sf::RectangleShape m_board; 
 	std::vector <std::string> m_currLevel;
 	std::vector<std::unique_ptr<StaticObjects>> m_staticObjects;
 
-	void updateBoradSize();
-	void pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
-		         const sf::Texture& icon, sf::Vector2f& position);
+
 	void pushGift(const sf::Vector2f& position);
 	void setMouse(std::unique_ptr<MovingObjects >& mouse,
 	              const sf::Vector2f& position);
+	void updateBoradSize();
+	void pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
+	             const sf::Texture& icon, sf::Vector2f& position);
 	void checkGift(const std::unique_ptr<StaticObjects>& object,
 	 	           Controller& controller);
 };          

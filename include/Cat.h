@@ -14,22 +14,22 @@ public:
 	virtual void collisionHandling(GameObjects&);
 	virtual void collisionHandling(Wall&);
 	virtual void collisionHandling(Mouse&);
-	virtual void collisionHandling(Cat&);
-	virtual void collisionHandling(KillCatGift&);
-	virtual void collisionHandling(AddLifeGift&);
-	virtual void collisionHandling(AddTimeGift&);
-	virtual void collisionHandling(FreezeCatGift&);
-	virtual void collisionHandling(Key&);
-	virtual void collisionHandling(Cheese&);
+	virtual void collisionHandling(Cat&) {};
+	virtual void collisionHandling(KillCatGift&) {};
+	virtual void collisionHandling(AddLifeGift&) {};
+	virtual void collisionHandling(AddTimeGift&) {};
+	virtual void collisionHandling(FreezeCatGift&) {};
+	virtual void collisionHandling(Key&) {};
+	virtual void collisionHandling(Cheese&) {};
 	virtual void collisionHandling(Door&);
 	static int getCount();
+	const sf::Time& getFreezeTime() const;
 	void setCatFreeze(bool freeze);
 	bool isFreeze()const;
-	const sf::Time& getFreezeTime() const;
 	void setFreezeStartTime();
 
 protected:
-	sf::Clock m_clock;				//for tracking the movement time of each cat
+	sf::Clock m_clock;		//for tracking the movement time of each cat
 
 private:
 	static int m_count;

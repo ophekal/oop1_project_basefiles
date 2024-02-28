@@ -4,7 +4,7 @@
 #include "MovingObjects.h"
 #include "Board.h"
 #include "InfoBar.h"
-#include "Mouse.h"
+//#include "Mouse.h"
 #include "Clock.h"
 
 class Cat;
@@ -25,8 +25,8 @@ private:
 	Board m_board;
 	InfoBar m_infoBar;
 	Clock m_clock;
-	
-	int m_levelNum = 0;	//saves the level number
+
+	int m_levelNum = 0;	
 	float m_levelTime=0;
 	std::vector<std::unique_ptr<MovingObjects>> m_cats;
 	std::unique_ptr<MovingObjects> m_mouse;
@@ -38,25 +38,25 @@ private:
 	int m_prevLevelsScore = 0;
 	
 	void startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
+	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, const sf::Sprite& background);
+	void printFeedback(const sf::Texture& feedback, sf::RenderWindow& window,
+		               const sf::Sprite& background, GameSound sound)const;
+	bool checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
+		                 const sf::Sprite& background, bool& musicOn);
+	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
+		                  const sf::Sprite& background, bool& musicOn);
 	void updateGameBackground(const sf::RenderWindow& window, sf::Sprite& background);
 	void moveMouse(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
 	void initMovingObjects();
-	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
-		                  const sf::Sprite& background, bool& musicOn);
-	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
 	void handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
-	bool checkGameStatus(int numOfCheese, int numOfCats,sf::RenderWindow& window,
-		                 const sf::Sprite& background, bool& musicOn);
 	void handleExit(sf::RenderWindow& window, const sf::Sprite& background);
 	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window, bool& musicOn);
 	void updateInfoBar(bool& musicOn);
 	void updateMouseScore();
-	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window,
-		               const sf::Sprite& background, GameSound sound)const;
 	void printFinalScore(sf::RenderWindow& window);
 };

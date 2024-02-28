@@ -19,6 +19,5 @@ private:
 	sf::Time m_setTime;
 	float m_timer;
 	std::string m_timeString;
-
 	Button m_rectangle;
 };

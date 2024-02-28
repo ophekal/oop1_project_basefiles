@@ -4,11 +4,7 @@
 #include "MovingObjects.h"
 #include "Board.h"
 #include "InfoBar.h"
-//#include "Mouse.h"
 #include "Clock.h"
-
-class Cat;
-class Mouse;
 
 class Controller
 {
@@ -38,7 +34,7 @@ private:
 	int m_prevLevelsScore = 0;
 	
 	void startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
-	void handleWindow(sf::RenderWindow& window, const std::string& line,
+	void handleWindow(sf::RenderWindow& window, std::string& line,
 		              std::ifstream& file, const sf::Sprite& backgroud, bool& musicOn);
 	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;

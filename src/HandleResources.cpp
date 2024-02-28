@@ -77,11 +77,12 @@ void HandleResources::updateInfoBarVector()
 //-------------------------------------------------------------------------
 void HandleResources::updateScreenVector()
 {
-	m_screenTextures.resize(4);
+	m_screenTextures.resize(5);
 	m_screenTextures[S_WIN].loadFromFile("youWin.png");
 	m_screenTextures[S_GAMEOVER].loadFromFile("gameOver.png");
 	m_screenTextures[S_TRYAGAIN].loadFromFile("tryAgain.png");
 	m_screenTextures[S_GOODJOB].loadFromFile("goodJob.png");
+	m_screenTextures[S_FINALSCORE].loadFromFile("finalScore.png");
 }
 //-------------------------------------------------------------------------
 void HandleResources::updateBufferSounds()

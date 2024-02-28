@@ -61,7 +61,8 @@ enum Screen
 	S_WIN,
 	S_GAMEOVER,
 	S_TRYAGAIN,
-	S_GOODJOB
+	S_GOODJOB,
+	S_FINALSCORE
 };
 
 //-------keyboard-movement-----

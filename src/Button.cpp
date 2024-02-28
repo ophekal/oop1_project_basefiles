@@ -30,7 +30,7 @@ void Button::printButton(sf::RenderWindow& window) const
 }
 
 //-------------------------------------------------------------
-sf::RectangleShape Button::getRectangleButton()const
+sf::RectangleShape& Button::getRectangleButton()
 {
     return m_rectangle;
 }

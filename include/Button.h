@@ -7,16 +7,11 @@ class Button
 public:
 	Button();
 	void updateButton(const sf::Texture& background, float x, float y, const sf::Vector2f size);
-
-	/*void updateButton(const sf::Font& font,const sf::Texture& background,
-		              std::string type, float x, float y, int textSize);*/
 	void printButton(sf::RenderWindow& window) const;
-	sf::RectangleShape getRectangleButton()const;
+	sf::RectangleShape& getRectangleButton();
 	void setText(const std::string& text);
 
 private:
 	sf::Text m_text;
 	sf::RectangleShape m_rectangle;
-
-	//sf::Sound m_buttonSound;	//the sound when a button is pressed
 };

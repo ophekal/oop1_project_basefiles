@@ -69,6 +69,21 @@ void Menu::print(const sf::Sprite& background)
 //------------------------------------------------------------------
 void Menu::printButtons()
 {
+	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
+	sf::Vector2f mousePosF(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y));
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (m_buttons[i].getRectangleButton().getGlobalBounds().contains(mousePosF))
+		{
+			m_buttons[i].getRectangleButton().setScale(1.1f, 1.1f);
+		}
+		else
+		{
+			m_buttons[i].getRectangleButton().setScale(1.0f, 1.0f);
+		}
+	}
+
 	for (int i = 0; i < 4; i++)
 	{
 		m_buttons[i].printButton(m_window);

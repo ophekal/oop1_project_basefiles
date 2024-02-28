@@ -12,4 +12,6 @@ public:
 		          const std::vector<std::unique_ptr<StaticObjects>>& staticObjects);
 
 private:
+	void updateCatPosition(const sf::Vector2f& movement, const sf::RectangleShape& board);
+
 };

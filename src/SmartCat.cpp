@@ -8,7 +8,8 @@
 #include "Macros.h"
 #include <iostream>
 #include "HandleResources.h"
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
 void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                         const std::unique_ptr<MovingObjects>& mouse,
                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
@@ -29,15 +30,15 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
    //function that checks if mouse in one of the four directions of the cat
    if (nextStepIsMouse(up, down, left, right, mouse))
    {
-       return;  //we found a mouse in one of the four directions
+       return;
    }
 
    updateTheNextStep(up, down,left,right,board,mouse,staticObjects);
-
 }
-//------------------------------------------------------------------------
-//Function that checks if in one of the possible four directions the cat
-//can move in the mouse is
+
+//-------------------------------------------------------------------------------------------
+//Function that checks if in one of the possible four directions the cat can move in the
+//mouse is
 
 bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, 
                                sf::RectangleShape left,sf::RectangleShape right,
@@ -83,7 +84,6 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
     float currDistance,
           shortestDistance = 10000;    //a big distance we will never recieve,
                                        //will change when the first currDistance is calculated
-    //sf::Vector2f nextPosition = { 0,0 };
 
     if (validStep(up, board, staticObjects))
     {
@@ -91,8 +91,6 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
-           // nextPosition = up.getPosition();
-           // checkCatCovered(up.getPosition(), staticObjects);
             m_object.setPosition(up.getPosition());
         }
     }
@@ -102,8 +100,6 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
-            //nextPosition = down.getPosition();
-            //checkCatCovered(down.getPosition(), staticObjects);
             m_object.setPosition(down.getPosition());
         }
     }
@@ -113,8 +109,6 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
-           // nextPosition = left.getPosition();
-            //checkCatCovered(left.getPosition(), staticObjects);
             m_object.setTexture(HandleResources::instance().getObjectTexture(I_L_CAT));
             m_object.setPosition(left.getPosition());
         }
@@ -125,18 +119,13 @@ void SmartCat::updateTheNextStep (sf::RectangleShape up, sf::RectangleShape down
         if (currDistance < shortestDistance)
         {
             shortestDistance = currDistance;
-            //nextPosition = right.getPosition();
-            //checkCatCovered(right.getPosition(), staticObjects);
             m_object.setTexture(HandleResources::instance().getObjectTexture(I_R_CAT));
             m_object.setPosition(right.getPosition());
         }
     }
-    //std::cout << "check if the cat coveres static object" << std::endl;
-    //checkCatCovered(nextPosition, staticObjects);
-    //m_object.setPosition(nextPosition);
 }
 
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 //Function that checks if the cell the cat wants to move to is valid
 
 bool SmartCat::validStep(sf::RectangleShape direction, const sf::RectangleShape &board,
@@ -168,7 +157,6 @@ bool SmartCat::validStep(sf::RectangleShape direction, const sf::RectangleShape 
             }
         }
     }
-
     return true;
 }
-//------------------------------------------------------------------------
+

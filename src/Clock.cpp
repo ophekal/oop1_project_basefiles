@@ -15,9 +15,7 @@ void Clock::setClock(float levelTime, bool& levelOver)
 	
     levelOver = false;
 	m_timer = levelTime;
-	//std::cout << m_timer << std::endl;
 	m_clock.restart();
-	//updateTime(levelTime, levelOver);
 }
 //------------------------------------------------------------------------
 void Clock::incTime()

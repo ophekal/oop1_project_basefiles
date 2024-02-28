@@ -17,23 +17,8 @@ void Button::updateButton(const sf::Texture& background, float x, float y, const
 {
     
     m_rectangle.setSize(size);
-    //Set the position and color of the rectangle
     m_rectangle.setPosition(x,y);
-   // m_rectangle.setFillColor(sf::Color::White);
     m_rectangle.setTexture(&background);
-
-
-    //m_text.setFont(font);
-    //m_text.setString(type);
-    //m_text.setCharacterSize(textSize);
-    //m_text.setFillColor(sf::Color::Black);
-
-    //// Set the position of the text to be centered within the rectangle
-    //sf::FloatRect textBounds = m_text.getLocalBounds();
-    //float textX = x + (m_rectangle.getSize().x - textBounds.width) / 2;
-    //float textY = y + (m_rectangle.getSize().y - textBounds.height) / 2;
-    //m_text.setPosition(textX, textY);
-
 }
 
 //---------------------------------------------------------------------------------------

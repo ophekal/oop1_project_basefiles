@@ -46,11 +46,11 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 			startGame(window, background,musicOn);
 			if (m_gameOver)
 			{
-				printFinalScore();
+				printFinalScore(window);
 				return;
 			}
 		}
-		printFinalScore();
+		printFinalScore(window);
 		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window, background,G_WIN);
 		return;
 	}
@@ -422,6 +422,7 @@ void Controller::printFeedback(const sf::Texture& feedback,
 	                           sf::RenderWindow& window,
 	                           const sf::Sprite& background, GameSound sound)const
 {
+	sf::sleep(sf::seconds(1));
 	// Create a sprite using the feedback texture
 	sf::Sprite sprite(feedback);
 	sprite.setPosition(window.getSize().x / 2.0f - sprite.getLocalBounds().width / 2.0f,
@@ -438,4 +439,36 @@ void Controller::printFeedback(const sf::Texture& feedback,
 	// Display the content of the window
 	window.display();
 	sf::sleep(sf::seconds(1));
+}
+//------------------------------------------------------------------------
+void Controller::printFinalScore(sf::RenderWindow& window)
+{
+	sf::Sprite scorePic(*HandleResources::instance().getScreenTexture(S_FINALSCORE));
+	sf::Vector2u textureSize = (*HandleResources::instance().getScreenTexture(S_FINALSCORE)).getSize();
+
+	// Scale the background sprite to fit the window
+	scorePic.setScale((float)(window.getSize().x) / textureSize.x,
+		              (float)(window.getSize().y) / textureSize.y);
+
+	sf::Text printText;
+	printText.setFont(*HandleResources::instance().getFont());
+
+	printText.setString(std::to_string(m_totalScore));
+	printText.setCharacterSize(SCORE_TEXT_SIZE);
+	printText.setFillColor(sf::Color::Black);
+
+	// Set the position of the text to be centered within the rectangle
+	sf::FloatRect textBounds = printText.getLocalBounds();
+	float textX = scorePic.getPosition().x + (scorePic.getGlobalBounds().width - textBounds.width) / 2;
+	float textY = scorePic.getPosition().y + (scorePic.getGlobalBounds().height - textBounds.height) / 4;
+	printText.setPosition(textX, textY);
+
+	// Clear the window
+	window.clear();
+
+	window.draw(scorePic);
+	window.draw(printText);
+	// Display the content of the window
+	window.display();
+	sf::sleep(sf::seconds(3));
 }

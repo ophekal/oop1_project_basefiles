@@ -39,7 +39,7 @@ void Clock::updateTime(bool& levelOver)
 	m_timer -= m_clock.getElapsedTime().asSeconds();
 	m_clock.restart();
 
-	if (m_timer <= -1)
+	if (m_timer < 0)
 	{
 		levelOver = true;
 	}

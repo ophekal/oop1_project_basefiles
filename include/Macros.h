@@ -128,7 +128,7 @@ const float RESTART_X = 285;
 const float RESTART_Y = 900;
 
 
-const float LONG_LEVEL = (3*60)+1;
+const float LONG_LEVEL =  (3 * 60) + 1;
 const float SHORT_LEVEL = ((1.5)*60)+1;
 
 //---------------presents-----------

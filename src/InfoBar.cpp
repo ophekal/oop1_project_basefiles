@@ -82,7 +82,6 @@ void InfoBar::handleClick( const sf::Vector2f& location, bool& gameOver, bool& l
 	{
 		levelOver = true;
 		Mouse* mousePtr = dynamic_cast<Mouse*>(mouse.get());
-		int prevLives = 0;
 
 		if (mousePtr != nullptr)
 		{

@@ -2,8 +2,9 @@
 #include <vector>
 #include <fstream>
 #include <string.h>
-#include "Macros.h"
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include "Macros.h"
 #include "StupidCat.h"
 #include "SmartCat.h"
 #include "Cat.h"
@@ -17,9 +18,7 @@
 #include "Gift.h"
 #include "Door.h"
 #include "Wall.h"
-#include <memory>
 #include "HandleResources.h"
-#include <iostream>
 
 //-------------------------------------------------------------------------------------
 Board::Board()
@@ -54,7 +53,7 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats,
 	m_boardHeight = (int)m_currLevel.size();
 	m_boardWidth= (int)m_currLevel[0].size();
 
-	if (m_boardHeight > 15)
+	if (m_boardHeight < 15)
 	{
 		levelTime = SHORT_LEVEL;
 	}

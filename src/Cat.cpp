@@ -7,12 +7,12 @@
 #include "Key.h"
 #include "Cheese.h"
 #include "Door.h"
+#include "Wall.h"
 #include "HandleResources.h"
 #include "AddLifeGift.h"
 #include "AddTimeGift.h"
 #include "FreezeCatGift.h"
 #include "KillCatGift.h"
-#include <iostream>
 
 
 //---------------------------------------------------------------------------------------

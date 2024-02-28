@@ -1,8 +1,8 @@
-#include <SFML/Graphics.hpp>
+
 #include "Button.h"
 #include <string.h>
 #include "HandleResources.h"
-
+#include <SFML/Graphics.hpp>
 
 //---------------------------------------------------------------------------------------
 Button::Button()

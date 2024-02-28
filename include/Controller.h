@@ -39,7 +39,7 @@ private:
 		              std::ifstream& file, const sf::Sprite& backgroud, bool& musicOn);
 	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;
-	void windowPollEvent(sf::RenderWindow& window, bool& musicOn)const;
+	void windowPollEvent(sf::RenderWindow& window, bool& musicOn);
 	void print(sf::RenderWindow& window, const sf::Sprite& background);
 	void printFeedback(const sf::Texture& feedback, sf::RenderWindow& window,
 		               const sf::Sprite& background, GameSound sound)const;
@@ -55,7 +55,7 @@ private:
 	void initMovingObjects();
 	void handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
 	void handleExit(sf::RenderWindow& window, const sf::Sprite& background);
-	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window, bool& musicOn);
+	void handleClick(const sf::Event::MouseButtonEvent& event, sf::RenderWindow& window, bool& musicOn);
 	void updateInfoBar(bool& musicOn);
 	void updateMouseScore();
 	void printFinalScore(sf::RenderWindow& window);

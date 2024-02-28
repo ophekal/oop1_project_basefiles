@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
+#include "StaticObjects.h"
 
 
 class Cat: public MovingObjects

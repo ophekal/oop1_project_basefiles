@@ -1,11 +1,10 @@
 
 #include "Clock.h"
-#include <SFML/Graphics.hpp>
 #include <vector>
 #include "Button.h"
 #include "HandleResources.h"
+#include <SFML/Graphics.hpp>
 #include <string>
-#include <iostream>
 
 //------------------------------------------------------------------------
 
@@ -44,7 +43,7 @@ void Clock::updateTime(bool& levelOver)
 	{
 		levelOver = true;
 	}
-	int leftMinutes = m_timer/60;
+	int leftMinutes = (int)m_timer/60;
 	int leftSeconds = (int)m_timer % 60;
 
 	std::string minString = leftMinutes < 10 ? "0" + std::to_string(leftMinutes) : std::to_string(leftMinutes);

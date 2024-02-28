@@ -10,11 +10,13 @@
 #include "Clock.h"
 
 
-//-------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//This function is responsible of opening the ifstream in order to read the
+//levels. It calls on functions that handle the game
 
 void Controller::run(sf::RenderWindow& window, bool& musicOn)
 {
-	// open streams for reading from file playlist
+	//open streams for reading from file playlist
 	auto line = std::string();
 	auto file = std::ifstream("playlist.txt");
 	if (!file.is_open())
@@ -24,11 +26,21 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 	}
 
 	sf::Sprite background;
-	updateGameBackground(window,background);
+	updateGameBackground(window, background);
+	handleWindow(window, line, file, background, musicOn);
+}
 
+//------------------------------------------------------------------------------
+//This function handles with an open window. It reads the level from the file
+//and with the help of other functions it copies it to the game board, and
+//starts the game.
+
+void Controller::handleWindow(sf::RenderWindow& window, std::string& line,
+							  std::ifstream& file, const sf::Sprite& background,
+							  bool& musicOn)
+{
 	while (window.isOpen())
 	{
-
 		// going through all the level files
 		while (std::getline(file, line))
 		{
@@ -39,11 +51,13 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 				exit(EXIT_FAILURE);
 			}
 
-			m_board.readTheLevel(levelFile);    //the board game is ready
-			m_board.updateBoard(m_cats,m_mouse,m_levelTime); //function that also updates the moving objects                  
+			m_board.readTheLevel(levelFile);
+			m_board.updateBoard(m_cats,m_mouse,m_levelTime);              
 			updateMouseScore();
+
 			m_levelNum++;
-			startGame(window, background,musicOn);
+			startGame(window,background,musicOn);
+
 			if (m_gameOver)
 			{
 				printFinalScore(window);
@@ -54,53 +68,46 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 		printFinalScore(window);
 		return;
 	}
-
 }
-//------------------------------------------------------------------------
-void Controller::updateGameBackground(const sf::RenderWindow& window,sf::Sprite& background)
+
+//------------------------------------------------------------------------------
+//This function sets the background of the game
+
+void Controller::updateGameBackground (const sf::RenderWindow& window,
+									   sf::Sprite& background)
 {
-	//setting the background of the game
 	const sf::Texture* gameBackground = HandleResources::instance().getBackgroundTexture(B_GAME);
 	background.setTexture(*gameBackground);
 	sf::Vector2u textureSize = (*gameBackground).getSize();
 
 	// Scale the background sprite to fit the window
 	background.setScale((float)(window.getSize().x) / textureSize.x,
-		(float)(window.getSize().y) / textureSize.y);
+						(float)(window.getSize().y) / textureSize.y);
 }
-//------------------------------------------------------------------------
-void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn)
+
+//------------------------------------------------------------------------------
+void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& background,
+						   bool& musicOn)
 {
-	//clock for handeling movements
 	sf::Clock clock= m_clock.getClock();
 
 	int numOfCheese = Cheese::getCount();
 	updateInfoBar(musicOn);
 
-	//tracks time of the level
 	m_clock.setClock(m_levelTime, m_levelOver);
 
 	int numOfCats = Cat::getCount();
-	while ( !m_levelOver) // m_levelOver =if the time of the level end 
+
+	while ( !m_levelOver)
 	{
 		print(window, background);
+		windowPollEvent(window, musicOn);
 
-		if (auto event = sf::Event{}; window.pollEvent(event))
+		if (m_gameOver)
 		{
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				window.close();
-				break;
-			case sf::Event::MouseButtonReleased:
-				handleClick(event.mouseButton,window,musicOn);
-				if (m_gameOver)
-				{
-					return;
-				}
-				break;
-			}
+			return;
 		}
+
 		const auto deltaTime = clock.restart();
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
@@ -114,7 +121,26 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 	}
 
 }
-//-----------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+//This function is responsible of handeling the different poll events
+
+void Controller::windowPollEvent(sf::RenderWindow& window, bool& musicOn)
+{
+	if (auto event = sf::Event{}; window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			window.close();
+			break;
+		case sf::Event::MouseButtonReleased:
+			handleClick(event.mouseButton, window, musicOn);
+			break;
+		}
+	}
+}
+//----------------------------------------------------------------------------------------
 void Controller::checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object)
 {
 	//checking if collided with cats
@@ -228,8 +254,6 @@ void Controller::incLife()
 //-----------------------------------------------------------------------
 void Controller::freezeCat()
 {
-	int indexToFreeze = 0;
-	
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
 		Cat* catPtr = dynamic_cast<Cat*>(m_cats[index].get());
@@ -385,7 +409,7 @@ void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& backgrou
 //----------------------------------------------------------------------
 
 void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
-	                         const sf::RenderWindow& window, bool& musicOn)
+	                         sf::RenderWindow& window, bool& musicOn)
 {
 	auto location = window.mapPixelToCoords({ event.x,event.y });
 

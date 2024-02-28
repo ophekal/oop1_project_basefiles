@@ -3,7 +3,6 @@
 #include "MovingObjects.h"
 #include "StaticObjects.h"
 
-
 class Cat: public MovingObjects
 {
 public:

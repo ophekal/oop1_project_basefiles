@@ -28,7 +28,5 @@ private:
 	std::string m_numOfLives;
 	std::string m_numOfLevel;
 	std::string m_score;
-	//bool m_musicOn = true;
-
 	std::vector< Button> m_infoBar; // for the information
 };

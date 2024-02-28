@@ -1,6 +1,7 @@
 
 #include "HandleResources.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <memory>
 #include "Macros.h"
 
@@ -13,6 +14,7 @@ HandleResources::HandleResources()
 	updateBackgroundVector();
 	updateInfoBarVector();
 	updateScreenVector();
+	updateBufferSounds();
 	updateGameSounds();
 	m_font.loadFromFile("font.ttf");
 	m_gameMusic.openFromFile("gameMusic.wav");
@@ -82,15 +84,26 @@ void HandleResources::updateScreenVector()
 	m_screenTextures[S_GOODJOB].loadFromFile("goodJob.png");
 }
 //-------------------------------------------------------------------------
+void HandleResources::updateBufferSounds()
+{
+	m_bufferSounds.resize(6);
+	m_bufferSounds[G_CHESSE].loadFromFile("yummy.wav");
+	m_bufferSounds[G_GIFT].loadFromFile("gift.wav");
+	m_bufferSounds[G_MOUSE].loadFromFile("mouseEaten.wav");
+	m_bufferSounds[G_WIN].loadFromFile("goodJobYouWin.wav");
+	m_bufferSounds[G_LOST].loadFromFile("tryAgainGameOver.wav");
+	m_bufferSounds[G_KEY].loadFromFile("keys.wav");
+}
+//-------------------------------------------------------------------------
 void HandleResources::updateGameSounds()
 {
-	m_gameSounds.resize(6);
-	m_gameSounds[G_CHESSE].loadFromFile("yummy.wav");
-	m_gameSounds[G_GIFT].loadFromFile("gift.wav");
-	m_gameSounds[G_MOUSE].loadFromFile("mouseEaten.wav");
-	m_gameSounds[G_WIN].loadFromFile("goodJobYouWin.wav");
-	m_gameSounds[G_LOST].loadFromFile("tryAgainGameOver.wav");
-	m_gameSounds[G_KEY].loadFromFile("keys.wav");
+	m_gameSound.resize(6);
+	m_gameSound[G_CHESSE].setBuffer(m_bufferSounds[G_CHESSE]);
+	m_gameSound[G_GIFT].setBuffer(m_bufferSounds[G_GIFT]);
+	m_gameSound[G_MOUSE].setBuffer(m_bufferSounds[G_MOUSE]);
+	m_gameSound[G_WIN].setBuffer(m_bufferSounds[G_WIN]);
+	m_gameSound[G_LOST].setBuffer(m_bufferSounds[G_LOST]);
+	m_gameSound[G_KEY].setBuffer(m_bufferSounds[G_KEY]);
 }
 //--------------------------------------------------------------------------
 
@@ -125,9 +138,8 @@ const sf::Font* HandleResources::getFont()
 //-------------------------------------------------------------------------
 void HandleResources::playSound(GameSound sound)
 {
-	sf::Sound currSound(m_gameSounds[sound]);
-	//currSound.setVolume(50);
-	currSound.play();
+	m_gameSound[sound].setVolume(50);
+	m_gameSound[sound].play();
 }
 //-------------------------------------------------------------------------
 void HandleResources::playMusic()

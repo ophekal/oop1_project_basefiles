@@ -45,14 +45,12 @@ void Mouse::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		setDirection(Directions[D_UP]);
-		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSEUP));
 		checkMovement(deltaTime, board);
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		setDirection(Directions[D_DOWN]);
-		//m_object.setTexture(HandleResources::instance().getBackgroundTexture(I_MOUSEDOWN));
 		checkMovement(deltaTime, board);
 		return;
 	}

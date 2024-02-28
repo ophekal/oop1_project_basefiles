@@ -27,6 +27,7 @@ private:
 	void updateBackgroundVector();
 	void updateInfoBarVector();
 	void updateScreenVector();
+	void updateBufferSounds();
 	void updateGameSounds();
 
 	std::vector<sf::Texture> m_objectsTextures;
@@ -36,6 +37,7 @@ private:
 
 	sf::Font m_font;				
 	sf::Music m_gameMusic;
-	std::vector <sf::SoundBuffer> m_gameSounds;
+	std::vector <sf::SoundBuffer> m_bufferSounds;
+	std::vector <sf::Sound>  m_gameSound;
 
 };

@@ -142,7 +142,7 @@ const float TIMEGIFT = 31;
 
 enum GameSound 
 {
-	G_CHESSE,
+	G_CHEESE,
 	G_GIFT,
 	G_MOUSE,
 	G_WIN,

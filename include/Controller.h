@@ -38,6 +38,8 @@ private:
 	int m_prevLevelsScore = 0;
 	
 	void startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
+	void handleWindow(sf::RenderWindow& window, const std::string& line,
+		              std::ifstream& file, const sf::Sprite& backgroud, bool& musicOn);
 	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, const sf::Sprite& background);

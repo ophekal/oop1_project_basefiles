@@ -5,7 +5,6 @@
 #include <vector>
 #include <string.h>
 #include "StaticObjects.h"
-#include "Macros.h"
 
 class MovingObjects;
 class Controller;
@@ -16,6 +15,7 @@ public:
 	Board();
 	void readTheLevel(std::ifstream& levelFile);
 	std::vector<std::string> getBoard() const;
+	std::vector<std::unique_ptr<StaticObjects>>& getStaticObjects();
 	void updateBoard(std::vector<std::unique_ptr<MovingObjects>> & cats, 
 		             std::unique_ptr<MovingObjects > &mouse,
 					 float& levelTime);
@@ -31,7 +31,7 @@ public:
 	const sf::RectangleShape& getRectangle() const;
 	void clear();
 	void reset();
-	std::vector<std::unique_ptr<StaticObjects>>& getStaticObjects();
+
 
 private:
 	

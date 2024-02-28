@@ -72,15 +72,19 @@ void Menu::printButtons()
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
 	sf::Vector2f mousePosF(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y));
 
+	//increase the buttons when mouse ontop
 	for (int i = 0; i < 3; i++)
 	{
-		if (m_buttons[i].getRectangleButton().getGlobalBounds().contains(mousePosF))
+		sf::RectangleShape& button = m_buttons[i].getRectangleButton();
+		sf::FloatRect bounds = button.getGlobalBounds();
+
+		if (bounds.contains(mousePosF))
 		{
-			m_buttons[i].getRectangleButton().setScale(1.1f, 1.1f);
+			button.setScale(1.05f, 1.05f);
 		}
 		else
 		{
-			m_buttons[i].getRectangleButton().setScale(1.0f, 1.0f);
+			button.setScale(1.0f, 1.0f);
 		}
 	}
 

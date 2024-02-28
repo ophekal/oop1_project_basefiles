@@ -1,11 +1,11 @@
 #include "StaticObjects.h"
 #include "Gift.h"
-#include <SFML/Graphics.hpp>
 #include "Macros.h"
 #include "AddLifeGift.h"
 #include "Mouse.h"
 #include "Cat.h"
 #include "Controller.h"
+#include <SFML/Graphics.hpp>
 
 //-------------------------------------------------------------------------
 void AddLifeGift::collisionHandling(GameObjects& object)

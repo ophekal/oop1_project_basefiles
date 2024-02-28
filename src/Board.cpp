@@ -21,7 +21,7 @@
 #include "HandleResources.h"
 #include <iostream>
 
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 Board::Board()
 	: m_board(sf::Vector2f(BOARD_HIG, BOARD_WID))
 {
@@ -29,23 +29,24 @@ Board::Board()
 	m_board.setTexture(HandleResources::instance().getBackgroundTexture(B_BOARD));
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+//This function reads the level and inserts it into vector
+
 void Board::readTheLevel(std::ifstream& levelFile)
 {
-	// read the level and insert into vector
 	for (auto line = std::string(); std::getline(levelFile, line); )
 	{
 		m_currLevel.push_back(line);
 	}
 }
 
-//----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 std::vector<std::string> Board::getBoard() const
 {
 	return ((this)->m_currLevel);
 }
 
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats,
 						std::unique_ptr<MovingObjects >& mouse,
 						float & levelTime)
@@ -63,11 +64,10 @@ void Board::updateBoard(std::vector<std::unique_ptr<MovingObjects>>& cats,
 	}
 
 	updateBoradSize();
-
 	updateObjects(cats,mouse);
 }
-//--------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------
 void Board::updateBoradSize()
 {
 	float tileHeight = BOARD_HIG / m_boardHeight,
@@ -77,7 +77,6 @@ void Board::updateBoradSize()
 	if (tileHeight == tileWidth)
 	{
 		m_tileSize = { tileHeight,tileWidth };
-		//m_board stay the same 
 	}
 	else if (tileHeight > tileWidth)
 	{		
@@ -96,7 +95,7 @@ void Board::updateBoradSize()
 	m_board.setFillColor(sf::Color::White);
 }
 
-//--------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 //Function that goes through the board and is responsible of calling other
 //functions in order to update the game objects' location
 
@@ -105,13 +104,11 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats,
 {
 	auto rows = m_currLevel.size();
 
-	// go through the rows in the board
 	for (int row = 0; row < rows; row++)
 	{
 		std::string currLine = m_currLevel[row];
 		auto cols = currLine.size();
 
-		// go through the cols in the board
 		for (int col = 0; col < cols; col++)
 		{
 			char character = currLine[col];
@@ -120,14 +117,15 @@ void Board::updateObjects(std::vector<std::unique_ptr<MovingObjects>>& cats,
 	}
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 //This function checks what is the character in the given location and updates
 //the relevant members.
 
-void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std::unique_ptr<MovingObjects >& mouse,
+void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, 
+						  std::unique_ptr<MovingObjects >& mouse,
 	                      const char character, int row, int col)
 {
-	// set the position of the current object
+	//set the position of the current object
 	sf::Vector2f position = { (m_tileSize.y * col) + BOARD_START_X,(m_tileSize.x * row) + BOARD_START_Y };
 
 	switch (character)
@@ -162,45 +160,41 @@ void Board::updateMembers(std::vector<std::unique_ptr<MovingObjects>>& cats, std
 		}
 		case 'D':
 		{
-
 			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_DOOR);
 			m_staticObjects.push_back(std::make_unique<Door>(*icon, position, m_tileSize));
 			return;
 		}
 		case '#':
 		{
-
 			const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_WALL);
 			m_staticObjects.push_back(std::make_unique<Wall>(*icon, position, m_tileSize));
 			return;
 		}
 	}
 }
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 void Board::pushCat(std::vector<std::unique_ptr<MovingObjects>>& cats,
 	        const sf::Texture& icon, sf::Vector2f& position)
 {
 	if (Cat::getCount() % 2 == 0)
 	{
 		cats.push_back(std::make_unique<SmartCat>(icon, position, m_tileSize));
-		//cats[Cat::getCount()]->setOrigin();
 	}
 	else
 	{
 		cats.push_back(std::make_unique<StupidCat>(icon, position, m_tileSize));
-		//cats[Cat::getCount()]->setOrigin();
 	}
 }
-//------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------
 void Board::setMouse(std::unique_ptr<MovingObjects >& mouse,
 	                 const sf::Vector2f& position)
 {
 	const sf::Texture* icon = HandleResources::instance().getObjectTexture(I_L_MOUSE);
 	mouse = std::make_unique<Mouse>(*icon, position, m_tileSize);
-
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------
 void Board::pushGift(const sf::Vector2f& position)
 {
 	int gift = Gift::getCount();
@@ -227,7 +221,7 @@ void Board::pushGift(const sf::Vector2f& position)
 	}	
 }
 
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 void Board::printBoard(sf::RenderWindow& window) const
 {
 	window.draw(m_board);
@@ -238,30 +232,28 @@ void Board::printBoard(sf::RenderWindow& window) const
 	}
 }
 
-//--------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 sf::Vector2f Board::getTileSize() const
 {
 	return m_tileSize;
 }
-//--------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------
 const sf::RectangleShape& Board::getRectangle() const
 {
 	return m_board;
 }
 
-//--------------------------------------------------------------------------
-void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
-	                                   Controller& controller)
+//-------------------------------------------------------------------------------------
+void Board::checkStaticObjectCollision (std::unique_ptr<MovingObjects>& object,
+	                                    Controller& controller)
 {
 	for (auto i = 0; i < m_staticObjects.size(); i++)
 	{
-
 		if (object->checkCollision(*m_staticObjects[i]))
 		{
 			object->collisionHandling(*m_staticObjects[i]);
 			checkGift(m_staticObjects[i], controller);
-
-			//std::cout << "on Board?" << m_staticObjects[i]->offBoard() << std::endl;
 			break;
 		}
 	}
@@ -269,17 +261,16 @@ void Board::checkStaticObjectCollision(std::unique_ptr<MovingObjects>& object,
 	std::erase_if(m_staticObjects, [](const auto& object) {
 		return object->offBoard();
 		});
-
 }
 
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 void Board::clear()
 {
 	reset();
 	m_currLevel.clear();
 }
 
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 void Board::reset()
 {
 	m_staticObjects.clear();
@@ -289,11 +280,11 @@ void Board::reset()
 	m_board.setPosition({ BOARD_START_X ,BOARD_START_Y });
 	m_board.setFillColor(sf::Color::White);
 }
-//------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------
 std::vector<std::unique_ptr<StaticObjects>>& Board::getStaticObjects()
 {
 	return m_staticObjects;
-
 }
 
 //------------------------------------------------------------------------

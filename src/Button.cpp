@@ -3,6 +3,7 @@
 #include "Button.h"
 #include <string.h>
 #include "HandleResources.h"
+
 //---------------------------------------------------------------------------------------
 
 Button::Button()

@@ -3,9 +3,8 @@
 
 
 const int PIXELS = 48;
-const int BUTTON_TEXT_SIZE = 50;
 const int INFOBAR_TEXT_SIZE = 30;
-
+const int SCORE_TEXT_SIZE = 80;
 
 enum TileType : char
 {

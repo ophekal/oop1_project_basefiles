@@ -25,15 +25,14 @@ public:
 	static int getCount();
 	void setCatFreeze(bool freeze);
 	bool isFreeze()const;
-	const sf::Time& getFreezeStartTime() const;
-	void setFreezeStartTime(sf::Time time);
+	const sf::Time& getFreezeTime() const;
+	void setFreezeStartTime();
 
-	//void checkCatCovered(const sf::Vector2f& nextPosition,
-	//	                 std::vector<std::unique_ptr<StaticObjects>>& staticObjects);
+protected:
+	sf::Clock m_clock;				//for tracking the movement time of each cat
 
 private:
 	static int m_count;
 	bool m_catFreeze = false;
 	sf::Time m_freezeStartTime;
-	//sf::Sound m_sound;	//will hold a sound of one of the sounds we'll have in handelresources
 };

@@ -12,12 +12,11 @@ void StupidCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                          const std::unique_ptr<MovingObjects>& mouse,
                          const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
-	MovingObjects::setObjectSpeed(25.f);
-    // Seed the random number generator
+    MovingObjects::setObjectSpeed(25.f);
     srand(static_cast<unsigned int>(time(nullptr)));
+    m_clock.restart();
 
     // Define possible directions
-
    Direction direction = static_cast<Direction>(rand() % 4); // Generate a random direction
 
     // Calculate movement vector based on direction and speed

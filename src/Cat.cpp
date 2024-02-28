@@ -13,6 +13,7 @@
 #include "FreezeCatGift.h"
 #include "KillCatGift.h"
 #include <iostream>
+
 //------------------------------------------------------------------------
 int Cat::m_count = 0;
 //---------------------------------------------------------------
@@ -50,37 +51,30 @@ void Cat::collisionHandling(Mouse& mouse)
 //------------------------------------------------------------------------
 void Cat::collisionHandling(Cat& cat)
 {
-	//cat.setCovered(true);
 }
 //------------------------------------------------------------------------
 void Cat::collisionHandling(KillCatGift& gift)
 {
-	//gift.setCovered(true);
 }
 //------------------------------------------------------------------------
 void Cat::collisionHandling(AddLifeGift& gift)
 {
-	//gift.setCovered(true);
 }
 //-----------------------------------------------------------------------
 void Cat::collisionHandling(AddTimeGift& gift)
 {
-	//gift.setCovered(true);
 }
 //----------------------------------------------------------------------
 void Cat::collisionHandling(FreezeCatGift& gift)
 {
-	//gift.setCovered(true);
 }
 //---------------------------------------------------------------------
 void Cat::collisionHandling(Key& key)
 {
-	//key.setCovered(true);
 }
 //---------------------------------------------------------------------
 void Cat::collisionHandling(Cheese& cheese)
 {
-	//cheese.setCovered(true);
 }
 //----------------------------------------------------------------------
 void Cat::collisionHandling(Door& door)
@@ -98,32 +92,12 @@ bool Cat::isFreeze()const
 	return m_catFreeze;
 }
 //---------------------------------------------------------------------
-const sf::Time& Cat::getFreezeStartTime() const
+const sf::Time& Cat::getFreezeTime() const
 { 
-	return m_freezeStartTime; 
+	return (m_clock.getElapsedTime() - m_freezeStartTime);
 }
 //---------------------------------------------------------------------
-void Cat::setFreezeStartTime(sf::Time time)
+void Cat::setFreezeStartTime()
 {
-	m_freezeStartTime = time;
+	m_freezeStartTime = m_clock.getElapsedTime();
 }
-//----------------------------------------------------------------------
-//void Cat::checkCatCovered(const sf::Vector2f& nextPosition,
-//	                      std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
-//{
-//	sf::Vector2f samePlace = { 0,0 };
-//	if (nextPosition != samePlace)
-//	{
-//		std::cout << "in checkCatCovered" << std::endl;
-//		for (auto index = 0; index < staticObjects.size(); index++)
-//		{
-//			// if the cat stand on static object
-//			if (m_object.getPosition() == staticObjects[index]->getPosition())
-//			{
-//				std::cout << "find same position" << std::endl;
-//				staticObjects[index]->setCovered(false);
-//			}
-//		}
-//	}
-//
-//}

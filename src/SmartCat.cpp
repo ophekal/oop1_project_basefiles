@@ -14,6 +14,7 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
                         const std::vector<std::unique_ptr<StaticObjects>>& staticObjects)
 {
    MovingObjects::setObjectSpeed(40.f);
+   m_clock.restart();
 
    sf::RectangleShape up = m_object;
    sf::RectangleShape down = m_object;
@@ -38,8 +39,9 @@ void SmartCat::movement(sf::Time deltaTime, const sf::RectangleShape& board,
 //Function that checks if in one of the possible four directions the cat
 //can move in the mouse is
 
-bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, sf::RectangleShape left,
-                               sf::RectangleShape right, const std::unique_ptr<MovingObjects>& mouse)
+bool SmartCat::nextStepIsMouse(sf::RectangleShape up, sf::RectangleShape down, 
+                               sf::RectangleShape left,sf::RectangleShape right,
+                               const std::unique_ptr<MovingObjects>& mouse)
 {
     if (up.getPosition() == mouse->getPosition())
     {

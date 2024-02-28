@@ -57,5 +57,5 @@ private:
 	void updateInfoBar(bool& musicOn);
 	void updateMouseScore();
 	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window,
-		               const sf::Sprite& background)const;
+		               const sf::Sprite& background, GameSound sound)const;
 };

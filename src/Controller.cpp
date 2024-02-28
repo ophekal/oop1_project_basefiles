@@ -46,10 +46,12 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 			startGame(window, background,musicOn);
 			if (m_gameOver)
 			{
+				printFinalScore();
 				return;
 			}
 		}
-		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window, background);
+		printFinalScore();
+		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window, background,G_WIN);
 		return;
 	}
 
@@ -308,7 +310,7 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 {
 	if (numOfCheese == 0) //to the next level
 	{
-		printFeedback(*HandleResources::instance().getScreenTexture(S_GOODJOB),window, background);
+		printFeedback(*HandleResources::instance().getScreenTexture(S_GOODJOB),window, background,G_WIN);
 		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 		if (mousePtr != nullptr)
 		{
@@ -333,7 +335,7 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 //-----------------------------------------------------------------------
 void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background)
 {
-	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
+	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background,G_LOST);
 	//function that return the mouse and cat to their first location
 	initMovingObjects();
 	m_mouseDead = false;
@@ -342,7 +344,7 @@ void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& bac
 
 void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn)
 {
-	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
+	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background,G_LOST);
 	
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 	int prevLives=0;
@@ -377,7 +379,7 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& background)
 {
 	m_gameOver = true;
-	printFeedback(*HandleResources::instance().getScreenTexture(S_GAMEOVER),window, background);
+	printFeedback(*HandleResources::instance().getScreenTexture(S_GAMEOVER),window, background,G_LOST);
 }
 //----------------------------------------------------------------------
 
@@ -418,7 +420,7 @@ void Controller::updateMouseScore()
 
 void Controller::printFeedback(const sf::Texture& feedback, 
 	                           sf::RenderWindow& window,
-	                           const sf::Sprite& background)const
+	                           const sf::Sprite& background, GameSound sound)const
 {
 	// Create a sprite using the feedback texture
 	sf::Sprite sprite(feedback);
@@ -430,6 +432,7 @@ void Controller::printFeedback(const sf::Texture& feedback,
 
 	// Draw the sprite onto the window
 	window.draw(background);
+	HandleResources::instance().playSound(sound);
 	window.draw(sprite);
 
 	// Display the content of the window

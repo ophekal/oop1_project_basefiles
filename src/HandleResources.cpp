@@ -87,7 +87,7 @@ void HandleResources::updateScreenVector()
 void HandleResources::updateBufferSounds()
 {
 	m_bufferSounds.resize(6);
-	m_bufferSounds[G_CHESSE].loadFromFile("yummy.wav");
+	m_bufferSounds[G_CHEESE].loadFromFile("yummy.wav");
 	m_bufferSounds[G_GIFT].loadFromFile("gift.wav");
 	m_bufferSounds[G_MOUSE].loadFromFile("mouseEaten.wav");
 	m_bufferSounds[G_WIN].loadFromFile("goodJobYouWin.wav");
@@ -98,7 +98,7 @@ void HandleResources::updateBufferSounds()
 void HandleResources::updateGameSounds()
 {
 	m_gameSound.resize(6);
-	m_gameSound[G_CHESSE].setBuffer(m_bufferSounds[G_CHESSE]);
+	m_gameSound[G_CHEESE].setBuffer(m_bufferSounds[G_CHEESE]);
 	m_gameSound[G_GIFT].setBuffer(m_bufferSounds[G_GIFT]);
 	m_gameSound[G_MOUSE].setBuffer(m_bufferSounds[G_MOUSE]);
 	m_gameSound[G_WIN].setBuffer(m_bufferSounds[G_WIN]);

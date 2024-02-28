@@ -99,6 +99,7 @@ void Mouse::collisionHandling(Mouse& mouse)
 //------------------------------------------------------------------------
 void Mouse::collisionHandling(Cat& cat)
 {
+	HandleResources::instance().playSound(G_MOUSE);
 	m_lives--;
 	setOffBoard(true);  
 }
@@ -137,12 +138,14 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Key& key)
 {
+	HandleResources::instance().playSound(G_KEY);
 	m_keys++;
 	key.setOffBoard(true); 
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)
 {
+	HandleResources::instance().playSound(G_CHEESE);
 	m_score += 10;
 	cheese.setOffBoard(true);
 }

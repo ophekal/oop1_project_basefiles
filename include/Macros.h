@@ -1,8 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-
-const int PIXELS = 48;
 const int INFOBAR_TEXT_SIZE = 30;
 const int SCORE_TEXT_SIZE = 80;
 

@@ -282,7 +282,7 @@ void Controller::findCat(int& indexToChange)const
 	
 	for (auto index = 0; index < m_cats.size(); index++)
 	{
-		currDistance = m_mouse->distance(m_mouse->getObjectPosition(), m_cats[index]->getObjectPosition());
+		currDistance = m_mouse->distance(m_mouse->getPosition(), m_cats[index]->getPosition());
 		if (currDistance > maxDistance)
 		{
 			maxDistance = currDistance;

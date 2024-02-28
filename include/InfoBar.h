@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Clock.h"
 #include <vector>
 #include "Button.h"
 #include <string.h>
@@ -28,5 +27,5 @@ private:
 	std::string m_numOfLives;
 	std::string m_numOfLevel;
 	std::string m_score;
-	std::vector< Button> m_infoBar; // for the information
+	std::vector< Button> m_infoBar; 
 };

@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Cat.h"
-#include <memory>
 
 class StupidCat:public Cat
 {

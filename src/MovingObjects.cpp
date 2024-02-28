@@ -78,6 +78,7 @@ float MovingObjects::distance(const sf::Vector2f& v1, const sf::Vector2f& v2)
 {
     return(sqrt(((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y))));
 }
+
 //------------------------------------------------------------------------
 void MovingObjects::updatePosition(const sf::Vector2f& position)
 {

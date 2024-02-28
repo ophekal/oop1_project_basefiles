@@ -4,7 +4,7 @@
 
 class Mouse;
 class cat;
-class StaticObject;
+class GameObjects;
 
 class Key:public StaticObjects
 {

@@ -2,18 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "GameObjects.h"
 
-class Mouse;
-class Cat;
-class Wall;
-class KillCatGift;
-class AddTimeGift;
-class FreezeCatGift;
-class AddLifeGift;
-class Key;
-class Cheese;
-class Door;
-class Gift;
-
 class StaticObjects:public GameObjects
 {
 public:

@@ -21,8 +21,7 @@ public:
 	void stopMusic();
 
 private:
-	HandleResources();   //update all the resources of the play
-	//~HandleResources() = delete;   
+	HandleResources();   //update all the resources of the play   
 	void updateObjectVector();
 	void updateBackgroundVector();
 	void updateInfoBarVector();

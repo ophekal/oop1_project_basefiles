@@ -1,7 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <memory>
-#include <fstream>
 #include "Button.h"
 
 class Menu

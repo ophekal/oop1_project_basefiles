@@ -159,7 +159,7 @@ void Controller::print(sf::RenderWindow& window,const sf::Sprite& background)
 	window.clear();
 	window.draw(background);
 	m_infoBar.printInfoBar(window);
-	m_clock.printClock(window, m_levelOver);//pass the curr time
+	m_clock.printClock(window, m_levelOver);
 	m_board.printBoard(window);
 	printMovingObjects(window);
 	window.display();
@@ -189,9 +189,8 @@ void Controller::moveCats (sf::Time deltaTime)
 		{
 			if (catPtr->isFreeze())
 			{
-				sf::Time elapsedTime = m_clock.getClock().getElapsedTime() - catPtr->getFreezeStartTime();
+				sf::Time elapsedTime = catPtr->getFreezeTime();
 
-				//sf::Time elapsedTime = clock.getElapsedTime() - catPtr->getFreezeStartTime();
 				if (elapsedTime >= sf::seconds(4.0f))
 				{
 					catPtr->setCatFreeze(false);
@@ -236,8 +235,7 @@ void Controller::freezeCat()
 	if (catPtr != nullptr)
 	{
 		catPtr->setCatFreeze(true);
-		catPtr->setFreezeStartTime(m_clock.getClock().getElapsedTime());
-		//catPtr->setFreezeStartTime(clock.getClock().getElapsedTime());
+		catPtr->setFreezeStartTime();
 	}
 
 }

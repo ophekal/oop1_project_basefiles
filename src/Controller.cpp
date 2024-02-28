@@ -49,9 +49,9 @@ void Controller::run(sf::RenderWindow& window, bool& musicOn)
 				printFinalScore(window);
 				return;
 			}
-		}
-		printFinalScore(window);
+		}		
 		printFeedback(*HandleResources::instance().getScreenTexture(S_WIN), window, background,G_WIN);
+		printFinalScore(window);
 		return;
 	}
 

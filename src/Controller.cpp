@@ -310,6 +310,7 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 {
 	if (numOfCheese == 0) //to the next level
 	{
+		print(window,background);
 		printFeedback(*HandleResources::instance().getScreenTexture(S_GOODJOB),window, background,G_WIN);
 		Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 		if (mousePtr != nullptr)
@@ -470,5 +471,5 @@ void Controller::printFinalScore(sf::RenderWindow& window)
 	window.draw(printText);
 	// Display the content of the window
 	window.display();
-	sf::sleep(sf::seconds(3));
+	sf::sleep(sf::seconds(2));
 }

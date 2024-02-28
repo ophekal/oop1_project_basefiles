@@ -6,7 +6,7 @@
 
 //------------------------------------------------------------------------
 GameObjects::GameObjects(const sf::Texture& picture, const sf::Vector2f& position, const sf::Vector2f& size)
-    : m_object(size),m_offBoard(false)//,m_covered(false)
+    : m_object(size),m_offBoard(false)
 {
     m_object.setTexture(&picture);
     m_object.setPosition(position);
@@ -18,9 +18,9 @@ bool GameObjects::checkCollision(GameObjects& other)
     {
         return false;
     }
-    // check all 4 corners
+
     auto overLapping = 0.1f;
-    auto sizeDecrese = 1.1;
+    auto sizeDecrese = 1.3;
     
     sf::FloatRect object = m_object.getGlobalBounds(),
                   otherObject = other.getGlobalBounds();
@@ -57,17 +57,3 @@ const sf::FloatRect& GameObjects::getGlobalBounds()const
 {
     return m_object.getGlobalBounds();
 }
-//void GameObjects::setCovered(bool covered)
-//{
-//    m_covered = covered;
-//}
-////--------------------------------------------------------------------------
-//bool GameObjects::isCovered()const
-//{
-//    return m_covered;
-//}
-////------------------------------------------------------------------------
-//void GameObjects::setPosition(const sf::Vector2f& newPosition)
-//{
-//    m_object.setPosition(newPosition);
-//}

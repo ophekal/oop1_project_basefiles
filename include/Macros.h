@@ -89,8 +89,8 @@ const sf::Vector2f BUTTON_SIZE = { 400,100 };
 const sf::Vector2f SOUND_SIZE = { 65,65 };
 
 
-const int HELP_HEIGHT = 720;
-const int HELP_WIDTH = 1280;
+const int HELP = 726;
+//const int HELP_WIDTH = 726;
 
 //------------board------------
 const float BOARD_HIG = 1000;

@@ -21,5 +21,5 @@ public:
 	virtual void collisionHandling(AddLifeGift&) {};
 
 protected:
-	bool m_currOnBoard = false;
+
 };

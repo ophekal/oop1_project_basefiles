@@ -20,6 +20,4 @@ public:
 	virtual void collisionHandling(FreezeCatGift&) {};
 	virtual void collisionHandling(AddLifeGift&) {};
 
-protected:
-
 };

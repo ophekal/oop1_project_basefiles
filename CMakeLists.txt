@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.26)
 
 project (oop1_project)
-set (MY_AUTHORS "")
+set (MY_AUTHORS "livnat_arama-ophek_alon")
 
 include (cmake/CompilerSettings.cmake)
 

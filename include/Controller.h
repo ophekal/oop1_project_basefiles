@@ -14,7 +14,7 @@ class Controller
 {
 public:
 	Controller() = default;
-	void run(sf::RenderWindow& window); // move the music
+	void run(sf::RenderWindow& window, bool& musicOn);
 	void incTime();
 	void incLife();
 	void freezeCat();
@@ -37,25 +37,24 @@ private:
 	int m_totalScore = 0;
 	int m_prevLevelsScore = 0;
 	
-	void startGame(sf::RenderWindow& window, const sf::Sprite& background);
+	void startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
 	void printMovingObjects(sf::RenderWindow& window)const;
 	void print(sf::RenderWindow& window, const sf::Sprite& background);
 	void updateGameBackground(const sf::RenderWindow& window, sf::Sprite& background);
 	void moveMouse(sf::Time deltaTime);
-	//void moveCats(sf::Time deltaTime);
 	void moveCats(sf::Time deltaTime);
 	void checkMovingObjectCollision(const std::unique_ptr<MovingObjects>& object);
 	void findCat(int& indexToChange)const;
 	void initMovingObjects();
 	bool checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
-		                  const sf::Sprite& background);
+		                  const sf::Sprite& background, bool& musicOn);
 	void handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& background);
-	void handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background);
+	void handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn);
 	bool checkGameStatus(int numOfCheese, int numOfCats,sf::RenderWindow& window,
-		                 const sf::Sprite& background);
+		                 const sf::Sprite& background, bool& musicOn);
 	void handleExit(sf::RenderWindow& window, const sf::Sprite& background);
-	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window);
-	void updateInfoBar();
+	void handleClick(const sf::Event::MouseButtonEvent& event, const sf::RenderWindow& window, bool& musicOn);
+	void updateInfoBar(bool& musicOn);
 	void updateMouseScore();
 	void printFeedback(const sf::Texture& feedback,sf::RenderWindow& window,
 		               const sf::Sprite& background)const;

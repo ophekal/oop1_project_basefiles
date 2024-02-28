@@ -140,8 +140,7 @@ void Mouse::collisionHandling(FreezeCatGift& gift)
 void Mouse::collisionHandling(Key& key)
 {
 	m_keys++;
-	key.setOffBoard(true);  // m_offBoard = true;
-	//std::cout << "num of keys:" << m_keys << std::endl;
+	key.setOffBoard(true); 
 }
 //---------------------------------------------------------------------
 void Mouse::collisionHandling(Cheese& cheese)

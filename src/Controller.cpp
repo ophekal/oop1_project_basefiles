@@ -12,7 +12,7 @@
 
 //-------------------------------------------------------------------------
 
-void Controller::run(sf::RenderWindow& window)
+void Controller::run(sf::RenderWindow& window, bool& musicOn)
 {
 	// open streams for reading from file playlist
 	auto line = std::string();
@@ -43,7 +43,7 @@ void Controller::run(sf::RenderWindow& window)
 			m_board.updateBoard(m_cats,m_mouse,m_levelTime); //function that also updates the moving objects                  
 			updateMouseScore();
 			m_levelNum++;
-			startGame(window, background);
+			startGame(window, background,musicOn);
 			if (m_gameOver)
 			{
 				return;
@@ -67,13 +67,13 @@ void Controller::updateGameBackground(const sf::RenderWindow& window,sf::Sprite&
 		(float)(window.getSize().y) / textureSize.y);
 }
 //------------------------------------------------------------------------
-void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& background)
+void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn)
 {
 	//clock for handeling movements
 	sf::Clock clock= m_clock.getClock();
 
 	int numOfCheese = Cheese::getCount();
-	updateInfoBar();
+	updateInfoBar(musicOn);
 
 	//tracks time of the level
 	m_clock.setClock(m_levelTime, m_levelOver);
@@ -91,7 +91,7 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 				window.close();
 				break;
 			case sf::Event::MouseButtonReleased:
-				handleClick(event.mouseButton,window);
+				handleClick(event.mouseButton,window,musicOn);
 				if (m_gameOver)
 				{
 					return;
@@ -102,10 +102,10 @@ void Controller::startGame(sf::RenderWindow& window, const sf::Sprite& backgroun
 		const auto deltaTime = clock.restart();
 		moveMouse(deltaTime);
 		moveCats(deltaTime);
-		updateInfoBar();
+		updateInfoBar(musicOn);
 		
 		numOfCheese = Cheese::getCount();
-		if (checkGameStatus(numOfCheese, numOfCats,window,background))
+		if (checkGameStatus(numOfCheese, numOfCats,window,background,musicOn))
 		{
 			break;
 		}
@@ -279,7 +279,7 @@ void Controller::initMovingObjects()
 }
 //-----------------------------------------------------------------------
 bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
-	                             const sf::Sprite& background)
+	                             const sf::Sprite& background, bool& musicOn)
 {
 	if (m_mouseDead)
 	{
@@ -299,12 +299,12 @@ bool Controller::checkGameStatus(int numOfCheese, int numOfCats, sf::RenderWindo
 		return false;
 	}
 	
-	return checkLevelStatus(numOfCheese, numOfCats, window, background);
+	return checkLevelStatus(numOfCheese, numOfCats, window, background,musicOn);
 	
 }
 //-----------------------------------------------------------------------
 bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWindow& window,
-	                              const sf::Sprite& background)
+	                              const sf::Sprite& background, bool& musicOn)
 {
 	if (numOfCheese == 0) //to the next level
 	{
@@ -324,7 +324,7 @@ bool Controller::checkLevelStatus(int numOfCheese, int numOfCats, sf::RenderWind
 	if (m_levelOver)
 	{
 		// start the level again
-		handleLevelOver(window, background);
+		handleLevelOver(window, background,musicOn);
 		return false;
 	}
 
@@ -340,7 +340,7 @@ void Controller::handleDeadMouse(sf::RenderWindow& window, const sf::Sprite& bac
 }
 //-----------------------------------------------------------------------
 
-void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background)
+void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& background, bool& musicOn)
 {
 	printFeedback(*HandleResources::instance().getScreenTexture(S_TRYAGAIN),window, background);
 	
@@ -368,7 +368,7 @@ void Controller::handleLevelOver(sf::RenderWindow& window, const sf::Sprite& bac
 		newMousePtr->setLives(prevLives);
 		newMousePtr->setScore(m_prevLevelsScore);
 	}
-	updateInfoBar();
+	updateInfoBar(musicOn);
 	m_clock.setClock(m_levelTime, m_levelOver);
 }
 
@@ -382,15 +382,15 @@ void Controller::handleExit(sf::RenderWindow& window, const sf::Sprite& backgrou
 //----------------------------------------------------------------------
 
 void Controller::handleClick(const sf::Event::MouseButtonEvent& event,
-	                         const sf::RenderWindow& window)
+	                         const sf::RenderWindow& window, bool& musicOn)
 {
 	auto location = window.mapPixelToCoords({ event.x,event.y });
 
-	m_infoBar.handleClick(location,m_gameOver,m_levelOver,m_mouse);
+	m_infoBar.handleClick(location,m_gameOver,m_levelOver,m_mouse,musicOn);
 
 }
 //------------------------------------------------------------------------
-void Controller::updateInfoBar()
+void Controller::updateInfoBar(bool& musicOn)
 {
 	Mouse* mousePtr = dynamic_cast<Mouse*>(m_mouse.get());
 	int keys = 0;
@@ -402,7 +402,7 @@ void Controller::updateInfoBar()
 		m_totalScore = mousePtr->getScore();
 		lives = mousePtr->getLives();
 	}
-	m_infoBar.setInfoBar(m_levelNum, m_totalScore, keys, lives);
+	m_infoBar.setInfoBar(m_levelNum, m_totalScore, keys, lives,musicOn);
 }
 //------------------------------------------------------------------------
 void Controller::updateMouseScore()

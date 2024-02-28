@@ -16,8 +16,11 @@ public:
 	void updateScore(int score);
 	void updateKey(int keys);
 	void updateLevel(int level);
-	void setInfoBar(int levelNum, int score, int key, int lives);
-	void handleClick(const sf::Vector2f& location, bool& gameOver, bool& levelOver, std::unique_ptr<MovingObjects>& mouse);
+	void setInfoBar(int levelNum, int score, int key, int lives, bool& musicOn);
+	void handleClick(const sf::Vector2f& location, bool& gameOver, bool& levelOver,
+		             std::unique_ptr<MovingObjects>& mouse, bool& musicOn);
+	void updateMusic(bool& musicOn);
+	void checkMusic(const bool& musicOn);
 
 
 private:
@@ -25,7 +28,7 @@ private:
 	std::string m_numOfLives;
 	std::string m_numOfLevel;
 	std::string m_score;
-	bool m_musicOn = true;
+	//bool m_musicOn = true;
 
 	std::vector< Button> m_infoBar; // for the information
 };

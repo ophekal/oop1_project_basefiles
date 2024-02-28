@@ -58,7 +58,7 @@ void Menu::updateButton()
 }
 
 //------------------------------------------------------------------
-void Menu::print(sf::Sprite& background)
+void Menu::print(const sf::Sprite& background)
 {
 	m_window.clear();
 	m_window.draw(background);
@@ -90,7 +90,6 @@ void Menu::handleClick(sf::Event::MouseButtonEvent& event)
 	}
 	else if (m_buttons[M_START].getRectangleButton().getGlobalBounds().contains(location))
 	{
-		//std::cout << "in game" << std::endl;
 		startGame();	//calls on controller and starts the game
 	}
 	else if (m_buttons[M_SOUND].getRectangleButton().getGlobalBounds().contains(location))
@@ -136,7 +135,8 @@ void Menu::pressedHelp()
 void Menu::startGame()
 {
 	Controller controller;
-	controller.run(m_window); //also sound!
+	controller.run(m_window,m_musicOn); 
+	checkMusic();
 }
 //----------------------------------------------------------------------
 
@@ -155,4 +155,17 @@ void Menu::handleMusic()
 		HandleResources::instance().playMusic();
 	}
 
+}
+//------------------------------------------------------------------------
+void Menu::checkMusic()
+{
+	if (m_musicOn)
+	{
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_SOUND), SOUND_X, SOUND_Y, SOUND_SIZE);
+		
+	}
+	else
+	{
+		m_buttons[M_SOUND].updateButton(*HandleResources::instance().getBackgroundTexture(B_MUTE), SOUND_X, SOUND_Y, SOUND_SIZE);
+	}
 }

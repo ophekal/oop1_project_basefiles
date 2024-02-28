@@ -19,8 +19,6 @@ public:
 	void playSound(GameSound sound);
 	void playMusic();
 	void stopMusic();
-	//static HandleResources& getSounds();
-	
 
 private:
 	HandleResources();   //update all the resources of the play
@@ -36,7 +34,7 @@ private:
 	std::vector<sf::Texture> m_infoBarTextures;	//menu, infobar, window
 	std::vector<sf::Texture> m_screenTextures;
 
-	sf::Font m_font;				//holds the font
+	sf::Font m_font;				
 	sf::Music m_gameMusic;
 	std::vector <sf::SoundBuffer> m_gameSounds;
 

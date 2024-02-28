@@ -120,7 +120,6 @@ const sf::Texture* HandleResources::getScreenTexture(Screen icon)
 	return &(m_screenTextures[icon]);
 }
 
-
 //-------------------------------------------------------------------------
 const sf::Texture* HandleResources::getObjectTexture(IconType icon)
 {

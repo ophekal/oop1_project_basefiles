@@ -53,7 +53,7 @@ void GameObjects::setOffBoard(bool off)
     m_offBoard = off;
 }
 //--------------------------------------------------------------------------
-const sf::FloatRect& GameObjects::getGlobalBounds()const
+const sf::FloatRect GameObjects::getGlobalBounds()const
 {
     return m_object.getGlobalBounds();
 }

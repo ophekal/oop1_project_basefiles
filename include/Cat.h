@@ -24,7 +24,7 @@ public:
 	virtual void collisionHandling(Cheese&) {};
 	virtual void collisionHandling(Door&);
 	static int getCount();
-	const sf::Time& getFreezeTime() const;
+	const sf::Time getFreezeTime() const;
 	void setCatFreeze(bool freeze);
 	bool isFreeze()const;
 	void setFreezeStartTime();

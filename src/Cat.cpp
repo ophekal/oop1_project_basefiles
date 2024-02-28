@@ -73,7 +73,7 @@ bool Cat::isFreeze()const
 }
 
 //---------------------------------------------------------------------
-const sf::Time& Cat::getFreezeTime() const
+const sf::Time Cat::getFreezeTime() const
 { 
 	return (m_clock.getElapsedTime() - m_freezeStartTime);
 }

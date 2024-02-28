@@ -33,7 +33,7 @@ public:
 	virtual void collisionHandling(Cheese&) = 0;
 	virtual void collisionHandling(Door&) = 0;
 	virtual void collisionHandling(Wall&) = 0;
-	const sf::FloatRect& getGlobalBounds()const;
+	const sf::FloatRect getGlobalBounds()const;
 
 
 protected:
